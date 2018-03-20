@@ -1,15 +1,9 @@
 #Referenced from https://people.csail.mit.edu/hubert/pyaudio/
 
 import os
-import RPi.GPIO as GPIO
 import pyaudio
 import wave
 import subprocess
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-input_state = GPIO.input(18)
 
 CHUNK_SIZE = 1024
 FORMAT = pyaudio.paInt16
@@ -17,7 +11,6 @@ CHANNELS = 2
 RATE = 44100
 RECORD_Time = 5
 WAVE_OUTPUT_FILENAME = "myMessage.wav"
-
 
 
 
@@ -39,14 +32,14 @@ def recordMessage():
 
     frames = []
 
-#   for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
-#       data = stream.read(CHUNK)
-#       frames.append(data)
+   for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+       data = stream.read(CHUNK)
+       frames.append(data)
 
-    while input_state:
-        data = stream.read(CHUNK_SIZE)
-        frames.append(data)
-    
+#    while input_state:
+#        data = stream.read(CHUNK_SIZE)
+#        frames.append(data)
+
     print("Message recorded")
 
     stream.stop_stream()
@@ -90,8 +83,8 @@ def playMessage():
 
 def main():
     #keep recording
-    while True:
-        GPIO.wait_for_edge(18, GPIO.FALLING)
+#    while True:
+#        GPIO.wait_for_edge(18, GPIO.FALLING)
         recordMessage()
         sleep(2)
         playMessage()
