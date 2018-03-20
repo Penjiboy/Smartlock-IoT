@@ -1,129 +1,96 @@
 from tkinter import *
 from tkinter import ttk
-import time
 
-root = Tk()
-
-#passcode is stored in _strSecret
-_strSecret = "1809"
+_strSecret = "1234"
 _strVar = ""
+class CodeKeypad: 
+    #passcode is stored in _strSecret
 
-def put_num1(event):
-    userEntry.insert("end",1)
-    global _strVar
-    _strVar = _strVar + '1'
+    #insert the number 
+    def button_press(self,value):
+        entry_value = self.entry_value.get() 
+        
+        entry_value += '*'
+        #_strVar is for future if we want to insert **** instead of 
+        #inserting numbers into our entry box to hide the passcode  
+        global _strVar
+        _strVar += value 
+        
+        self.userEntry.delete(0,"end")
 
-def put_num2(event):
-    userEntry.insert("end",2)
-    global _strVar
-    _strVar = _strVar +'2'
+        self.userEntry.insert(0,entry_value)
 
-def put_num3(event):
-    userEntry.insert("end",3)
-    global _strVar
-    _strVar = _strVar +'3'
+    def clear_num(self):
+        self.userEntry.delete(0,"end")
+        global _strVar
+        _strVar = "" #reset the _strVar 
 
-def put_num4(event):
-    userEntry.insert("end",4)
-    global _strVar
-    _strVar = _strVar +'4'
+    def enter_code(self):
+        global _strVar
+        global _strSecret
+        print("Code entered: ", _strVar)
+        if _strVar == _strSecret:
+            print("Door is unlocked")
+        else:
+            print("Error: Incorrect code entered")
+        self.clear_num()
 
-def put_num5(event):
-    userEntry.insert("end",5)
-    global _strVar
-    _strVar = _strVar +'5'
+    def __init__(self,root):
+        #Variable holding the changing value stored in entry 
+        self.entry_value = StringVar(root, value="")
+        #customizing the windows
+        root.geometry("555x300")
+        root.resizable(width=FALSE,height=FALSE)
+        root.title("Keypad")
 
-def put_num6(event):
-    userEntry.insert("end",6)
-    global _strVar
-    _strVar = _strVar +'6'
+        Style=ttk.Style()
+        Style.configure("TButton",
+                        font="Times 20",
+                        padding=10)
 
-def put_num7(event):
-    userEntry.insert("end",7)
-    global _strVar
-    _strVar = _strVar + '7'
+        Style.configure("TEntry",
+                        font="Times 50",
+                        padding=20)
 
-def put_num8(event):
-    userEntry.insert("end",8)
-    global _strVar
-    _strVar = _strVar + '8'
+        #Entry and buttons 
+        self.userEntry = ttk.Entry(root, textvariable=self.entry_value ,width=85)
+        self.userEntry.grid(row = 0, column = 1, columnspan = 9)
 
-def put_num9(event):
-    userEntry.insert("end",9)
-    global _strVar
-    _strVar = _strVar + '9'
+        self.num1Button = ttk.Button(root,text="1",command=lambda:self.button_press('1'))
+        self.num1Button.grid(row = 1, column =1, columnspan = 3 , sticky=E)
 
-def put_num0(event):
-    userEntry.insert("end",0)
-    global _strVar
-    _strVar = _strVar + '0'  
+        self.num2Button = ttk.Button(root,text="2",command=lambda:self.button_press('2'))
+        self.num2Button.grid(row = 1, column = 4, columnspan=3)
 
-def clear_num(event):
-    userEntry.delete(0,"end")
-    global _strVar
-    _strVar = "" #reset the _strVar 
+        self.num3Button = ttk.Button(root,text="3",command=lambda:self.button_press('3'))
+        self.num3Button.grid(row = 1, column = 7, columnspan = 3 , sticky=W)
 
-def enter_code(event):
-    userEntry.insert("end","ENTERED")
-    global _strVar
-    global _strSecret
-    print("Code entered: ", _strVar)
-    if _strVar == _strSecret:
-        print("Door is unlocked")
-    else:
-        print("Error: Incorrect code entered")
-    clear_num(NONE)
+        self.num4Button = ttk.Button(root,text="4",command=lambda:self.button_press('4'))
+        self.num4Button.grid(row = 2, column = 1, columnspan = 3 , sticky=E)
 
-root.geometry("120x120+20+20")
-userEntry = Entry(root,width=20)
-userEntry.grid(row = 0, columnspan = 7)
+        self.num5Button = ttk.Button(root,text="5",command=lambda:self.button_press('5'))
+        self.num5Button.grid(row = 2, column = 4, columnspan=3)
 
-num1Button = Button(root,text="1")
-num1Button.bind("<Button-1>",put_num1)
-num1Button.grid(row = 1,columnspan = 3 , sticky=E)
+        self.num6Button = ttk.Button(root,text="6",command=lambda:self.button_press('6'))
+        self.num6Button.grid(row = 2, column = 7, columnspan = 3 , sticky=W)
 
-num2Button = Button(root,text="2")
-num2Button.bind("<Button-1>",put_num2)
-num2Button.grid(row = 1, column = 3)
+        self.num7Button = ttk.Button(root,text="7",command=lambda:self.button_press('7'))
+        self.num7Button.grid(row = 3, column = 1,columnspan = 3 , sticky=E)
 
-num3Button = Button(root,text="3")
-num3Button.bind("<Button-1>",put_num3)
-num3Button.grid(row = 1, column = 4, columnspan = 2 , sticky=W)
+        self.num8Button = ttk.Button(root,text="8",command=lambda:self.button_press('8'))
+        self.num8Button.grid(row = 3, column = 4, columnspan=3)
 
-num4Button = Button(root,text="4")
-num4Button.bind("<Button-1>",put_num4)
-num4Button.grid(row = 2, columnspan = 3 , sticky=E)
+        self.num9Button = ttk.Button(root,text="9",command=lambda:self.button_press('9'))
+        self.num9Button.grid(row = 3, column = 7, columnspan = 3, sticky=W)
 
-num5Button = Button(root,text="5")
-num5Button.bind("<Button-1>",put_num5)
-num5Button.grid(row = 2, column = 3)
+        self.num0Button = ttk.Button(root,text="0",command=lambda:self.button_press('0'))
+        self.num0Button.grid(row = 4, column = 4, columnspan=3)
 
-num6Button = Button(root,text="6")
-num6Button.bind("<Button-1>",put_num6)
-num6Button.grid(row = 2, column = 4, columnspan = 2 , sticky=W)
+        self.clearButton = ttk.Button(root,text="Clear",command=lambda:self.clear_num())
+        self.clearButton.grid(row = 4, column = 1, columnspan = 3, sticky=E)
 
-num7Button = Button(root,text="7")
-num7Button.bind("<Button-1>",put_num7)
-num7Button.grid(row = 3, columnspan = 3 , sticky=E)
-
-num8Button = Button(root,text="8")
-num8Button.bind("<Button-1>",put_num8)
-num8Button.grid(row = 3, column = 3)
-
-num9Button = Button(root,text="9")
-num9Button.bind("<Button-1>",put_num9)
-num9Button.grid(row = 3, column = 4, columnspan = 2 , sticky=W)
-
-num0Button = Button(root,text="0")
-num0Button.bind("<Button-1>",put_num0)
-num0Button.grid(row = 4, column = 3)
-
-clearButton = Button(root,text="Clear")
-clearButton.bind("<Button-1>",clear_num)
-clearButton.grid(row = 4, columnspan = 3, sticky=E)
-
-enterButton = Button(root,text="Enter")
-enterButton.bind("<Button-1>",enter_code)
-enterButton.grid(row = 4, column = 4, columnspan = 3, sticky=W)
-
+        self.enterButton = ttk.Button(root,text="Enter",command=lambda:self.enter_code())
+        self.enterButton.grid(row = 4, column = 7, columnspan = 3, sticky=W)
+root = Tk()
+keyp = CodeKeypad(root)
 root.mainloop()
