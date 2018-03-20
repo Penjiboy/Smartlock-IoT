@@ -1,10 +1,21 @@
 from tkinter import *
 from tkinter import ttk
 
-_strSecret = "1234"
-_strVar = ""
+class StoreCode: 
+    def __init__(self):
+        #passcode is stored in private variable which cannot be accessed outside of StoreCode 
+        #so this way we can create functions that can modify __strSecret privately
+        #iff a keycode/special password is entered 
+        self.__strSecret = "567890"
+    
+    def checkEqual(self,value):
+        return value==self.__strSecret
+
+
+passCode = StoreCode()
+_strVar = ""  
+
 class CodeKeypad: 
-    #passcode is stored in _strSecret
 
     #insert the number 
     def button_press(self,value):
@@ -27,9 +38,9 @@ class CodeKeypad:
 
     def enter_code(self):
         global _strVar
-        global _strSecret
+        global passCode
         print("Code entered: ", _strVar)
-        if _strVar == _strSecret:
+        if passCode.checkEqual(_strVar):
             print("Door is unlocked")
         else:
             print("Error: Incorrect code entered")
@@ -87,6 +98,8 @@ class CodeKeypad:
 
         self.enterButton = ttk.Button(root,text="Enter",command=lambda:self.enter_code())
         self.enterButton.grid(row = 4, column = 7, columnspan = 3, sticky=W)
+
+    
 root = Tk()
 keyp = CodeKeypad(root)
 root.mainloop()
