@@ -10,7 +10,7 @@ class CodeKeypad:
     def button_press(self,value):
         entry_value = self.entry_value.get() 
         
-        entry_value += '*'
+        entry_value += '* '
         #_strVar is for future if we want to insert **** instead of 
         #inserting numbers into our entry box to hide the passcode  
         global _strVar
@@ -45,15 +45,11 @@ class CodeKeypad:
 
         Style=ttk.Style()
         Style.configure("TButton",
-                        font="Times 20",
+                        font="Times 20 bold",
                         padding=10)
 
-        Style.configure("TEntry",
-                        font="Times 50",
-                        padding=20)
-
         #Entry and buttons 
-        self.userEntry = ttk.Entry(root, textvariable=self.entry_value ,width=85)
+        self.userEntry = ttk.Entry(root, font=('Times',20,'bold'),textvariable=self.entry_value ,width=35)
         self.userEntry.grid(row = 0, column = 1, columnspan = 9)
 
         self.num1Button = ttk.Button(root,text="1",command=lambda:self.button_press('1'))
