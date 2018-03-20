@@ -1,21 +1,13 @@
 from tkinter import *
 from tkinter import ttk
+import microphone
 
-class StoreCode: 
-    def __init__(self):
-        #passcode is stored in private variable which cannot be accessed outside of StoreCode 
-        #so this way we can create functions that can modify __strSecret privately
-        #iff a keycode/special password is entered 
-        self.__strSecret = "567890"
-    
-    def checkEqual(self,value):
-        return value==self.__strSecret
-
-
-passCode = StoreCode()
-_strVar = ""  
+_strSecret = "1234"
+_strVar = ""
+_recording = False
 
 class CodeKeypad: 
+    #passcode is stored in _strSecret
 
     #insert the number 
     def button_press(self,value):
@@ -38,13 +30,21 @@ class CodeKeypad:
 
     def enter_code(self):
         global _strVar
-        global passCode
+        global _strSecret
         print("Code entered: ", _strVar)
-        if passCode.checkEqual(_strVar):
+        if _strVar == _strSecret:
             print("Door is unlocked")
         else:
             print("Error: Incorrect code entered")
         self.clear_num()
+
+    def record_button(self):
+        global _recording
+        _recording = not _recording
+        if _recording == True:
+            recordMessage2()
+        else:
+            playMessage2()
 
     def __init__(self,root):
         #Variable holding the changing value stored in entry 
@@ -99,7 +99,9 @@ class CodeKeypad:
         self.enterButton = ttk.Button(root,text="Enter",command=lambda:self.enter_code())
         self.enterButton.grid(row = 4, column = 7, columnspan = 3, sticky=W)
 
-    
+        self.recordButton = ttk.Button(root,text="Record",command=lambda:self.record_button())
+        self.recordButton.grid(row = 5, column = 1, columnspan = 3, sticky=E)
+
 root = Tk()
 keyp = CodeKeypad(root)
 root.mainloop()
