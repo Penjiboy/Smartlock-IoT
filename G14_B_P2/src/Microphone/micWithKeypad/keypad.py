@@ -1,10 +1,24 @@
 from tkinter import *
 from tkinter import ttk
-import microphone
+import sys 
+sys.path.insert(0,r'''C:\Users\Jack\Documents\University\2017-2018\Term 2\CPEN291\G14_B_P2\G14_B_P2\src\Microphone\micWithKeypad''')
+from microphone import micRecord
 
-_strSecret = "1234"
-_strVar = ""
+class StoreCode: 
+    def __init__(self):
+        #passcode is stored in private variable which cannot be accessed outside of StoreCode 
+        #so this way we can create functions that can modify __strSecret privately
+        #iff a keycode/special password is entered 
+        self.__strSecret = "567890"
+    
+    def checkEqual(self,value):
+        return value==self.__strSecret
+
+
+passCode = StoreCode()
+_strVar = ""  
 _recording = False
+_micRecord = micRecord() 
 
 class CodeKeypad: 
     #passcode is stored in _strSecret
@@ -30,9 +44,9 @@ class CodeKeypad:
 
     def enter_code(self):
         global _strVar
-        global _strSecret
+        global passCode
         print("Code entered: ", _strVar)
-        if _strVar == _strSecret:
+        if passCode.checkEqual(_strVar):
             print("Door is unlocked")
         else:
             print("Error: Incorrect code entered")
@@ -42,9 +56,9 @@ class CodeKeypad:
         global _recording
         _recording = not _recording
         if _recording == True:
-            recordMessage2()
+            _micRecord.recordMessage2()
         else:
-            playMessage2()
+            _micRecord.playMessage2()
 
     def __init__(self,root):
         #Variable holding the changing value stored in entry 

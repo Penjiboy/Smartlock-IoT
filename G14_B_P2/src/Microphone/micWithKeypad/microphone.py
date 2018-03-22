@@ -75,14 +75,19 @@ class micRecord:
 #        stream.stop_stream()
 #        stream.close()
 #        p.terminate()
+    
+    #an init so we can create a variable of class micRecord
+    def __init__(self):
+        self.Chunk_Size = CHUNK_SIZE
+        self.Channels = CHANNELS
 
-    def recordMessage2():
+    def recordMessage2(self):
         print("actually recording!")
-        sleep(5)
+        time.sleep(5)
 
-    def playMessage2():
+    def playMessage2(self):
         print("playing back la la la")
-        sleep(5)
+        time.sleep(5)
 
 
 #    def main():
