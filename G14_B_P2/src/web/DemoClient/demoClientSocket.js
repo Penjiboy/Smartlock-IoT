@@ -3,7 +3,8 @@ var ss = require('socket.io-stream');
 var fs = require('fs');
 
 //var socket = io.connect('http://localhost:8080/user');
-var socket = io.connect('http://38.88.74.79:80/nodejsDemoServer');
+var socket = io.connect('http://38.88.74.79:80');
+//var socket = io.connect('http://206.87.104.101:8090/nodejsDemoServer');
 var stream = ss.createStream();
 var filename = 'last_user.png';
 
@@ -13,7 +14,10 @@ socket.on('connect', function (){
 
 ss(socket).emit('profile-image', stream, {name: filename});
 fs.createReadStream(filename).pipe(stream);
-console.log('File transfer completed');
+//console.log('File transfer completed');
+ss(socket).on('File transferred successfully', function(stream, data) {
+    console.log('File Transferred successully');
+});
 
 /*
 //You can stream data from a client to server, and vice versa

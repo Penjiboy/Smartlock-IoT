@@ -3,7 +3,7 @@ var url = require('url');
 var fs = require('fs');
 var tj = require('templatesjs');
 
-http.createServer(handler).listen(8080);
+http.createServer(handler).listen(80, "0.0.0.0");
 
 function handler(req, res) {
     if(req.url === '/main.css') {
