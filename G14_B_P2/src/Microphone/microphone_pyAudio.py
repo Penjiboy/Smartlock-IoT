@@ -4,12 +4,13 @@ import os
 import pyaudio
 import wave
 import subprocess
+import time
 
 CHUNK_SIZE = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 RATE = 44100
-RECORD_Time = 5
+RECORD_Time = 10
 WAVE_OUTPUT_FILENAME = "myMessage.wav"
 
 
@@ -18,23 +19,25 @@ WAVE_OUTPUT_FILENAME = "myMessage.wav"
 def recordMessage():
     #delete old message before trying to record another message
 #    os.system("rm myMessage.wav")
-    subprocess.call(["rm", WAVE_OUTPUT_FILENAME])
-    
+#    subprocess.call(["rm", WAVE_OUTPUT_FILENAME])
+
     p = pyaudio.PyAudio()
 
     stream = p.open(format=FORMAT,
                     channels=CHANNELS,
                     rate=RATE,
                     input=True,
-                    frames_per_buffer=CHUNK)
+                    frames_per_buffer=CHUNK_SIZE)
 
     print("Now recording message: ")
 
     frames = []
 
-   for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
-       data = stream.read(CHUNK)
+    for i in range(0, int(RATE / CHUNK_SIZE * RECORD_Time)):
+       data = stream.read(CHUNK_SIZE)
        frames.append(data)
+    
+
 
 #    while input_state:
 #        data = stream.read(CHUNK_SIZE)
@@ -54,11 +57,13 @@ def recordMessage():
     wf.close()
 
 
+#def playMessage():
+#    subprocess.call(["aplay", "myMessage.wav"])
 
 
 #play back recorded message
 def playMessage():
-    wf = wave.open("myMessage", 'rb')
+    wf = wave.open("myMessage.wav", 'rb')
 
     p = pyaudio.PyAudio()
 
@@ -69,14 +74,16 @@ def playMessage():
 
     data = wf.readframes(CHUNK_SIZE)
 
-    while data != '':
+    count = 0
+    print("playing back audio")
+    while len(data) > 0:
         stream.write(data)
         data = wf.readframes(CHUNK_SIZE)
 
+    print("finished playback")
     stream.stop_stream()
     stream.close()
     p.terminate()
-
 
 
 
@@ -86,7 +93,6 @@ def main():
 #    while True:
 #        GPIO.wait_for_edge(18, GPIO.FALLING)
         recordMessage()
-        sleep(2)
         playMessage()
 
 if __name__ == '__main__':

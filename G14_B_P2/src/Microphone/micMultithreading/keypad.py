@@ -1,9 +1,12 @@
 from tkinter import *
 from tkinter import ttk
-import sys 
+import sys
 sys.path.insert(0,r'''C:\Users\Jack\Documents\University\2017-2018\Term 2\CPEN291\G14_B_P2\G14_B_P2\src\Microphone\micWithKeypad''')
 from microphone import micRecord
-#from microphone import recordMessages, playMessages
+import threading
+import builtins
+import time
+
 
 class StoreCode: 
     def __init__(self):
@@ -17,9 +20,8 @@ class StoreCode:
 
 
 passCode = StoreCode()
-_strVar = ""  
-_recording = False
-_micRecord = micRecord() 
+_strVar = ""
+_micRecord = micRecord()
 
 class CodeKeypad: 
     #passcode is stored in _strSecret
@@ -53,11 +55,26 @@ class CodeKeypad:
             print("Error: Incorrect code entered")
         self.clear_num()
 
+    #Helper def to record
+    def record():
+        _micRecord.recordMessages(_micRecord)
+
     def record_button(self):
-            _micRecord.recordMessages()
+        builtins._recording = not builtins._recording
+        #Record audio only if it was not already recording
+        time.sleep(0.05)
+        if builtins._recording == True:
+            #create and start new thread to record
+            t1 = threading.Thread(target=micRecord.recordMessages, args=(_micRecord,))
+            t1.start()
 
     def play_button(self):
-            _micRecord.playMessages()
+        builtins._recording = False
+        #To ensure the message is finished recording before playing
+        time.sleep(0.05)
+        #create and start new thread to playback audio
+        t2 = threading.Thread(target=micRecord.playMessages, args=(_micRecord,))
+        t2.start()
 
     def __init__(self,root):
         #Variable holding the changing value stored in entry 
@@ -112,10 +129,10 @@ class CodeKeypad:
         self.enterButton = ttk.Button(root,text="Enter",command=lambda:self.enter_code())
         self.enterButton.grid(row = 4, column = 7, columnspan = 3, sticky=W)
 
-        self.recordButton = ttk.Button(root,text="Record",command=lambda:self.record_button())
+        self.recordButton = ttk.Button(root,text="Record/Stop",command=lambda:self.record_button())
         self.recordButton.grid(row = 5, column = 1, columnspan = 3, sticky=E)
 
-        self.playButton = ttk.Button(root,text="Play",command=lambda:self.play_button())
+        self.playButton = ttk.Button(root,text="Playback",command=lambda:self.play_button())
         self.playButton.grid(row = 5, column = 4, columnspan = 3)
 
 root = Tk()
