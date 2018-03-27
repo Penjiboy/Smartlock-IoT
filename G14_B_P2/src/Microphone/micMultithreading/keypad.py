@@ -1,10 +1,11 @@
 from tkinter import *
 from tkinter import ttk
-import sys 
+import sys
 sys.path.insert(0,r'''C:\Users\Jack\Documents\University\2017-2018\Term 2\CPEN291\G14_B_P2\G14_B_P2\src\Microphone\micWithKeypad''')
 from microphone import micRecord
 import threading
 import builtins
+import time
 
 
 class StoreCode: 
@@ -54,19 +55,26 @@ class CodeKeypad:
             print("Error: Incorrect code entered")
         self.clear_num()
 
+    #Helper def to record
     def record():
         _micRecord.recordMessages(_micRecord)
 
     def record_button(self):
         builtins._recording = not builtins._recording
-        if _recording == True:
+        #Record audio only if it was not already recording
+        time.sleep(0.05)
+        if builtins._recording == True:
+            #create and start new thread to record
             t1 = threading.Thread(target=micRecord.recordMessages, args=(_micRecord,))
             t1.start()
-        else:
-            t1.join()
 
     def play_button(self):
-        _micRecord.playMessages()
+        builtins._recording = False
+        #To ensure the message is finished recording before playing
+        time.sleep(0.05)
+        #create and start new thread to playback audio
+        t2 = threading.Thread(target=micRecord.playMessages, args=(_micRecord,))
+        t2.start()
 
     def __init__(self,root):
         #Variable holding the changing value stored in entry 

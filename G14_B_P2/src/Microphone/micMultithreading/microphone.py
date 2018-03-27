@@ -4,24 +4,20 @@ import os
 import pyaudio
 import wave
 import subprocess
-import time
 
 CHUNK_SIZE = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 RATE = 44100
-RECORD_Time = 10
-WAVE_OUTPUT_FILENAME = "myMessage.wav"
+FILENAME = "myMessage.wav"
 
+#Global varible to determine if it should continue recording
 builtins._recording = False
 
 class micRecord:
 
     #record message as long as the button is pressed down
     def recordMessages(self):
-        #delete old message before trying to record another message
-    #    os.system("rm myMessage.wav")
-    #    subprocess.call(["rm", WAVE_OUTPUT_FILENAME])
 
         p = pyaudio.PyAudio()
 
@@ -35,10 +31,6 @@ class micRecord:
 
         frames = []
 
-#        for i in range(0, int(RATE / CHUNK_SIZE * RECORD_Time)):
-#           data = stream.read(CHUNK_SIZE)
-#           frames.append(data)
-
         while _recording:
             data = stream.read(CHUNK_SIZE)
             frames.append(data)
@@ -49,7 +41,7 @@ class micRecord:
         stream.close()
         p.terminate()
 
-        wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
+        wf = wave.open(FILENAME, 'wb')
         wf.setnchannels(CHANNELS)
         wf.setsampwidth(p.get_sample_size(FORMAT))
         wf.setframerate(RATE)
@@ -63,7 +55,7 @@ class micRecord:
 
     #play back recorded message
     def playMessages(self):
-        wf = wave.open("myMessage.wav", 'rb')
+        wf = wave.open(FILENAME, 'rb')
 
         p = pyaudio.PyAudio()
 
@@ -76,7 +68,7 @@ class micRecord:
 
         count = 0
         print("playing back audio")
-        while len(data) > 0:
+        while (len(data) > 0) and not(builtins._recording == True):
             stream.write(data)
             data = wf.readframes(CHUNK_SIZE)
 
