@@ -1,5 +1,9 @@
 from tkinter import *
 from tkinter import ttk
+import sys 
+sys.path.insert(0,r'''C:\Users\Jack\Documents\University\2017-2018\Term 2\CPEN291\G14_B_P2\G14_B_P2\src\Microphone\micWithKeypad''')
+from microphone import micRecord
+#from microphone import recordMessages, playMessages
 
 class StoreCode: 
     def __init__(self):
@@ -14,8 +18,11 @@ class StoreCode:
 
 passCode = StoreCode()
 _strVar = ""  
+_recording = False
+_micRecord = micRecord() 
 
 class CodeKeypad: 
+    #passcode is stored in _strSecret
 
     #insert the number 
     def button_press(self,value):
@@ -45,6 +52,12 @@ class CodeKeypad:
         else:
             print("Error: Incorrect code entered")
         self.clear_num()
+
+    def record_button(self):
+            _micRecord.recordMessages()
+
+    def play_button(self):
+            _micRecord.playMessages()
 
     def __init__(self,root):
         #Variable holding the changing value stored in entry 
@@ -99,7 +112,12 @@ class CodeKeypad:
         self.enterButton = ttk.Button(root,text="Enter",command=lambda:self.enter_code())
         self.enterButton.grid(row = 4, column = 7, columnspan = 3, sticky=W)
 
-    
+        self.recordButton = ttk.Button(root,text="Record",command=lambda:self.record_button())
+        self.recordButton.grid(row = 5, column = 1, columnspan = 3, sticky=E)
+
+        self.playButton = ttk.Button(root,text="Play",command=lambda:self.play_button())
+        self.playButton.grid(row = 5, column = 4, columnspan = 3)
+
 root = Tk()
 keyp = CodeKeypad(root)
 root.mainloop()

@@ -2,6 +2,8 @@
 import face_recognition
 import cv2
 
+print("imports done\n")
+
 # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
 # other example, but it includes some basic performance tweaks to make things run a lot faster:
 #   1. Process each video frame at 1/4 resolution (though still display it at full resolution)
@@ -14,22 +16,37 @@ import cv2
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
 
+print("cam found\n")
 # Load a sample picture and learn how to recognize it.
 obama_image = face_recognition.load_image_file("obama.jpg")
 obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
+
+print("1/5\n")
 
 # Load a second sample picture and learn how to recognize it.
 ali_image = face_recognition.load_image_file("ali.jpg")
 ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
 
+
+print("2/5\n")
+
 gopi_image = face_recognition.load_image_file("gopi.jpg")
 gopi_face_encoding = face_recognition.face_encodings(gopi_image)[0]
+
+
+print("3/5\n")
 
 rico_image = face_recognition.load_image_file("rico.jpg")
 rico_face_encoding = face_recognition.face_encodings(rico_image)[0]
 
+
+print("4/5\n")
+
 farshid_image = face_recognition.load_image_file("Farshid.jpg")
 farshid_face_encoding = face_recognition.face_encodings(farshid_image)[0]
+
+
+print("5/5\n")
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
@@ -52,6 +69,8 @@ face_locations = []
 face_encodings = []
 face_names = []
 process_this_frame = True
+
+print("starting\n")
 
 while True:
     # Grab a single frame of video

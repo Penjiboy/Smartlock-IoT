@@ -1,5 +1,12 @@
 from tkinter import *
 from tkinter import ttk
+import sys
+sys.path.insert(0,r'''C:\Users\Jack\Documents\University\2017-2018\Term 2\CPEN291\G14_B_P2\G14_B_P2\src\Microphone\micWithKeypad''')
+from microphone import micRecord
+import threading
+import builtins
+import time
+
 
 class StoreCode: 
     def __init__(self):
@@ -13,9 +20,11 @@ class StoreCode:
 
 
 passCode = StoreCode()
-_strVar = ""  
+_strVar = ""
+_micRecord = micRecord()
 
 class CodeKeypad: 
+    #passcode is stored in _strSecret
 
     #insert the number 
     def button_press(self,value):
@@ -45,6 +54,27 @@ class CodeKeypad:
         else:
             print("Error: Incorrect code entered")
         self.clear_num()
+
+    #Helper def to record
+    def record():
+        _micRecord.recordMessages(_micRecord)
+
+    def record_button(self):
+        builtins._recording = not builtins._recording
+        #Record audio only if it was not already recording
+        time.sleep(0.05)
+        if builtins._recording == True:
+            #create and start new thread to record
+            t1 = threading.Thread(target=micRecord.recordMessages, args=(_micRecord,))
+            t1.start()
+
+    def play_button(self):
+        builtins._recording = False
+        #To ensure the message is finished recording before playing
+        time.sleep(0.05)
+        #create and start new thread to playback audio
+        t2 = threading.Thread(target=micRecord.playMessages, args=(_micRecord,))
+        t2.start()
 
     def __init__(self,root):
         #Variable holding the changing value stored in entry 
@@ -99,7 +129,12 @@ class CodeKeypad:
         self.enterButton = ttk.Button(root,text="Enter",command=lambda:self.enter_code())
         self.enterButton.grid(row = 4, column = 7, columnspan = 3, sticky=W)
 
-    
+        self.recordButton = ttk.Button(root,text="Record/Stop",command=lambda:self.record_button())
+        self.recordButton.grid(row = 5, column = 1, columnspan = 3, sticky=E)
+
+        self.playButton = ttk.Button(root,text="Playback",command=lambda:self.play_button())
+        self.playButton.grid(row = 5, column = 4, columnspan = 3)
+
 root = Tk()
 keyp = CodeKeypad(root)
 root.mainloop()
