@@ -86,7 +86,7 @@ function handleLogin(request, response) {
         if (body.length > 1e6)
             request.connection.destroy();
     });
-    
+
     var post = qs.parse(body);
     var username = post[username];
     var password = post[password];
