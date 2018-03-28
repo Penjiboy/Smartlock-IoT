@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         textView = (TextView) findViewById(R.id.textView);
 
-        toggleButton.
+        
     }
 
     @Override
