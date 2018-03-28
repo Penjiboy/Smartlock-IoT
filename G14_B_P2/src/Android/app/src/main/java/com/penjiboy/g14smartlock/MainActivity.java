@@ -26,7 +26,21 @@ public class MainActivity extends AppCompatActivity {
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         textView = (TextView) findViewById(R.id.textView);
 
+        toggleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleToggleButton();
+            }
+        });
         
+    }
+
+    /**
+     * Handle toggle button interactions. Send appropriate http requests based
+     * on the state of the lock
+     */
+    private void handleToggleButton() {
+        final String url = "http://38.88.74.79/androidInput";
     }
 
     @Override
