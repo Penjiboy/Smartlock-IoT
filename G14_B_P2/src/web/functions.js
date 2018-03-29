@@ -1,4 +1,4 @@
-
+/*
 const https = require("http");
 const url =
   "http://38.88.74.79:9014/todos";
@@ -13,23 +13,23 @@ https.get(url, res => {
     document.getElementbyId("api-test").innerHTML = body;
   });
 });
-
+*/
 
 
 function lockUnlock(){
    
    if(!document.getElementById("lockStatus").checked){
-      // confirm("CONFIRM UNLOCK. The lock will auto-lock after 5 seconds.");
-       //timeUpdate();
-      // setTimeout("lockLock()",5000);
+       confirm("CONFIRM UNLOCK. The lock will auto-lock after 5 seconds.");
+       timeUpdate();
+       setTimeout("lockLock()",5000);
    }
   
 }
 
 
 function lockLock(){
-     var socket = io(38.88.74.79);
-     socket.emit("lockChanged", 0);
+    // var socket = io(38.88.74.79);
+     socket.emit("lockChanged", 1);
       document.getElementById("lockStatus").checked = true;
 }
 
