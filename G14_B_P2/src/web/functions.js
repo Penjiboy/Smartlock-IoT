@@ -1,3 +1,6 @@
+var socket = io(38.88.74.79);
+
+
 function lockUnlock(){
    
    if(!document.getElementById("lockStatus").checked){
@@ -10,6 +13,7 @@ function lockUnlock(){
 }
 
 function lockLock(){
+   socket.emit("lockChanged", 0);
    document.getElementById("lockStatus").checked = true;
 }
 
