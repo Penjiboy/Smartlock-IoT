@@ -6,6 +6,22 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" type="text/css" href="main.css" />
 <script type="text/javascript" src="functions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+
+<script>
+    var socket = io(); //load socket.io-client and connect to the host that serves the page
+    window.addEventListener("load", function(){ //when page loads
+        var lock = document.getElementById("lockStatus");
+        lock.addEventListener("change", function() { //add event listener for when checkbox changes
+            socket.emit("lockChanged", Number(this.checked)); //send button status to server (as 1 or 0)
+        });
+    });
+    socket.on('lockChanged', function (data) { //get button status from client
+        document.getElementById("lockStatus").checked = data; //change checkbox according to push button on Raspberry Pi
+        //socket.emit("lockChanged", data); //send push button status to back to server
+    });
+</script>
+
 <body>
 
 <header class="w3-container w3-teal w3-center">

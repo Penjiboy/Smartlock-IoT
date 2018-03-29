@@ -11,7 +11,7 @@ app.get('/',function(request,response){
   response.writeHead(200,{"Content-Type":"text/html"});
   //Passing HTML To Browser
   //response.write(fs.readFileSync("./public/index.html")); //for remote server
-  response.write(fs.readFileSync("./index.html")); //for remote server
+  response.write(fs.readFileSync("./index.html"));
   //response.write(fs.readFileSync('./index.html')); // for local machine
   //Ending Response
   response.end();
@@ -52,4 +52,16 @@ io.sockets.on("connection",function(socket){
         console.log("door unlocked by " + data)
 
     });
-})
+
+    socket.on('lockChanged', function(data) {
+        if(data === 1) {
+            console.log("Door locked");
+        }
+        else if(data === 0) {
+            console.log("Door unlocked by web user");
+        }
+        else {
+            console.log("Data value is " + data);
+        }
+    })
+});
