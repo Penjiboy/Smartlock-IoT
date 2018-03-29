@@ -1,5 +1,12 @@
 from tkinter import *
 from tkinter import ttk
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(21,GPIO.OUT)
+pwm = GPIO.PWM(18,100)
+pwm.start(5)
 
 class StoreCode: 
     def __init__(self):
@@ -14,6 +21,7 @@ class StoreCode:
 
 passCode = StoreCode()
 _strVar = ""  
+time=time.time()
 
 class CodeKeypad: 
 
@@ -36,12 +44,21 @@ class CodeKeypad:
         global _strVar
         _strVar = "" #reset the _strVar 
 
+    def unlock(self):
+	duty = float(90)/10.0+2.5
+	pwm.ChangeDutyCycle(duty)
+	start = time.time()
+    def lock(self):
+	duty = float(45)/10.0+2.5
+        pwm.ChangeDutyCycle(duty)		
+
     def enter_code(self):
         global _strVar
         global passCode
         print("Code entered: ", _strVar)
         if passCode.checkEqual(_strVar):
             print("Door is unlocked")
+	    unlock()
         else:
             print("Error: Incorrect code entered")
         self.clear_num()
@@ -53,6 +70,9 @@ class CodeKeypad:
         root.geometry("555x300")
         root.resizable(width=FALSE,height=FALSE)
         root.title("Keypad")
+	end = time.time()
+	if end-start>10:
+	    lock()
 
         Style=ttk.Style()
         Style.configure("TButton",
@@ -102,4 +122,5 @@ class CodeKeypad:
     
 root = Tk()
 keyp = CodeKeypad(root)
+root.geometry("400x800+0+0")
 root.mainloop()
