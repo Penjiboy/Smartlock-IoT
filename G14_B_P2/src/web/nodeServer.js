@@ -100,7 +100,7 @@ function handleLogin(request, response) {
 io.on('connection', function (socket) {
 
 total++;
-console.log(total, 'sockets connected')
+console.log(total, 'sockets connected');
 
   socket.on('unlock', function () {
     console.log("completed");
@@ -108,7 +108,7 @@ console.log(total, 'sockets connected')
   });
 
     socket.on('disconnect',function(){
-console.log('disconnected')
+console.log('disconnected');
     total--;
     });
 
