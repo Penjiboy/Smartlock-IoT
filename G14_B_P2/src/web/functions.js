@@ -1,3 +1,21 @@
+
+const https = require("http");
+const url =
+  "http://38.88.74.79:9014/todos";
+https.get(url, res => {
+  res.setEncoding("utf8");
+  let body = "";
+  res.on("data", data => {
+    body += data;
+  });
+  res.on("end", () => {
+    body = JSON.parse(body);
+    document.getElementbyId("api-test").innerHTML = body;
+  });
+});
+
+
+
 function lockUnlock(){
    
    if(!document.getElementById("lockStatus").checked){
@@ -10,9 +28,9 @@ function lockUnlock(){
 
 
 function lockLock(){
-  // var socket = io(38.88.74.79);
-  // socket.emit("lockChanged", 0);
-  // document.getElementById("lockStatus").checked = true;
+     var socket = io(38.88.74.79);
+     socket.emit("lockChanged", 0);
+      document.getElementById("lockStatus").checked = true;
 }
 
 
