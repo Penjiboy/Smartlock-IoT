@@ -11,7 +11,7 @@ camera.resolution = (320, 240)
 output = np.empty((240, 320, 3), dtype=np.uint8)
 
 print("Loading known face image(s)")
-ali_image = face_recognition.load_image_file("ali.jpg")
+ali_image = face_recognition.load_image_file("images/ali.jpg")
 ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
 
 # Initialize some variables
