@@ -21,10 +21,10 @@ ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
 face_locations = []
 face_encodings = []
 
-def status(Lockstatus):
-    if Lockstatus: lock()
-    else if !Lockstatus: unlock()
-    else print("error")
+# status(Lockstatus):
+#    if: Lockstatus: lock()
+#    else if: !Lockstatus: unlock()
+#    else print("error")
 
 def unlock():
         duty = float(185)/10.0+2.5
@@ -37,7 +37,7 @@ def lock():
 
 while True:
 
-Sock.on("piLockChanged",status(data))
+#Sock.on("piLockChanged",status(data))
 
 
     print("Capturing image.")
