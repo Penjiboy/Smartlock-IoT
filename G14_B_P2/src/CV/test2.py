@@ -1,4 +1,7 @@
-
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(12, GPIO.OUT)
+pwm = GPIO.PWM(12, 100)
+pwm.start(float(85)/10.0+2.5)
 
 import face_recognition
 import picamera
@@ -22,6 +25,14 @@ def status(Lockstatus):
     if Lockstatus: lock()
     else if !Lockstatus: unlock()
     else print("error")
+
+def unlock():
+        duty = float(185)/10.0+2.5
+        pwm.ChangeDutyCycle(duty)
+        #start = time.time()
+def lock():
+        duty = float(85)/10.0+2.5
+        pwm.ChangeDutyCycle(duty)	
 
 
 while True:
@@ -48,6 +59,8 @@ Sock.on("piLockChanged",status(data))
         if match[0]:
             name = "Ali"
             Sock.emit("unlock",name)
+            unlock()
+        else: lock()
 
         print("I see someone named {}!".format(name))
 
