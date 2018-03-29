@@ -55,9 +55,11 @@ io.sockets.on("connection",function(socket){
 
     socket.on('lockChanged', function(data) {
         if(data === 1) {
+	    socket.emit("piLockChanged", data);
             console.log("Door locked");
         }
         else if(data === 0) {
+	    socket.emit("piLockChanged", data);
             console.log("Door unlocked by web user");
         }
         else {

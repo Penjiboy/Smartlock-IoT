@@ -1,10 +1,15 @@
-var socket = io(38.88.74.79);
 
+
+
+request('38.88.74.79:9014', function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  }
+});
 
 function lockUnlock(){
    
    if(!document.getElementById("lockStatus").checked){
-
        confirm("CONFIRM UNLOCK. The lock will auto-lock after 5 seconds.");
        timeUpdate();
        setTimeout("lockLock()",5000);
@@ -12,10 +17,13 @@ function lockUnlock(){
   
 }
 
+/*
 function lockLock(){
+   var socket = io(38.88.74.79);
    socket.emit("lockChanged", 0);
    document.getElementById("lockStatus").checked = true;
 }
+*/
 
 var hour = new Array();
 var minute = new Array();
