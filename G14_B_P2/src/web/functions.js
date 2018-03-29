@@ -1,9 +1,9 @@
 function lockUnlock(){
    
    if(!document.getElementById("lockStatus").checked){
-       confirm("CONFIRM UNLOCK. The lock will auto-lock after 5 seconds.");
-       timeUpdate();
-       setTimeout("lockLock()",5000);
+      // confirm("CONFIRM UNLOCK. The lock will auto-lock after 5 seconds.");
+       //timeUpdate();
+      // setTimeout("lockLock()",5000);
    }
   
 }
@@ -11,8 +11,8 @@ function lockUnlock(){
 
 function lockLock(){
   // var socket = io(38.88.74.79);
-   socket.emit("lockChanged", 0);
-   document.getElementById("lockStatus").checked = true;
+  // socket.emit("lockChanged", 0);
+  // document.getElementById("lockStatus").checked = true;
 }
 
 
