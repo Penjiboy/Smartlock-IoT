@@ -1,11 +1,29 @@
+var https = require('https');
 
+var options = {
+  host: '38.88.74.79',
+  port: 9014,
+  path: '/todos',
+  method: 'GET'
+};
 
-
-request('38.88.74.79:9014', function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    console.log(body);
-  }
+var req = https.request(options, function(res) {
+  console.log('STATUS: ' + res.statusCode);
+  console.log('HEADERS: ' + JSON.stringify(res.headers));
+  res.setEncoding('utf8');
+  res.on('data', function (chunk) {
+    console.log('BODY: ' + chunk);
+  });
 });
+
+req.on('error', function(e) {
+  console.log('problem with request: ' + e.message);
+});
+
+// write data to request body
+req.write('data\n');
+req.write('data\n');
+req.end();
 
 function lockUnlock(){
    
