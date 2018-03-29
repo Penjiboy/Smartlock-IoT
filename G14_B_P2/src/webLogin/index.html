@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<title>291 G14 SmartLock</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="main.css" />
+<script type="text/javascript" src="functions.js"></script>
+<body>
+
+<header class="w3-container w3-teal w3-center">
+    <h1>Welcome to G14's SmartLock Interface</h1>
+</header>
+<h2 class="w3-container w3-center">Hello User!</h2>
+<div class="w3-container">
+    <p>Work in progress</p>
+</div>
+
+<!--
+<div class="w3-container" style="width:25%">
+<div class="w3-card1 w3-black">
+    Status
+</div>
+<div class="w3-card2 w3-red">
+    Camera
+</div>
+<div class="w3-card w3-blue">
+    History
+</div>
+</div>
+-->
+
+<div class="w3-sidebar w3-bar-block" style="width:25%; right:0">
+    <h5 class="w3-bar-item">Notifications</h5>
+    <ul class="w3-ul">
+        <li>
+            <div class="w3-container w3-center">9:05am</div>
+            <div class="w3-container">Voice Message</div>
+        </li>
+        <li>
+            <div class="w3-container w3-center">9:05am</div>
+            <div class="w3-container">Voice Message</div>
+        </li>
+        <li>
+            <div class="w3-container w3-center">9:05am</div>
+            <div class="w3-container">Voice Message</div>
+        </li>
+    </ul>
+</div>
+
+
+<div class="w3-row-padding w3-section">
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-orange">Status</div>
+    <div class="w3-col l4 m4 s4 w3-margin-left">
+        <!-- Checkbox code has been referred from https://www.w3schools.com/howto/howto_css_switch.asp -->
+        <label class="switch">
+            <input type="checkbox", ID="lockStatus", onclick = "lockUnlock()", checked = "checked">
+            <span class="slider round"></span>
+        </label>
+
+        <br/>Unlocked      Locked
+    </div>
+</div>
+
+<br/>
+
+<div class="w3-row-padding w3-section">
+
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-orange" style="margin-top:8%">Camera</div>
+    <div class="w3-col l4 m4 s4 w3-margin-left">
+        <div class="w3-card-4" style="width:50%">
+            <div class="w3-container">
+                <h5>Last Seen Person</h5>
+            </div>
+            <img src="last_user.png" class="w3-round w3-image">
+            <div class="w3-container">
+                <h5>Unknown User</h5>
+            </div>
+        </div>
+    </div>
+</>
+
+<br/>
+
+<div class="w3-row-padding w3-section">
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-orange">History</div>
+    <div class="w3-col l4 m4 s4 w3-margin-left">
+        <table class="w3-table w3-striped w3-bordered">
+            <tr>
+                <td ID = "time1">
+                <script language=Javascript> 
+                mostRecentTime();
+                setInterval(mostRecentTime,1000);
+                </script> 
+                </td>
+                
+                <td ID = "user1">User1</td>
+                <td ID = "action">Unlocked door</td>
+            </tr>
+
+
+            <tr>
+                <td  ID = "time2"> 
+                <script language=Javascript> 
+                secondRecentTime();
+                setInterval(secondRecentTime,1000);
+                </script> 
+                </td>
+
+                <td>User3</td>
+                <td>Unlocked door</td>
+            </tr>
+
+
+            <tr>
+                <td ID = "time3">
+                <script language=Javascript> 
+                thirdRecentTime();
+                setInterval(thirdRecentTime,1000);
+                </script> 
+                </td>
+
+                <td>User2</td>
+                <td>Unlocked door</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

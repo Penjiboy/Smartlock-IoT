@@ -1,6 +1,7 @@
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
+var io = require('socket.io')(http);
 var tj = require('templatesjs');
 var qs = require('querystring');
 
@@ -95,3 +96,20 @@ function handleLogin(request, response) {
     console.log("Passowrd is " + password);
 
 }
+
+io.on('connection', function (socket) {
+
+total++;
+console.log(total, 'sockets connected')
+
+  socket.on('unlock', function () {
+    console.log("completed");
+    socket.emit("bbb");
+  });
+
+    socket.on('disconnect',function(){
+console.log('disconnected')
+    total--;
+    });
+
+});

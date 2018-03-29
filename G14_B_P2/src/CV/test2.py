@@ -1,25 +1,17 @@
-# This is a demo of running face recognition on a Raspberry Pi.
-# This program will print out the names of anyone it recognizes to the console.
 
-# To run this, you need a Raspberry Pi 2 (or greater) with face_recognition and
-# the picamera[array] module installed.
-# You can follow this installation instructions to get your RPi set up:
-# https://gist.github.com/ageitgey/1ac8dbe8572f3f533df6269dab35df65
 
 import face_recognition
 import picamera
 import numpy as np
+from socketIO_client_nexus import SocketIO, LoggingNamespace
 
-# Get a reference to the Raspberry Pi camera.
-# If this fails, make sure you have a camera connected to the RPi and that you
-# enabled your camera in raspi-config and rebooted first.
+Sock = SocketIO('38.88.74.79', 80)
 camera = picamera.PiCamera()
 camera.resolution = (320, 240)
 output = np.empty((240, 320, 3), dtype=np.uint8)
 
-# Load a sample picture and learn how to recognize it.
 print("Loading known face image(s)")
-ali_image = face_recognition.load_image_file("ali.jpg")
+ali_image = face_recognition.load_image_file("images/ali.jpg")
 ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
 
 # Initialize some variables
@@ -45,5 +37,9 @@ while True:
 
         if match[0]:
             name = "Ali"
+            Sock.emit("unlock",name)
 
         print("I see someone named {}!".format(name))
+
+
+
