@@ -3,13 +3,11 @@ from tkinter import ttk
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(12, GPIO.OUT)
-pwm = GPIO.PWM(12, 100)
-pwm.start(float(85)/10.0+2.5)
-
-
-
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+GPIO.setup(12,GPIO.OUT)
+pwm = GPIO.PWM(12,100)
+pwm.start(5)
 
 class StoreCode: 
     def __init__(self):
@@ -48,11 +46,11 @@ class CodeKeypad:
         _strVar = "" #reset the _strVar 
 
     def unlock(self):
-        duty = float(185)/10.0+2.5
+        duty = float(145)/10.0+2.5
         pwm.ChangeDutyCycle(duty)
         #start = time.time()
     def lock(self):
-        duty = float(85)/10.0+2.5
+        duty = float(45)/10.0+2.5
         pwm.ChangeDutyCycle(duty)		
 
     def enter_code(self):
@@ -63,7 +61,6 @@ class CodeKeypad:
             print("Door is unlocked")
             self.unlock()
         else:
-            self.lock()
             print("Error: Incorrect code entered")
         self.clear_num()
 
@@ -124,9 +121,6 @@ class CodeKeypad:
 
     
 root = Tk()
-def on_closing():
-    root.destroy()
 keyp = CodeKeypad(root)
-root.geometry("800x400+0+0")
-root.protocol("WM_DELETE_WINDOW",on_closing)
+root.geometry("400x800+0+0")
 root.mainloop()
