@@ -1,4 +1,4 @@
-
+/*
 const https = require("http");
 const url =
   "http://38.88.74.79:9014/todos";
@@ -10,11 +10,13 @@ https.get(url, res => {
   });
   res.on("end", () => {
     body = JSON.parse(body);
-    console.log("body");
+    window.onload = function(){
+	document.getElementById("api-example").innerHTML = body;
+     }
   });
 });
 
-
+*/
 
 function lockUnlock(){
    
