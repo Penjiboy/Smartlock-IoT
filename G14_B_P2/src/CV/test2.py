@@ -18,7 +18,17 @@ ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
 face_locations = []
 face_encodings = []
 
+def status(Lockstatus):
+    if Lockstatus: lock()
+    else if !Lockstatus: unlock()
+    else print("error")
+
+
 while True:
+
+Sock.on("piLockChanged",status(data))
+
+
     print("Capturing image.")
     # Grab a single frame of video from the RPi camera as a numpy array
     camera.capture(output,format="rgb")
