@@ -54,6 +54,7 @@ io.sockets.on("connection",function(socket){
     });
 
     socket.on('lockChanged', function(data) {
+	console.log("data value is: " + data);
         if(data === 1) {
 	    socket.emit("piLockChanged", data);
             console.log("Door locked");
