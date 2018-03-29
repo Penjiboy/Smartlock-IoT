@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<title>G14 Smartlock Login</title>
+<meta name="viewport" content="width-device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+<body>
+<header class="w3-container w3-teal w3-center">
+    <h1 class="w3-jumbo">G14 SmartLock</h1>
+</header>
+<div class="w3-panel w3-xlarge w3 w3-center w3-white">Safe | Modern | Secure | Convenient</div>
+<div class="w3-panel w3-center w3-large w3-border w3-round-large w3-light-grey w3-topbar">
+    <p>The future is here with our state of the art smart lock</p>
+</div>
+
+
+<form action="/loginAuth" method="post" class=" w3-card w3-center w3-round w3-light-grey w3-topbar w3-bottombar w3-large">
+    <br/>
+    <i class="material-icons">person</i>
+    <br/>
+    <label>Username:</label>
+    <br/>
+    <!-- <input class="w3-input w3-center w3-border w3-round w3-pale-yellow" type="text" name="email" style="width: 60%; margin-left: 150px"/> -->
+    <input class="w3-input w3-center w3-border w3-round w3-pale-yellow" type="text" name="email" style="width: 40%; margin-left: 30%"/>
+    <br/>
+    <i class="material-icons">vpn_key</i>
+    <br/>
+    <label>Password:</label>
+    <br/>
+    <input class="w3-input w3-center w3-border w3-round w3-pale-yellow" type="password" name="password" style="width: 40%; margin-left: 30%"/>
+    <br/>
+
+    <div class="w3-bar w3-center">
+        <!-- <input type="button" class="w3-button w3-black w3-left-align w3-round-large w3-section" value="Create New Account" style="margin-left: 63px"> -->
+        <input type="button" class="w3-button w3-black w3-left-align w3-round-large w3-section" value="Create New Account">
+        <input type="submit" class="w3-button w3-teal w3-round-large w3-xlarge w3-padding-large w3-section" value="Login" >
+        <input type="button" class="w3-button w3-red w3-right-align w3-round-large w3-section" value="Forgot Password">
+    </div>
+
+</form>
+</body>
+</html>
