@@ -9,7 +9,6 @@ https.get(url, res => {
   });
   res.on("end", () => {
     body = JSON.parse(body);
-    console.log(
-      body  );
+    document.getElementById("api-example").innerHTML = "Banana";
   });
 });
