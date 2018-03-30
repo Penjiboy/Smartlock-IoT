@@ -50,8 +50,13 @@ io.sockets.on("connection",function(socket){
     console.log("Client connected");
     socket.on("unlock",function(data){
 
+	socket.emit("lockChanged", 0);
         console.log("door unlocked by " + data)
 
+    });
+
+    socket.on("lock", function() {
+        socket.emit("lockChanged", 1);
     });
 
     socket.on('lockChanged', function(data) {
