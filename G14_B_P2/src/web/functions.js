@@ -1,5 +1,7 @@
 /*
 const https = require("http");
+var jsdom = require("jsdom");
+var JSDOM = jsdom.JSDOM;
 const url =
   "http://38.88.74.79:9014/todos";
 https.get(url, res => {
@@ -10,13 +12,11 @@ https.get(url, res => {
   });
   res.on("end", () => {
     body = JSON.parse(body);
-    window.onload = function(){
-	document.getElementById("api-example").innerHTML = body;
-     }
+    JSDOM.getElementById("api-example").innerHTML = body;
   });
 });
-
 */
+
 
 function lockUnlock(){
    
