@@ -5,6 +5,7 @@ var api = require('./express-node-rest-project/api.js');
 var express = require('express');//Importing Express
 var app = express();//Getting App From Express
 var fs = require('fs');//Importing File System Module To Access Files
+var outRequest = require('request');
 const port = 80;//Creating A Constant For Providing The Port
 
 //Routing Request : http://localhost:port/
@@ -53,6 +54,16 @@ app.get('/functions.js', function(request, response) {
     var fileContents = fs.readFileSync('./functions.js', {encoding: 'utf8'});
     response.write(fileContents);
     response.end();
+});
+
+//Routing to loginAuth
+app.post('/loginAuth', function(request, response) {
+    var users = outRequest.get('http://38.88.74.79:9014/users', function (error, response, body) {
+        // body is the decompressed response body
+        console.log('server encoded the data as: ' + (response.headers['content-encoding'] || 'identity'))
+        console.log('the decoded data is: ' + body)
+    });
+    console.log(users);
 });
 
 //Routing To Public Folder For Any Static Context
