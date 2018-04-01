@@ -1,4 +1,26 @@
 
+/*
+EXAMPLE OF GET REQUEST
+TO GET OUTPUT RUN
+  node functions.js on command line
+
+
+const https = require("http");
+const url =
+  "http://38.88.74.79:9014/users";
+https.get(url, res => {
+  res.setEncoding("utf8");
+  let body = "";
+  res.on("data", data => {
+    body += data;
+  });
+  res.on("end", () => {
+    body = JSON.parse(body);
+    console.log(body);
+    //document.getElementById("api-example").innerHTML = "Banana";
+  });
+});
+*/
 
 
 function lockUnlock(){
@@ -6,7 +28,7 @@ function lockUnlock(){
    if(!document.getElementById("lockStatus").checked){
        confirm("CONFIRM UNLOCK. The lock will auto-lock after 5 seconds.");
        timeUpdate();
-       setTimeout("lockLock()",5000);
+       setTimeout("lockLock()",5000)
    }
   
 }

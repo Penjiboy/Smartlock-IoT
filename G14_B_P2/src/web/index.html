@@ -13,6 +13,7 @@
 <script type="text/javascript" src="requests.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+<script src="jquery-3.3.1.min.js"></script>
 
 <script>
     var socket = io(); //load socket.io-client and connect to the host that serves the page
@@ -26,7 +27,6 @@
         document.getElementById("lockStatus").checked = data; //change checkbox according to push button on Raspberry Pi
         //socket.emit("lockChanged", data); //send push button status to back to server
     });
-</script>
 
 <body>
 
