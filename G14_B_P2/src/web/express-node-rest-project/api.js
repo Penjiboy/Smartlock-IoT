@@ -49,7 +49,7 @@ app.post('/users', function (req, res) {
 
 // port must be set to 8080 because incoming http requests are routed from port 80 to port 8080
 app.listen(9014, function () {
-    console.log('Node app is running on port 8080');
+    console.log('Rest api listening on port 9014');
 });
  
 // allows "grunt dev" to create a development server with livereload
