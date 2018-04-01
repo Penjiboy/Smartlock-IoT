@@ -25,10 +25,25 @@ app.get('/', function (req, res) {
 });
  
 // Retrieve all todos 
-app.get('/todos', function (req, res) {
+app.get('/users', function (req, res) {
     mc.query('SELECT * FROM cpen291', function (error, results, fields) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'Todos list.' });
+    });
+});
+
+app.post('/users', function (req, res) {
+ 
+    var data = {
+        "Member": req.body.member,
+        "Password": req.body.password
+     };
+ 
+    
+ 
+    mc.query("INSERT INTO cpen291 SET ? ", data, function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'New task has been created successfully.' });
     });
 });
 

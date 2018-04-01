@@ -37,7 +37,7 @@ function handler(req, res) {
             res.write("Error! Page not found");
             res.end();
     }
-    /*
+   
     if(req.url === '/main.css') {
         res.writeHead(200, {'Content-Type': 'text/css'});
         var fileContents = fs.readFileSync('./main.css', {encoding: 'utf8'});
@@ -56,9 +56,7 @@ function handler(req, res) {
         res.write(page);
         res.end();
     }
-    */
-
-    /*
+   
     else {
         res.writeHead(200, {'Content-Type': 'text/html'});
         var page = fs.readFileSync('./index.html');
@@ -66,7 +64,7 @@ function handler(req, res) {
         res.write(page);
         res.end()
     }
-    */
+    
 }
 
 function handleLogin(request, response) {
