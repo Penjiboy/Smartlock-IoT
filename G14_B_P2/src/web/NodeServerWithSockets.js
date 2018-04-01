@@ -6,7 +6,8 @@ var express = require('express');//Importing Express
 var app = express();//Getting App From Express
 var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
-const port = 80;//Creating A Constant For Providing The Port
+const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
+//const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
 
 //Routing Request : http://localhost:port/
 app.get('/',function(request,response){
@@ -69,8 +70,7 @@ app.post('/loginAuth', function(request, response) {
 //Routing To Public Folder For Any Static Context
 app.use(express.static(__dirname + '/public'));
 console.log("Server Running At:localhost:"+port);
-//var io = require('socket.io').listen(app.listen(port,"0.0.0.0"));//Telling Express+Socket.io App To Listen To Port //for remote server
-var io = require('socket.io').listen(app.listen(8080,"0.0.0.0"));//Telling Express+Socket.io App To Listen To Port // for local machine
+var io = require('socket.io').listen(app.listen(port,"0.0.0.0"));//Telling Express+Socket.io App To Listen To Port //for remote server
 io.sockets.on("connection",function(socket){
     console.log("Client connected");
     socket.on("unlock",function(data){
