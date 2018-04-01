@@ -1,6 +1,7 @@
 
 //reference https://dzone.com/articles/getting-started-with-nodejs-and-socketio
 
+var api = require('./express-node-rest-project/api.js');
 var express = require('express');//Importing Express
 var app = express();//Getting App From Express
 var fs = require('fs');//Importing File System Module To Access Files
