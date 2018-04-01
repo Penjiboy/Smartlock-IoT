@@ -63,7 +63,7 @@ app.post('/loginAuth', function(request, response) {
         // body is the decompressed response body
         console.log('server encoded the data as: ' + (response.headers['content-encoding'] || 'identity'))
         console.log('the decoded data is: ' + body)
-    }).data;
+    }).body.data;
     console.log("users are: " + users);
 });
 
