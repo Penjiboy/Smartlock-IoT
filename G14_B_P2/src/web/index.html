@@ -13,6 +13,7 @@
 <script type="text/javascript" src="requests.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+<script src="jquery-3.3.1.min.js"></script>
 
 <script>
     var socket = io(); //load socket.io-client and connect to the host that serves the page
@@ -26,7 +27,6 @@
         document.getElementById("lockStatus").checked = data; //change checkbox according to push button on Raspberry Pi
         //socket.emit("lockChanged", data); //send push button status to back to server
     });
-</script>
 
 <body>
 
@@ -89,7 +89,7 @@
 
 <div class="w3-row-padding w3-section">
 
-    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-orange">Camera</div>
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-orange" style="margin-top:8%">Camera</div>
     <div class="w3-col l4 m4 s4 w3-margin-left">
         <div class="w3-card-4" style="width:50%">
             <div class="w3-container">
@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-</>
+</div>
 
 <br/>
 
@@ -109,8 +109,8 @@
     <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-orange">History</div>
     <div class="w3-col l4 m4 s4 w3-margin-left">
         <p id = "api-test"></p>
-	<table class="w3-table w3-striped w3-bordered">
-            <tr>
+	<table class="w3-table w3-striped w3-bordered" ID="historyTable">
+            <tr ID="row1">
                 <td ID = "time1">
                 <script language=Javascript> 
                 mostRecentTime();
@@ -119,11 +119,11 @@
                 </td>
                 
                 <td ID = "user1">User1</td>
-                <td ID = "action">Unlocked door</td>
+                <td ID = "action1">Unlocked door</td>
             </tr>
 
 
-            <tr>
+            <tr ID="row2">
                 <td  ID = "time2"> 
                 <script language=Javascript> 
                 secondRecentTime();
@@ -131,12 +131,12 @@
                 </script> 
                 </td>
 
-                <td>User3</td>
-                <td>Unlocked door</td>
+                <td ID = "user2">User3</td>
+                <td ID = "action2">Unlocked door</td>
             </tr>
 
 
-            <tr>
+            <tr ID="row3">
                 <td ID = "time3">
                 <script language=Javascript> 
                 thirdRecentTime();
@@ -144,8 +144,8 @@
                 </script> 
                 </td>
 
-                <td>User2</td>
-                <td>Unlocked door</td>
+                <td ID = "user3">User2</td>
+                <td ID = "action3">Unlocked door</td>
             </tr>
         </table>
     </div>

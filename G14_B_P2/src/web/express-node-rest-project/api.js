@@ -25,16 +25,31 @@ app.get('/', function (req, res) {
 });
  
 // Retrieve all todos 
-app.get('/todos', function (req, res) {
+app.get('/users', function (req, res) {
     mc.query('SELECT * FROM cpen291', function (error, results, fields) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'Todos list.' });
     });
 });
 
+app.post('/users', function (req, res) {
+ 
+    var data = {
+        "Member": req.body.member,
+        "Password": req.body.password
+     };
+ 
+    
+ 
+    mc.query("INSERT INTO cpen291 SET ? ", data, function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'New task has been created successfully.' });
+    });
+});
+
 // port must be set to 8080 because incoming http requests are routed from port 80 to port 8080
 app.listen(9014, function () {
-    console.log('Node app is running on port 8080');
+    console.log('Rest api listening on port 9014');
 });
  
 // allows "grunt dev" to create a development server with livereload

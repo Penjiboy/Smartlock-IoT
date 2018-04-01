@@ -1,12 +1,26 @@
 
 //reference https://dzone.com/articles/getting-started-with-nodejs-and-socketio
 
+var api = require('./express-node-rest-project/api.js');
 var express = require('express');//Importing Express
 var app = express();//Getting App From Express
 var fs = require('fs');//Importing File System Module To Access Files
 const port = 80;//Creating A Constant For Providing The Port
+
 //Routing Request : http://localhost:port/
 app.get('/',function(request,response){
+    //Telling Browser That The File Provided Is A HTML File
+    response.writeHead(200,{"Content-Type":"text/html"});
+    //Passing HTML To Browser
+    //response.write(fs.readFileSync("./public/index.html")); //for remote server
+    response.write(fs.readFileSync("./login.html"));
+    //response.write(fs.readFileSync('./index.html')); // for local machine
+    //Ending Response
+    response.end();
+});
+
+//Routing Request : http://localhost:port/index
+app.get('/index',function(request,response){
   //Telling Browser That The File Provided Is A HTML File
   response.writeHead(200,{"Content-Type":"text/html"});
   //Passing HTML To Browser
@@ -50,8 +64,13 @@ io.sockets.on("connection",function(socket){
     console.log("Client connected");
     socket.on("unlock",function(data){
 
+	socket.emit("lockChanged", 0);
         console.log("door unlocked by " + data)
 
+    });
+
+    socket.on("lock", function() {
+        socket.emit("lockChanged", 1);
     });
 
     socket.on('lockChanged', function(data) {
