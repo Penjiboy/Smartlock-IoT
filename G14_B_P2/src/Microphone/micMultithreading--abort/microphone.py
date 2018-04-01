@@ -48,11 +48,6 @@ class micRecord:
         wf.writeframes(b''.join(frames))
         wf.close()
 
-
-    #def playMessage():
-    #    subprocess.call(["aplay", "myMessage.wav"])
-
-
     #play back recorded message
     def playMessages(self):
         wf = wave.open(FILENAME, 'rb')
@@ -76,17 +71,3 @@ class micRecord:
         stream.stop_stream()
         stream.close()
         p.terminate()
-
-
-
-
-    #def main():
-        #keep recording
-    #    while True:
-    #        GPIO.wait_for_edge(18, GPIO.FALLING)
-    #        recordMessage()
-    #        playMessage()
-
-    #if __name__ == '__main__':
-    #        main()
-
