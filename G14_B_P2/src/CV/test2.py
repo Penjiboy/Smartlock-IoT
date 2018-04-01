@@ -6,6 +6,7 @@ import threading
 import face_recognition
 import picamera
 import numpy as np
+import pickle
 from socketIO_client_nexus import SocketIO, LoggingNamespace
 
 Sock = SocketIO('38.88.74.79', 80)
@@ -148,6 +149,7 @@ class CodeKeypad:
         self.enterButton.grid(row = 4, column = 7, columnspan = 3, sticky=W)
 
 class camera( threading.Thread ):
+    def run(self):
         while True:
 
             #Sock.on("piLockChanged",status)
@@ -178,11 +180,6 @@ class camera( threading.Thread ):
                 else: lock()
                 
                 print("I see someone named {}!".format(name))
-
-
-
-
-
         
 
 class receiver ( threading.Thread ):
