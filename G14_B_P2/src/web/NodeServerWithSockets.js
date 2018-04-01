@@ -59,11 +59,13 @@ app.get('/functions.js', function(request, response) {
 
 //Routing to loginAuth
 app.post('/loginAuth', function(request, response) {
-    var users = outRequest.get('http://38.88.74.79:9014/users', function (error, response, body) {
+    var users = [];
+    outRequest.get('http://38.88.74.79:9014/users', function (error, response, body) {
         // body is the decompressed response body
         console.log('server encoded the data as: ' + (response.headers['content-encoding'] || 'identity'))
         console.log('the decoded data is: ' + body)
-    }).body;
+        users = body;
+    });
     console.log("users are: " + users);
 });
 
