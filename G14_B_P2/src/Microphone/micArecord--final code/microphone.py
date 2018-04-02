@@ -1,5 +1,6 @@
 import os
 import subprocess
+import time
 
 fileName = "myMessage.wav"
 
@@ -12,4 +13,7 @@ class micRecord:
     def recordStop(self):
         subprocess.call(["pkill", "-f", "arecord"])
         print("message recorded and saved")
+        time.sleep(0.5)
+        os.system("sendRecording.sh")
+        print("recording sent over to the remote server")
 

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const port = 9015;
  
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -11,7 +12,8 @@ app.use(bodyParser.urlencoded({
 // connection configurations
 const mc = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
+    user: 'root', //for remote server
+    //user: 'cpen291', //for local machine testing
     password: 'cpen291',
     database: 'cpen291'
 });
@@ -32,6 +34,14 @@ app.get('/users', function (req, res) {
     });
 });
 
+//find a particular user
+app.get('/findUserForLogin', function (req, res) {
+    mc.query('SELECT Member, Password FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'Matching user' });
+    });
+});
+
 app.post('/users', function (req, res) {
  
     var data = {
@@ -48,8 +58,8 @@ app.post('/users', function (req, res) {
 });
 
 // port must be set to 8080 because incoming http requests are routed from port 80 to port 8080
-app.listen(9014, function () {
-    console.log('Rest api listening on port 9014');
+app.listen(port, function () {
+    console.log('Rest api listening on port ' + port);
 });
  
 // allows "grunt dev" to create a development server with livereload
