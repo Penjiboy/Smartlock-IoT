@@ -8,13 +8,11 @@ var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
 var cookie = require('cookie');
 var templatesjs = require('templatesjs');
-const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
-//const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+//const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
+const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
 const apiPort = 9015;
-const hostIP = '38.88.74.79'; //Use this for remote server
-//const hostIP = 'localhost'; //use this for testing on local machine
-var crypto = require('crypto'); //use for encryption 
-var key = "calmdown!" 
+//const hostIP = '38.88.74.79'; //Use this for remote server
+const hostIP = 'localhost'; //use this for testing on local machine
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
@@ -185,7 +183,13 @@ app.post('/pinChange', function(request,response) {
             //button pressed but wrong current pin 
             if(pin.data === undefined || pin.data.length === 0) {
                 response.writeHead(403, {'Content-Type': 'text/html'});
-
+                const editdata = {
+                    url: 'http://' + hostIP + ':' + apiPort + '/users',
+                    method: 'PUT',
+                    form:{
+                        
+                    }
+                }
                 //Write an html file with the appropriate response, for now just write some text
                 response.write("Error! No pin found!");
                 response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Reenter your current pin</a>");
@@ -193,9 +197,10 @@ app.post('/pinChange', function(request,response) {
             } else {
                 if(pin.data[0].keypad === request.body.currpin) {
                     //-------------------------------figure out a way to modify the pin in the database-------------------------------------//
-                    //and then redirect to the main page again  
                     //returns false if the newpin is a valid number
                     if(!isNaN(request.body.newpin)){
+                        
+
 
                         response.write("Pin Change Successful.")
                         response.redirect('/index');
