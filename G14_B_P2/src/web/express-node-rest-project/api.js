@@ -36,7 +36,7 @@ app.get('/users', function (req, res) {
 
 //find a particular user
 app.get('/findUserForLogin', function (req, res) {
-    mc.query('SELECT Member, Password FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
+    mc.query('SELECT Member, Password, keypad FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'Matching user' });
     });

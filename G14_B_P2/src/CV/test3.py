@@ -166,6 +166,12 @@ class CodeKeypad:
         self.recordButton.grid(row = 5, column = 3, columnspan = 5)
 
 
+
+def train():
+    print("training")
+
+
+
 class camera( threading.Thread ):
     def run(self):
         while True:
@@ -208,6 +214,7 @@ class receiver ( threading.Thread ):
       def run ( self ):
         while True:
            Sock.on("lockChanged",status)
+           Sock.on("train",train)
            Sock.wait(seconds = 1)
 
 class ui(threading.Thread):
