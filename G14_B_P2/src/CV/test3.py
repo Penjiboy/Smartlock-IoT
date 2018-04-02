@@ -203,6 +203,18 @@ class receiver ( threading.Thread ):
         while True:
            Sock.on("lockChanged",status)
            Sock.wait(seconds = 1)
+
+class ui(threading.Thread):
+    def run(self):
+        root = Tk()
+        def on_closing():
+                root.destroy()
+        keyp = CodeKeypad(root)
+        root.geometry("800x480+0+0")
+        root.protocol("WM_DELETE_WINDOW",on_closing)
+        #root.attributes('-fullscreen',True)
+        root.mainloop()
+        
            
 receiverThread = receiver()
 receiverThread.start()
@@ -210,11 +222,5 @@ receiverThread.start()
 cameraThread = camera()
 cameraThread.start()
  
-root = Tk()
-def on_closing():
-        root.destroy()
-keyp = CodeKeypad(root)
-root.geometry("800x480+0+0")
-root.protocol("WM_DELETE_WINDOW",on_closing)
-#root.attributes('-fullscreen',True)
-root.mainloop()
+uiThread = ui()
+uiThread.start()
