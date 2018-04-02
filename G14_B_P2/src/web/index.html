@@ -25,7 +25,7 @@
     });
     socket.on('lockChanged', function (data) { //get button status from client
         document.getElementById("lockStatus").checked = data; //change checkbox according to push button on Raspberry Pi
-        document.getElementById('image').src = '~/../home/lock/last/last_user.png';
+        document.getElementById('image').src = '~/../home/lock/last/last_user.jpg';
     });
     socket.on('updateTime',function(data){
         changeTime(data);
@@ -95,8 +95,8 @@
             <div class="w3-container">
                 <p>Last Seen Person</p>
             </div>
-            <img src="~/../home/lock/last/last_user.png" class="w3-round w3-image" id="image">
-            <!-- <img src="last_user.png" class="w3-round w3-image" id="image"> -->
+            <img src="~/../home/lock/last/last_user.jpg" class="w3-round w3-image" id="image">
+            <!-- <img src="last_user.jpg" class="w3-round w3-image" id="image"> -->
             <div class="w3-container">
                 <p>Unknown User</p>
             </div>
