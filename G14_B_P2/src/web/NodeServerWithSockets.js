@@ -40,6 +40,13 @@ app.get('/',function(request,response){
     response.end();
 });
 
+//Routing request : http://localhost:port/newAccount.html
+app.get('/newAccount.html', function(request,response) {
+    response.writeHead(200, {"Content-Type":"text/html"});
+    response.write(fs.readFileSync("./newAccount.html"));
+    response.end()
+});
+
 //Routing Request : http://localhost:port/index
 app.get('/index',function(request,response){
   //Telling Browser That The File Provided Is A HTML File
@@ -85,17 +92,17 @@ app.get('/main.css', function(request, response) {
 });
 
 //Routing to png file
-app.get('/last_user.png', function(request, response) {
-    response.writeHead(200, {'Content-Type': 'image/png'});
-    var image = fs.readFileSync('./last_user.png');
+app.get('/last_user.jpg', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'image/jpg'});
+    var image = fs.readFileSync('./last_user.jpg');
     response.write(image);
     response.end();
 });
 
 //Routing to new png file
-app.get('/home/lock/last/last_user.png', function(request, response) {
-    response.writeHead(200, {'Content-Type': 'image/png'});
-    var image = fs.readFileSync('/home/lock/last/last_user.png');
+app.get('/home/lock/last/last_user.jpg', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'image/jpg'});
+    var image = fs.readFileSync('/home/lock/last/last_user.jpg');
     response.write(image);
     response.end();
 });
@@ -179,6 +186,7 @@ app.post('/pinChange', function(request,response) {
         response.writeHead(403, {'Content-Type': 'text/html'});
         response.write("ERROR! No pin was found!");
         response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+        response.end();
     }
     var pinname = cookies.pinname; 
     const options = {
