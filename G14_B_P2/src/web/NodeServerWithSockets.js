@@ -82,6 +82,14 @@ app.get('/last_user.png', function(request, response) {
     response.end();
 });
 
+//Routing to new png file
+app.get('/home/lock/last/last_user.png', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'image/png'});
+    var image = fs.readFileSync('/home/lock/last/last_user.png');
+    response.write(image);
+    response.end();
+});
+
 //Routing to functions.js file
 app.get('/functions.js', function(request, response) {
     response.writeHead(200, {'Content-Type': 'text/javascript'});
@@ -225,7 +233,8 @@ app.post('/pinChange', function(request,response) {
             }
         })();
     });
-}
+
+});
 
 //Routing To Public Folder For Any Static Context
 app.use(express.static(__dirname + '/public'));
@@ -290,6 +299,11 @@ io.sockets.on("connection",function(socket){
         else {
             console.log("Data value is " + data);
         }
+
+        socket.broadcast.emit('train');
+    });
+     socket.on('timeUpdated', function(data) {
+        socket.broadcast.emit("updateTime", data);
     });
 
     socket.on('loginAndroid', function(name){
