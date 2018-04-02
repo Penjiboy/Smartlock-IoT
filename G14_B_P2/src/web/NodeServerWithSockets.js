@@ -6,8 +6,13 @@ var express = require('express');//Importing Express
 var app = express();//Getting App From Express
 var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
-const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
-//const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+//const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
+const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 //Routing Request : http://localhost:port/
 app.get('/',function(request,response){
@@ -59,14 +64,35 @@ app.get('/functions.js', function(request, response) {
 
 //Routing to loginAuth
 app.post('/loginAuth', function(request, response) {
-    var users = [];
-    outRequest.get('http://38.88.74.79:9014/users', function (error, response, body) {
-        // body is the decompressed response body
-        console.log('server encoded the data as: ' + (response.headers['content-encoding'] || 'identity'))
-        console.log('the decoded data is: ' + body)
-        users = body;
+    const options = {
+        url: 'http://localhost:9014/findUserForLogin',
+        method: 'GET',
+        form: {
+            name: request.body.username
+        },
+        headers: {
+            'Accept' : 'application/json',
+            'Accept-Charset': 'utf-8'
+        }
+    };
+
+    console.log("Username is " + request.body.username);
+
+    var usersList = [];
+    outRequest(options, function(err, res, body) {
+        usersList = JSON.parse(body);
+        console.log(usersList);
     });
-    console.log("users are: " + users);
+
+    //handle the case where no user was found
+    if(usersList.data.isEmptyObject()) {
+        response.writeHead(200, {'Content-Type': 'text/html'});
+
+        //Write an html file with the appropriate response, for now just write some text
+        response.write("Error! Username not found")._end();
+    }
+
+
 });
 
 //Routing To Public Folder For Any Static Context
