@@ -26,7 +26,7 @@ https.get(url, res => {
 function lockUnlock(){
    
    if(!document.getElementById("lockStatus").checked){
-       confirm("CONFIRM UNLOCK. The lock will auto-lock after 5 seconds.");
+       alert("CONFIRM UNLOCK. The lock will auto-lock after 5 seconds.");
        timeUpdate();
        setTimeout("lockLock()",5000)
    }

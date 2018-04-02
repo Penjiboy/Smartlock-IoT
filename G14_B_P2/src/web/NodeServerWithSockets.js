@@ -8,10 +8,10 @@ var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
 var cookie = require('cookie');
 var templatesjs = require('templatesjs');
-//const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
-const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
-//const hostIP = '38.88.74.79'; //Use this for remote server
-const hostIP = 'localhost'; //use this for testing on local machine
+const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
+//const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+const hostIP = '38.88.74.79'; //Use this for remote server
+//const hostIP = 'localhost'; //use this for testing on local machine
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
@@ -33,12 +33,13 @@ app.get('/index',function(request,response){
   //Telling Browser That The File Provided Is A HTML File
     var cookies = cookie.parse(request.headers.cookie || '');
     console.log(cookies);
-    if(cookies === '') {
+    if(cookies.username === undefined) {
         response.writeHead(403, {'Content-Type': 'text/html'});
         response.write("ERROR! No proper authentication occured!");
         response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
     }
     var username = cookies.username;
+    response.clearCookie('username');
   response.writeHead(200,{"Content-Type":"text/html"});
   //Passing HTML To Browser
     var fileContents = fs.readFile('./index.html', function(err,data) {
@@ -126,7 +127,9 @@ app.post('/loginAuth', function(request, response) {
                     //response.writeHead(200, {'Content-Type': 'text/html'});
 
                     //Register cookies and redirect user to home page, for now just write some text
-                    response.setHeader('Set-cookie', cookie.serialize('username', usersList.data[0].Member), {});
+                    response.setHeader('Set-cookie', cookie.serialize('username', usersList.data[0].Member), {
+                        maxAge: 10
+                    });
                     response.redirect('/index');
                     response.end();
                 } else {
