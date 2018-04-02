@@ -8,6 +8,7 @@ import picamera
 import numpy as np
 import pickle
 from socketIO_client_nexus import SocketIO, LoggingNamespace
+from microphone import micRecord
 
 Sock = SocketIO('38.88.74.79', 80)
 cam = picamera.PiCamera()
@@ -58,6 +59,8 @@ class StoreCode:
 passCode = StoreCode()
 _strVar = ""  
 time=time.time()
+_micRecord = micRecord()
+_isRecording = False
 
 class CodeKeypad: 
 
@@ -91,6 +94,16 @@ class CodeKeypad:
             lock()
             print("Error: Incorrect code entered")
         self.clear_num()
+
+    def record_button(self):
+        global _isRecording
+        if (_isRecording) == False:
+            _isRecording = True
+            t1 = threading.Thread(target=micRecord.recordOn, args=(_micRecord,))
+            t1.start()
+        else:
+            _isRecording = False
+            _micRecord.recordStop()
 
     def __init__(self,root):
         #Variable holding the changing value stored in entry 
@@ -146,6 +159,10 @@ class CodeKeypad:
 
         self.enterButton = ttk.Button(root,text="Enter",command=lambda:self.enter_code())
         self.enterButton.grid(row = 4, column = 7, columnspan = 3, sticky=W)
+
+        self.recordButton = ttk.Button(root,text="Record/ Stop",command=lambda:self.record_button())
+        self.recordButton.grid(row = 5, column = 3, columnspan = 5)
+
 
 class camera( threading.Thread ):
     def run(self):

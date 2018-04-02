@@ -153,14 +153,16 @@ var io = require('socket.io').listen(app.listen(port,"0.0.0.0"));//Telling Expre
 io.sockets.on("connection",function(socket){
     console.log("Client connected");
     socket.on("unlock",function(data){
-
-	socket.emit("lockChanged", 0);
-        console.log("door unlocked by " + data)
-
+        socket.emit("lockChanged", 0);
+            console.log("door unlocked by " + data)
     });
 
     socket.on("lock", function() {
         socket.emit("lockChanged", 1);
+    });
+
+    socket.on('login', function(data) {
+        console.log(data + "Logged in");
     });
 
     socket.on('lockChanged', function(data) {
