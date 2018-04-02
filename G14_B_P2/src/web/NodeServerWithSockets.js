@@ -13,13 +13,22 @@ const port = 8080;//Use this for testing local machine//Creating A Constant For 
 const apiPort = 9015;
 //const hostIP = '38.88.74.79'; //Use this for remote server
 const hostIP = 'localhost'; //use this for testing on local machine
-
+var crypto = require("crypto"); //for encryption 
+var key = 'calmdown!'; //for encryption 
 var usersPasscode = undefined;
-
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+//encrytion function, reference http://www.codeblocq.com/2016/06/DES-encryption-in-Node-and-JavaScript/ 
+function encodeDesECB(textToEncode, keyString) {
+    var key = new Buffer(keyString.substring(0, 8), 'utf8');
+    var cipher = crypto.createCipheriv('des-ecb', key, '');
+    var c = cipher.update(textToEncode, 'utf8', 'base64');
+    c += cipher.final('base64');
+    return c;
+}
 
 //Routing Request : http://localhost:port/
 app.get('/',function(request,response){
@@ -82,6 +91,14 @@ app.get('/last_user.png', function(request, response) {
     response.end();
 });
 
+//Routing to new png file
+app.get('/home/lock/last/last_user.png', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'image/png'});
+    var image = fs.readFileSync('/home/lock/last/last_user.png');
+    response.write(image);
+    response.end();
+});
+
 //Routing to functions.js file
 app.get('/functions.js', function(request, response) {
     response.writeHead(200, {'Content-Type': 'text/javascript'});
@@ -131,7 +148,7 @@ app.post('/loginAuth', function(request, response) {
             } else {
                 if(usersList.data[0].Password === request.body.password) {
                     //response.writeHead(200, {'Content-Type': 'text/html'});
-
+                    
                     //Register cookies and redirect user to home page, for now just write some text
                     response.setHeader('Set-cookie', cookie.serialize('username', usersList.data[0].Member), {
                         maxAge: 10
@@ -177,8 +194,8 @@ app.post('/pinChange', function(request,response) {
 
     console.log("Current Pin entered is " + request.body.currpin);
     console.log("New Pin entered is "  + request.body.newpin);
-    var cpin = crypto.createCipher("des")
-    var pin = []; 
+    var cpin = encodeDesECB(request.body.currpin, key );
+    var npin = encodeDesECB(request.body.newpin, key);
     outRequest(options, function(err, res, body) {
         pin = JSON.parse(body);
         console.log(pin);
@@ -186,24 +203,35 @@ app.post('/pinChange', function(request,response) {
             //button pressed but wrong current pin 
             if(pin.data === undefined || pin.data.length === 0) {
                 response.writeHead(403, {'Content-Type': 'text/html'});
-                const editdata = {
-                    url: 'http://' + hostIP + ':' + apiPort + '/users',
-                    method: 'PUT',
-                    form:{
-                        
-                    }
-                }
                 //Write an html file with the appropriate response, for now just write some text
                 response.write("Error! No pin found!");
                 response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Reenter your current pin</a>");
                 response.end();
             } else {
-                if(pin.data[0].keypad === request.body.currpin) {
-                    //-------------------------------figure out a way to modify the pin in the database-------------------------------------//
-                    //returns false if the newpin is a valid number
+                if(pin.data[0].keypad === cpin) {                    
+                    //make sure that the newpin is a valid number sequence 
                     if(!isNaN(request.body.newpin)){
                         
+                        //create a json object which holds the data, with keypad being changed 
+                        var pinJSONOBJECT = {
+                            "member": pin.data[0].Member,
+                            "password": pin.data[0].Password,
+                            "user_mic": pin.data[0].user_mic,
+                            "user_pic": pin.data[0].user_pic,
+                            "encoding": pin.data[0].encoding,
+                            "serial_num": pin.data[0].serial_num,
+                            "keypad": npin,
+                            "time": pin.data[0].time,
+                            "id":pin.data[0].id
+                        };
 
+                        //modify the keypad data according to the id # 
+                        request({
+                            url: "http://38.88.74.79:9015/users",
+                            method: "PUT",
+                            json: true,   // <--Very important!!!
+                            body: myJSONObject
+                        }, function (error, response, body){});
 
                         response.write("Pin Change Successful.")
                         response.redirect('/index');
@@ -225,7 +253,11 @@ app.post('/pinChange', function(request,response) {
             }
         })();
     });
-}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 824ee5dcad9ab8b55e8d59c5d2a0bad5e1956b10
+});
 
 //Routing To Public Folder For Any Static Context
 app.use(express.static(__dirname + '/public'));
@@ -234,8 +266,10 @@ var io = require('socket.io').listen(app.listen(port,"0.0.0.0"));//Telling Expre
 io.sockets.on("connection",function(socket){
     console.log("Client connected");
     socket.on("unlock",function(data){
-        socket.emit("lockChanged", 0);
-            console.log("door unlocked by " + data)
+
+	socket.emit("lockChanged", 0);
+        console.log("door unlocked by " + data)
+
     });
 
     socket.on("lock", function() {
@@ -275,7 +309,6 @@ io.sockets.on("connection",function(socket){
     socket.on('timeUpdated', function(data) {
         socket.broadcast.emit("updateTime", data);
     });
-
     socket.on('lockChanged', function(data) {
         if(data === 1) {
 	    socket.broadcast.emit("piLockChanged", data);
@@ -290,6 +323,15 @@ io.sockets.on("connection",function(socket){
         else {
             console.log("Data value is " + data);
         }
+        
+        socket.broadcast.emit('train');
+    });
+     socket.on('timeUpdated', function(data) {
+        socket.broadcast.emit("updateTime", data);
+    });
+
+    socket.on('loginAndroid', function(name){
+
     });
 
     socket.on('disconnect', function() {

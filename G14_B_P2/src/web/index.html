@@ -25,8 +25,12 @@
     });
     socket.on('lockChanged', function (data) { //get button status from client
         document.getElementById("lockStatus").checked = data; //change checkbox according to push button on Raspberry Pi
-        //socket.emit("lockChanged", data); //send push button status to back to server
+        document.getElementById('image').src = '~/../home/lock/last/last_user.png';
     });
+    socket.on('updateTime',function(data){
+        changeTime(data);
+        document.getElementById("time1").innerHTML = data;
+   });
 
 </script>
 <body>
