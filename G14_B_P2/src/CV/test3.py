@@ -37,12 +37,18 @@ def lock():
 
 
 print("Loading known face image(s)")
-#ali_image = face_recognition.load_image_file("images/ali.jpg")
-#ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
+ali_image = face_recognition.load_image_file("images/ali.jpg")
+all_face_encodings["Ali"] = face_recognition.face_encodings(ali_image)[0]
+
+
+with open('dataset_faces.dat', 'wb') as f:
+        pickle.dump(all_face_encodings, f)
+
 
 with open('dataset_faces.dat', 'rb') as f:
-	all_face_encodings = pickle.load(f)
+        all_face_encodings = pickle.load(f)
 
+print("break")
 
 
 # Initialize some variables
@@ -180,7 +186,7 @@ def train():
     name = "ali"
     print("recognizing" + name+ "\n")
     cam.capture(encode,format="rgb")
-    while(len(face_recognition.face_encodings(encode)) == 0 || len(face_recognition.face_encodings(encode)) > 1):
+    while(len(face_recognition.face_encodings(encode)) == 0 or len(face_recognition.face_encodings(encode)) > 1):
         cam.capture(encode,format="rgb")
         print("try again")
     all_face_encodings[name] = face_recognition.face_encodings(encode)[0]
