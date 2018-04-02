@@ -9,7 +9,9 @@ import numpy as np
 import pickle
 from socketIO_client_nexus import SocketIO, LoggingNamespace
 from microphone import micRecord
+import pysftp
 
+sftp =  pysftp.Connection('38.88.74.79', username='lock', password='calmdown!')
 Sock = SocketIO('38.88.74.79', 80)
 cam = picamera.PiCamera()
 cam.resolution = (320, 240)
@@ -191,7 +193,11 @@ class camera( threading.Thread ):
 
                 if match[0]:
                     name = "Ali"
+                    sftp.cd("last")
+                    sftp.put("last_user.png")
+                    sftp.cd("..")
                     Sock.emit("unlock",name)
+                    
                     unlock()
                 else: lock()
                 
