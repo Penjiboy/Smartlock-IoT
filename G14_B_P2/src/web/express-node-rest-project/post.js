@@ -1,13 +1,13 @@
 var request = require('request');
-
+var x = '8902'
 var myJSONObject =  {
-    "member": "jack",
-    "password": "12345",
+    "member": "jhou",
+    "password": "password",
     "user_mic": null,
     "user_pic": null,
     "encoding": null,
-    "serial_num": 1,
-    "keypad": '9281',
+    "serial_num": 1200,
+    "keypad": x,
     "time": null,
 	"id":12
 };

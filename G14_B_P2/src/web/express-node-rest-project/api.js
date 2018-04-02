@@ -77,8 +77,7 @@ app.put('/users', function (req, res) {
         "encoding": req.body.encoding,
         "serial_num": req.body.serial_num,
         "keypad": req.body.keypad,
-        "time": req.body.time,
-        "id": req.body.id
+        "time": req.body.time
      };
  
     mc.query('UPDATE cpen291 SET ? WHERE id =' + req.body.id, data, function (error, results, fields) {
