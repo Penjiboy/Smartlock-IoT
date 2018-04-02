@@ -3,6 +3,7 @@ var request = require('request');
 var myJSONObject =  {
 	"member": "rico",
 	"password": "chessmaster",
+	"keypad": "12345",
 	"id":11
 };
 request({

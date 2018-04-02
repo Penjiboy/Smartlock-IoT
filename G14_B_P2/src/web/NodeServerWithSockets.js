@@ -8,11 +8,11 @@ var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
 var cookie = require('cookie');
 var templatesjs = require('templatesjs');
-//const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
-const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
+//const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
 const apiPort = 9015;
-//const hostIP = '38.88.74.79'; //Use this for remote server
-const hostIP = 'localhost'; //use this for testing on local machine
+const hostIP = '38.88.74.79'; //Use this for remote server
+//const hostIP = 'localhost'; //use this for testing on local machine
 var crypto = require("crypto"); //for encryption 
 var key = 'calmdown!'; //for encryption 
 var usersPasscode = undefined;
@@ -52,7 +52,8 @@ app.get('/index',function(request,response){
     }
     var username = cookies.username;
     response.clearCookie('username');
-    response.setHeader('Set-cookie', cookie.serialize('pinname', usersList.data[0].Member), {
+   // response.setHeader('Set-cookie', cookie.serialize('pinname', usersList.data[0].Member), {
+    response.setHeader('Set-cookie', cookie.serialize('pinname', username), {
         maxAge: 10
     });
   response.writeHead(200,{"Content-Type":"text/html"});
@@ -253,10 +254,6 @@ app.post('/pinChange', function(request,response) {
             }
         })();
     });
-<<<<<<< HEAD
-=======
-
->>>>>>> 824ee5dcad9ab8b55e8d59c5d2a0bad5e1956b10
 });
 
 //Routing To Public Folder For Any Static Context
