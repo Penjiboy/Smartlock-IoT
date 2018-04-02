@@ -157,6 +157,81 @@ app.post('/loginAuth', function(request, response) {
     });
 });
 
+//Routing to pinChange
+//need to figure out how to check the pin for the specific user!! 
+app.post('/pinChange', function(request,response) {
+    var cookies = cookie.parse(request.headers.cookie || '');
+    console.log(cookies);
+    if(cookies.pinname === undefined) {
+        response.writeHead(403, {'Content-Type': 'text/html'});
+        response.write("ERROR! No pin was found!");
+        response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+    }
+    var pinname = cookies.pinname; 
+    const options = {
+        url: 'http://' + hostIP + ':' + apiPort + '/findUserForLogin',
+        method: 'GET',
+        form:{
+            name: pinname
+        },
+        headers: {
+            'Accept' : 'application/json',
+            'Accept-Charset': 'utf-8'
+        }
+    };
+
+    console.log("Current Pin entered is " + request.body.currpin);
+    console.log("New Pin entered is "  + request.body.newpin);
+    var cpin = crypto.createCipher("des")
+    var pin = []; 
+    outRequest(options, function(err, res, body) {
+        pin = JSON.parse(body);
+        console.log(pin);
+        (function () {
+            //button pressed but wrong current pin 
+            if(pin.data === undefined || pin.data.length === 0) {
+                response.writeHead(403, {'Content-Type': 'text/html'});
+                const editdata = {
+                    url: 'http://' + hostIP + ':' + apiPort + '/users',
+                    method: 'PUT',
+                    form:{
+                        
+                    }
+                }
+                //Write an html file with the appropriate response, for now just write some text
+                response.write("Error! No pin found!");
+                response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Reenter your current pin</a>");
+                response.end();
+            } else {
+                if(pin.data[0].keypad === request.body.currpin) {
+                    //-------------------------------figure out a way to modify the pin in the database-------------------------------------//
+                    //returns false if the newpin is a valid number
+                    if(!isNaN(request.body.newpin)){
+                        
+
+
+                        response.write("Pin Change Successful.")
+                        response.redirect('/index');
+                        response.end();
+                    }
+                    else{
+                        response.write("Pin Change Unsuccessful. Invalid new pin.");
+                        response.redirect('/index');
+                        response.end();
+                    }
+                } else {
+                    response.writeHead(403, {'Content-Type': 'text/html'});
+
+                    //Redirect user back to home 
+                    response.write("Pin Change Unsuccessful. Incorrect pin entered");
+                    response.redirect('/index');
+                    response.end();
+                }
+            }
+        })();
+    });
+}
+
 //Routing To Public Folder For Any Static Context
 app.use(express.static(__dirname + '/public'));
 console.log("Server Running At:localhost:"+port);
