@@ -6,6 +6,7 @@ var express = require('express');//Importing Express
 var app = express();//Getting App From Express
 var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
+var cookie = require('cookie');
 //const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
 const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
 //const hostIP = '38.88.74.79'; //Use this for remote server
@@ -29,9 +30,13 @@ app.get('/',function(request,response){
 //Routing Request : http://localhost:port/index
 app.get('/index',function(request,response){
   //Telling Browser That The File Provided Is A HTML File
+    var cookies = cookie.parse(request.headers.cookie || '');
+    var username = cookies.username;
+    console.log(username);
   response.writeHead(200,{"Content-Type":"text/html"});
   //Passing HTML To Browser
-  response.write(fs.readFileSync("./index.html"));
+    var fileContents = fs.readFileSync('./index.html', {encoding: 'utf8'});
+  response.write(fileContents);
   //Ending Response
   response.end();
 });
@@ -100,11 +105,11 @@ app.post('/loginAuth', function(request, response) {
                 response.end();
             } else {
                 if(usersList.data[0].Password === request.body.password) {
-                    response.writeHead(200, {'Content-Type': 'text/html'});
+                    //response.writeHead(200, {'Content-Type': 'text/html'});
 
                     //Register cookies and redirect user to home page, for now just write some text
-                    response.write("Login successful! Hello " + request.body.username);
-                    response.redirect(/)
+                    response.setHeader('Set-cookie', cookie.serialize('username', usersList.data[0].Member), {});
+                    response.redirect('/index');
                     response.end();
                 } else {
                     response.writeHead(403, {'Content-Type': 'text/html'});
@@ -137,7 +142,6 @@ io.sockets.on("connection",function(socket){
     });
 
     socket.on('lockChanged', function(data) {
-	console.log("data value is: " + data);
         if(data === 1) {
 	    socket.broadcast.emit("piLockChanged", data);
 	    socket.broadcast.emit("lockChanged", data);
@@ -151,5 +155,9 @@ io.sockets.on("connection",function(socket){
         else {
             console.log("Data value is " + data);
         }
+    });
+
+    socket.on('disconnect', function() {
+        console.log('Client disconnected')
     })
 });
