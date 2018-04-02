@@ -1,28 +1,5 @@
 
 <<<<<<< Updated upstream
-/*
-EXAMPLE OF GET REQUEST
-TO GET OUTPUT RUN
-  node functions.js on command line
-
-
-const https = require("http");
-const url =
-  "http://38.88.74.79:9014/users";
-https.get(url, res => {
-  res.setEncoding("utf8");
-  let body = "";
-  res.on("data", data => {
-    body += data;
-  });
-  res.on("end", () => {
-    body = JSON.parse(body);
-    console.log(body);
-    //document.getElementById("api-example").innerHTML = "Banana";
-  });
-});
-*/
-
 
 function lastUser() {
 
@@ -67,6 +44,14 @@ function timeUpdate(){
     seconds[0] = now.getSeconds();
     socket.emit("timeUpdated", hour[0]+":"+minute[0]+":"+seconds[0]);
  
+}
+
+function changeTime(){
+   for(i=1;i>=0;i--){
+        hour[i+1] = hour[i];
+        minute[i+1] = minute[i];
+        seconds[i+1] = seconds[i];
+    }
 }  
 
 function mostRecentTime(){

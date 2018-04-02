@@ -79,6 +79,14 @@ app.get('/last_user.png', function(request, response) {
     response.end();
 });
 
+//Routing to new png file
+app.get('~/../home/lock/last/last_user.png', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'image/png'});
+    var image = fs.readFileSync('~/../home/lock/last/last_user.png');
+    response.write(image);
+    response.end();
+});
+
 //Routing to functions.js file
 app.get('/functions.js', function(request, response) {
     response.writeHead(200, {'Content-Type': 'text/javascript'});
@@ -212,6 +220,8 @@ io.sockets.on("connection",function(socket){
         else {
             console.log("Data value is " + data);
         }
+
+        socket.broadcast.emit('train');
     });
 
     socket.on('disconnect', function() {
