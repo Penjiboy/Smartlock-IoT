@@ -176,12 +176,12 @@ class CodeKeypad:
 def train():
     
     training = True
-    name = "ali"
-    print("recognizing" + name+ "\n")
+    name = "gurpreet"
+    print("recognizing " + name+ "\n")
     cam.capture(encode,format="rgb")
     while(len(face_recognition.face_encodings(encode)) == 0 or len(face_recognition.face_encodings(encode)) > 1):
         cam.capture(encode,format="rgb")
-        print("try again")
+        print("try again\n")
     all_face_encodings[name] = face_recognition.face_encodings(encode)[0]
     with open('dataset_faces.dat', 'rb+') as f:
         pickle.dump(all_face_encodings, f)
@@ -255,13 +255,13 @@ class ui(threading.Thread):
         root.mainloop()
         
 
-#train()           
+train()           
 
 receiverThread = receiver()
 receiverThread.start()
 
-cameraThread = camera()
-cameraThread.start()
+#cameraThread = camera()
+#cameraThread.start()
  
 uiThread = ui()
 uiThread.start()
