@@ -23,6 +23,11 @@ https.get(url, res => {
 });
 */
 
+
+function lastUser() {
+
+}
+
 function lockUnlock(){
    
    if(!document.getElementById("lockStatus").checked){
@@ -59,7 +64,9 @@ function timeUpdate(){
     }
     hour[0] = now.getHours();
     minute[0] = now.getMinutes();
-    seconds[0] = now.getSeconds(); 
+    seconds[0] = now.getSeconds();
+    socket.emit("timeUpdated", hour[0]+":"+minute[0]+":"+seconds[0]);
+ 
 }  
 
 function mostRecentTime(){

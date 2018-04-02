@@ -1,11 +1,49 @@
 from tkinter import *
 from tkinter import ttk
-import sys 
-sys.path.insert(0,r'''C:\Users\Jack\Documents\University\2017-2018\Term 2\CPEN291\G14_B_P2\G14_B_P2\src\Microphone\micWithKeypad''')
-from microphone import micRecord
-import threading
+import RPi.GPIO as GPIO
 import time
-import urllib.request, urllib.parse
+import threading
+import face_recognition
+import picamera
+import numpy as np
+import pickle
+from socketIO_client_nexus import SocketIO, LoggingNamespace
+from microphone import micRecord
+
+Sock = SocketIO('38.88.74.79', 80)
+cam = picamera.PiCamera()
+cam.resolution = (320, 240)
+output = np.empty((240, 320, 3), dtype=np.uint8)
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(12, GPIO.OUT)
+pwm = GPIO.PWM(12, 100)
+pwm.start(float(85)/10.0+2.5)
+
+def unlock():
+        duty = float(185)/10.0+2.5
+        pwm.ChangeDutyCycle(duty)
+        start = time.time()
+        print("door unlocked")
+def lock():
+        duty = float(85)/10.0+2.5
+        pwm.ChangeDutyCycle(duty)
+        print("door locked")
+
+
+
+print("Loading known face image(s)")
+ali_image = face_recognition.load_image_file("images/ali.jpg")
+ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
+
+# Initialize some variables
+face_locations = []
+face_encodings = []
+
+def status(*args):
+    if args[0]==1 : lock()
+    elif args[0]==0: unlock()
+    else: print("error")
 
 class StoreCode: 
     def __init__(self):
@@ -19,12 +57,12 @@ class StoreCode:
 
 
 passCode = StoreCode()
-_strVar = ""
+_strVar = ""  
+time=time.time()
 _micRecord = micRecord()
 _isRecording = False
 
 class CodeKeypad: 
-    #passcode is stored in _strSecret
 
     #insert the number 
     def button_press(self,value):
@@ -43,7 +81,7 @@ class CodeKeypad:
     def clear_num(self):
         self.userEntry.delete(0,"end")
         global _strVar
-        _strVar = "" #reset the _strVar 
+        _strVar = "" #reset the _strVar 		
 
     def enter_code(self):
         global _strVar
@@ -51,15 +89,10 @@ class CodeKeypad:
         print("Code entered: ", _strVar)
         if passCode.checkEqual(_strVar):
             print("Door is unlocked")
+            unlock()
         else:
+            lock()
             print("Error: Incorrect code entered")
-            data = {
-            'visitor' : 'true',
-            'message' : 'false'
-            'intruderWarning' : 'true'
-            }
-            data = bytes( urllib.parse.urlencode( data ).encode() )
-            handler = urllib.request.urlopen( 'http://38.88.74.79:80/wrongCode', data )
         self.clear_num()
 
     def record_button(self):
@@ -71,7 +104,6 @@ class CodeKeypad:
         else:
             _isRecording = False
             _micRecord.recordStop()
-    
 
     def __init__(self,root):
         #Variable holding the changing value stored in entry 
@@ -80,7 +112,9 @@ class CodeKeypad:
         root.geometry("555x300")
         root.resizable(width=FALSE,height=FALSE)
         root.title("Keypad")
-
+        #end = time.time()
+        #if end-start>10:
+	  #  lock()
         Style=ttk.Style()
         Style.configure("TButton",
                         font="Times 20 bold",
@@ -127,9 +161,67 @@ class CodeKeypad:
         self.enterButton.grid(row = 4, column = 7, columnspan = 3, sticky=W)
 
         self.recordButton = ttk.Button(root,text="Record/ Stop",command=lambda:self.record_button())
-        self.recordButton.grid(row = 5, column = 1, columnspan = 3, sticky=E)
+        self.recordButton.grid(row = 5, column = 3, columnspan = 5)
 
+
+class camera:
+    def runCamera(self):
+        while True:
+
+            #Sock.on("piLockChanged",status)
+            #Sock.wait(seconds = 1)
+            #Sock.on("piLockChanged",status)
+            
+
+            print("Capturing image.")
+            # Grab a single frame of video from the RPi camera as a numpy array
+            cam.capture(output,format="rgb")
+            cam.capture("last_user.png")
+
+            # Find all the faces and face encodings in the current frame of video
+            face_locations = face_recognition.face_locations(output)
+            print("Found {} faces in image.".format(len(face_locations)))
+            face_encodings = face_recognition.face_encodings(output, face_locations)
+
+            # Loop over each face found in the frame to see if it's someone we know.
+            for face_encoding in face_encodings:
+                # See if the face is a match for the known face(s)
+                match = face_recognition.compare_faces([ali_face_encoding], face_encoding)
+                name = "<Unknown Person>"
+
+                if match[0]:
+                    name = "Ali"
+                    Sock.emit("unlock",name)
+                    unlock()
+                else: lock()
+                
+                print("I see someone named {}!".format(name))
+
+class receiver:
+      def runReciever ( self ):
+        while True:
+           Sock.on("lockChanged",status)
+           Sock.wait(seconds = 1)
+
+_camera = camera()
+_reciever = reciever()
+
+tCamera = threading.Thread(target=camera.runCamera, args=(_camera,))
+tReciever = threading.Thread(target=reciever.runReciever, args=(_reciever,))
+tReciever.start()
+tCamera.start()
+
+#receiverThread = receiver()
+#receiverThread.start()
+
+#cameraThread = camera()
+#cameraThread.start()
 
 root = Tk()
+def on_closing():
+        root.destroy()
 keyp = CodeKeypad(root)
+root.geometry("800x480+0+0")
+root.protocol("WM_DELETE_WINDOW",on_closing)
+#root.attributes('-fullscreen',True)
 root.mainloop()
