@@ -162,7 +162,32 @@ io.sockets.on("connection",function(socket){
     });
 
     socket.on('login', function(data) {
-        console.log(data + " Logged in");
+        var userInfo = JSON.parse(data);
+        console.log(userInfo.member + " Trying to log in");
+
+        const options = {
+            url: 'http://' + hostIP + ':' + port + '/loginAuth',
+            method: 'POST',
+            form: {
+                name: request.body.username
+            },
+            headers: {
+                'Accept' : 'application/json',
+                'Accept-Charset': 'utf-8'
+            }
+        };
+
+        outRequest(options, function(err, res, body) {
+            if(res.statusCode === 200) {
+                socket.emit('loginSuccesful', {});
+            }
+            else {
+                socket.emit('loginUnsuccesful', {});
+                socket.disconnect();
+            }
+        });
+
+
     });
 
     socket.on('lockChanged', function(data) {
