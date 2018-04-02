@@ -42,8 +42,9 @@ app.get('/findUserForLogin', function (req, res) {
     });
 });
 
+
 app.post('/users', function (req, res) {
- 
+    console.log(req.body);
     var data = {
         "Member": req.body.member,
         "Password": req.body.password
@@ -56,6 +57,22 @@ app.post('/users', function (req, res) {
         return res.send({ error: false, data: results, message: 'New task has been created successfully.' });
     });
 });
+
+app.put('/users', function (req, res) {
+    
+    console.log(req.body);
+
+    var data = {
+        "Member": req.body.member,
+        "Password": req.body.password
+     };
+ 
+    mc.query('UPDATE cpen291 SET ? WHERE id =' + req.body.id, data, function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'Task has been updated successfully.' });
+    });
+});
+
 
 // port must be set to 8080 because incoming http requests are routed from port 80 to port 8080
 app.listen(port, function () {
