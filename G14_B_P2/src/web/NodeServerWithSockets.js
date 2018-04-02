@@ -6,8 +6,8 @@ var express = require('express');//Importing Express
 var app = express();//Getting App From Express
 var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
-//const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
-const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
+//const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
@@ -76,22 +76,80 @@ app.post('/loginAuth', function(request, response) {
         }
     };
 
-    console.log("Username is " + request.body.username);
+    console.log("Username entered is " + request.body.username);
+    console.log("Password entered is " + request.body.password);
 
     var usersList = [];
     outRequest(options, function(err, res, body) {
         usersList = JSON.parse(body);
         console.log(usersList);
+        /*
+        console.log(usersList.data[0]);
+        console.log(usersList.data === undefined);
+        console.log(usersList.data[0].Password);
+        console.log(usersList.data.length);
+        console.log(usersList.data[0].Password === request.body.password);
+        */
+
+        (function () {
+            //handle the case where no user was found
+            if(usersList.data === undefined || usersList.data.length === 0) {
+                response.writeHead(403, {'Content-Type': 'text/html'});
+
+                //Write an html file with the appropriate response, for now just write some text
+                response.write("Error! Username not found");
+                response.end();
+            } else if(usersList.data.length > 1) {
+                response.writeHead(403, {'Content-Type': 'text/html'});
+
+                //Write an html file with the appropriate response, for now just write some text
+                response.write("Error! Too many users");
+                response.end();
+            } else {
+                if(usersList.data[0].Password === request.body.password) {
+                    response.writeHead(200, {'Content-Type': 'text/html'});
+
+                    //Register cookies and redirect user to home page, for now just write some text
+                    response.write("Login successful! Hello " + request.body.username);
+                    response.end();
+                } else {
+                    response.writeHead(403, {'Content-Type': 'text/html'});
+
+                    //Register cookies and redirect user to home page, for now just write some text
+                    response.write("Login unsuccessful. Incorrect password");
+                    response.end();
+                }
+            }
+        })();
     });
 
+/*
     //handle the case where no user was found
-    if(usersList.data.isEmptyObject()) {
-        response.writeHead(200, {'Content-Type': 'text/html'});
+    if(usersList.data === undefined || usersList.data.length === 0) {
+        response.writeHead(403, {'Content-Type': 'text/html'});
 
         //Write an html file with the appropriate response, for now just write some text
-        response.write("Error! Username not found")._end();
+        response.write("Error! Username not found").end();
+    } else if(usersList.data > 1) {
+        response.writeHead(403, {'Content-Type': 'text/html'});
+
+        //Write an html file with the appropriate response, for now just write some text
+        response.write("Error! Too many users").end();
+    } else {
+        if(usersList.data[0].password === request.body.password) {
+           response.writeHead(200, {'Content-Type': 'text/html'});
+
+           //Register cookies and redirect user to home page, for now just write some text
+            response.write("Login successful! Hello " + request.body.username).end();
+        } else {
+            response.writeHead(403, {'Content-Type': 'text/html'});
+
+            //Register cookies and redirect user to home page, for now just write some text
+            response.write("Login unsuccessful. Incorrect password").end();
+        }
     }
 
+*/
 
 });
 
