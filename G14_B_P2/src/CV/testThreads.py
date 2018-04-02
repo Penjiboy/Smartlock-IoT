@@ -23,7 +23,7 @@ pwm.start(float(85)/10.0+2.5)
 def unlock():
         duty = float(185)/10.0+2.5
         pwm.ChangeDutyCycle(duty)
-        #start = time.time()
+        start = time.time()
         print("door unlocked")
 def lock():
         duty = float(85)/10.0+2.5
