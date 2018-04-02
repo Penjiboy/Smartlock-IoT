@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-//encrytion function 
+//encrytion function, reference http://www.codeblocq.com/2016/06/DES-encryption-in-Node-and-JavaScript/
 function encodeDesECB(textToEncode, keyString) {
     var key = new Buffer(keyString.substring(0, 8), 'utf8');
     var cipher = crypto.createCipheriv('des-ecb', key, '');
