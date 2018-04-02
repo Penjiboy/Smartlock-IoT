@@ -208,7 +208,9 @@ class camera( threading.Thread ):
             # Loop over each face found in the frame to see if it's someone we know.
             image = face_recognition.load_image_file("last_user.jpg")
             unknown_face = face_recognition.face_encodings(image)
-            result = face_recognition.compare_faces(face_encodings, unknown_face)
+            try:
+                result = face_recognition.compare_faces(face_encodings, unknown_face)
+            except:
 
             # Print the result as a list of names with True/False
             names_with_result = list(zip(face_names, result))
