@@ -37,15 +37,8 @@ def lock():
 
 
 print("Loading known face image(s)")
-ali_image = face_recognition.load_image_file("images/ali.jpg")
-all_face_encodings["Ali"] = face_recognition.face_encodings(ali_image)[0]
 
-
-with open('dataset_faces.dat', 'wb') as f:
-        pickle.dump(all_face_encodings, f)
-
-
-with open('dataset_faces.dat', 'rb') as f:
+with open('dataset_faces.dat', 'rb+') as f:
         all_face_encodings = pickle.load(f)
 
 print("break")
@@ -258,7 +251,7 @@ class ui(threading.Thread):
         root.mainloop()
         
 
-train()           
+#train()           
 
 receiverThread = receiver()
 receiverThread.start()
