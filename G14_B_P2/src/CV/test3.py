@@ -182,7 +182,7 @@ def train():
     while(len(face_recognition.face_encodings(encode)) == 0 or len(face_recognition.face_encodings(encode)) > 1):
         cam.capture(encode,format="rgb")
         print("try again\n")
-    all_face_encodings[name] = face_recognition.face_encodings(encode)[0]
+   global all_face_encodings[name] = face_recognition.face_encodings(encode)[0]
     with open('dataset_faces.dat', 'rb+') as f:
         pickle.dump(all_face_encodings, f)
         all_face_encodings = pickle.load(f)
