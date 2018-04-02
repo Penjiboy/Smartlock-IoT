@@ -11,7 +11,8 @@ app.use(bodyParser.urlencoded({
 // connection configurations
 const mc = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
+    user: 'root', //for remote server
+    //user: 'cpen291', //for local machine testing
     password: 'cpen291',
     database: 'cpen291'
 });
@@ -29,6 +30,14 @@ app.get('/users', function (req, res) {
     mc.query('SELECT * FROM cpen291', function (error, results, fields) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'Todos list.' });
+    });
+});
+
+//find a particular user
+app.get('/findUserForLogin', function (req, res) {
+    mc.query('SELECT Member, Password FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'Matching user' });
     });
 });
 
