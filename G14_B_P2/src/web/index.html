@@ -92,7 +92,8 @@
             <div class="w3-container">
                 <p>Last Seen Person</p>
             </div>
-            <img src="last_user.png" class="w3-round w3-image">
+            <img src="~/../home/lock/last/last_user.png" class="w3-round w3-image" id="image">
+            <!-- <img src="last_user.png" class="w3-round w3-image" id="image"> -->
             <div class="w3-container">
                 <p>Unknown User</p>
             </div>
@@ -108,7 +109,7 @@
         <p id = "api-test"></p>
 	<table class="w3-table w3-striped w3-bordered" ID="historyTable">
             <tr ID="row1">
-                <td ID= "time1">
+                <td ID= "time1" onchange="updateTimes()">
                 <script language=Javascript> 
                 mostRecentTime();
                 setInterval(mostRecentTime,1000);

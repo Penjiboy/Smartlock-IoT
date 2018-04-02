@@ -14,6 +14,8 @@ const apiPort = 9015;
 const hostIP = '38.88.74.79'; //Use this for remote server
 //const hostIP = 'localhost'; //use this for testing on local machine
 
+var usersPasscode = undefined;
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: true
@@ -131,6 +133,7 @@ app.post('/loginAuth', function(request, response) {
                     response.setHeader('Set-cookie', cookie.serialize('username', usersList.data[0].Member), {
                         maxAge: 10
                     });
+                    usersPasscode = usersList.data[0].keypad;
                     response.redirect('/index');
                     response.end();
                 } else {
@@ -162,7 +165,37 @@ io.sockets.on("connection",function(socket){
     });
 
     socket.on('login', function(data) {
-        console.log(data + "Logged in");
+        var userInfo = JSON.parse(data);
+        console.log(userInfo.member + " Trying to log in");
+
+        const options = {
+            url: 'http://' + hostIP + ':' + port + '/loginAuth',
+            method: 'POST',
+            form: {
+                name: request.body.username
+            },
+            headers: {
+                'Accept' : 'application/json',
+                'Accept-Charset': 'utf-8'
+            }
+        };
+
+        outRequest(options, function(err, res, body) {
+            if(res.statusCode === 200) {
+                socket.emit('loginSuccesful', usersPasscode);
+                usersPasscode = undefined;
+            }
+            else {
+                socket.emit('loginUnsuccesful', {});
+                socket.disconnect();
+            }
+        });
+
+
+    });
+
+    socket.on('timeUpdated', function(data) {
+        socket.broadcast.emit("updateTime", data);
     });
 
     socket.on('lockChanged', function(data) {
