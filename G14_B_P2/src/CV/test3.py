@@ -210,11 +210,13 @@ class camera( threading.Thread ):
             unknown_face = face_recognition.face_encodings(image)
             try:
                 result = face_recognition.compare_faces(face_encodings, unknown_face)
+                names_with_result = list(zip(face_names, result))
+                print(names_with_result)
             except:
+                print("none found")
 
             # Print the result as a list of names with True/False
-            names_with_result = list(zip(face_names, result))
-            print(names_with_result)
+
 '''
             for face_encoding in face_encodings:
                 # See if the face is a match for the known face(s)
