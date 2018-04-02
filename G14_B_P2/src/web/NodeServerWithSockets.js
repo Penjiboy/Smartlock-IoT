@@ -80,9 +80,9 @@ app.get('/last_user.png', function(request, response) {
 });
 
 //Routing to new png file
-app.get('~/../home/lock/last/last_user.png', function(request, response) {
+app.get('/home/lock/last/last_user.png', function(request, response) {
     response.writeHead(200, {'Content-Type': 'image/png'});
-    var image = fs.readFileSync('~/../home/lock/last/last_user.png');
+    var image = fs.readFileSync('/home/lock/last/last_user.png');
     response.write(image);
     response.end();
 });
@@ -230,7 +230,7 @@ app.post('/pinChange', function(request,response) {
             }
         })();
     });
-}
+});
 
 //Routing To Public Folder For Any Static Context
 app.use(express.static(__dirname + '/public'));
