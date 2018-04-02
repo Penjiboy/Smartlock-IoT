@@ -36,7 +36,7 @@ app.get('/users', function (req, res) {
 
 //find a particular user
 app.get('/findUserForLogin', function (req, res) {
-    mc.query('SELECT Member, Password, keypad FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
+    mc.query('SELECT Member, Password, user_mic, user_pic, encoding, serial_num, keypad, time, id FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'Matching user' });
     });
@@ -51,7 +51,10 @@ app.post('/users', function (req, res) {
         "user_mic": req.body.user_mic,
         "user_pic": req.body.user_pic,
         "encoding": req.body.encoding,
-        "serial_num": req.body.serial_num
+        "serial_num": req.body.serial_num,
+        "keypad": req.body.keypad,
+        "time": req.body.time,
+        "id": req.body.id
      };
  
     
@@ -72,7 +75,10 @@ app.put('/users', function (req, res) {
         "user_mic": req.body.user_mic,
         "user_pic": req.body.user_pic,
         "encoding": req.body.encoding,
-        "serial_num": req.body.serial_num
+        "serial_num": req.body.serial_num,
+        "keypad": req.body.keypad,
+        "time": req.body.time,
+        "id": req.body.id
      };
  
     mc.query('UPDATE cpen291 SET ? WHERE id =' + req.body.id, data, function (error, results, fields) {
