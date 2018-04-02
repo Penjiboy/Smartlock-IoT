@@ -47,7 +47,11 @@ app.post('/users', function (req, res) {
     console.log(req.body);
     var data = {
         "Member": req.body.member,
-        "Password": req.body.password
+        "Password": req.body.password,
+        "user_mic": req.body.user_mic,
+        "user_pic": req.body.user_pic,
+        "encoding": req.body.encoding,
+        "serial_num": req.body.serial_num
      };
  
     
@@ -64,7 +68,11 @@ app.put('/users', function (req, res) {
 
     var data = {
         "Member": req.body.member,
-        "Password": req.body.password
+        "Password": req.body.password,
+        "user_mic": req.body.user_mic,
+        "user_pic": req.body.user_pic,
+        "encoding": req.body.encoding,
+        "serial_num": req.body.serial_num
      };
  
     mc.query('UPDATE cpen291 SET ? WHERE id =' + req.body.id, data, function (error, results, fields) {
