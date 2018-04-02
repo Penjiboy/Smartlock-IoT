@@ -1,6 +1,7 @@
 import os
 import subprocess
 import time
+import urllib.request, urllib.parse
 
 fileName = "myMessage.wav"
 
@@ -16,4 +17,10 @@ class micRecord:
         time.sleep(0.5)
         os.system("sendRecording.sh")
         print("recording sent over to the remote server")
-
+        data = {
+        'visitor' : 'true',
+        'message' : 'true'
+        'intruderWarning' : 'false'
+        }
+        data = bytes( urllib.parse.urlencode( data ).encode() )
+        handler = urllib.request.urlopen( 'http://38.88.74.79:80/visitor', data )
