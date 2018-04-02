@@ -1,6 +1,4 @@
 
-<<<<<<< Updated upstream
-
 function lastUser() {
 
 }

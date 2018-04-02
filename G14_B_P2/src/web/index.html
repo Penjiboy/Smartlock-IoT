@@ -27,6 +27,10 @@
         document.getElementById("lockStatus").checked = data; //change checkbox according to push button on Raspberry Pi
         //socket.emit("lockChanged", data); //send push button status to back to server
     });
+    socket.on('updateTime',function(data){
+        changeTime();
+        document.getElementById("time1").innerHTML = data;
+   });
 
 </script>
 <body>

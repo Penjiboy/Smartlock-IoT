@@ -223,6 +223,9 @@ io.sockets.on("connection",function(socket){
 
         socket.broadcast.emit('train');
     });
+     socket.on('timeUpdated', function(data) {
+        socket.broadcast.emit("updateTime", data);
+    });
 
     socket.on('disconnect', function() {
         console.log('Client disconnected')
