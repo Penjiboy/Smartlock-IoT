@@ -162,7 +162,7 @@ io.sockets.on("connection",function(socket){
     });
 
     socket.on('login', function(data) {
-        console.log(data + "Logged in");
+        console.log(data + " Logged in");
     });
 
     socket.on('lockChanged', function(data) {
