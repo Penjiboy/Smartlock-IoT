@@ -73,3 +73,8 @@ function secondRecentTime(){
 function thirdRecentTime(){
    document.getElementById("time3").innerHTML = (hour[2]+":"+minute[2]+":"+seconds[2]);
 }
+
+function changePassword(){
+   var oldpassword = document.getElementById("currpassword").value;
+   var newppassword = document.getElementById("newpassword").value; 
+}
