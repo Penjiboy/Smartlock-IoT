@@ -41,6 +41,9 @@ app.get('/index',function(request,response){
     }
     var username = cookies.username;
     response.clearCookie('username');
+    response.setHeader('Set-cookie', cookie.serialize('pinname', usersList.data[0].Member), {
+        maxAge: 10
+    });
   response.writeHead(200,{"Content-Type":"text/html"});
   //Passing HTML To Browser
     var fileContents = fs.readFile('./index.html', function(err,data) {
@@ -149,11 +152,19 @@ app.post('/loginAuth', function(request, response) {
 //Routing to pinChange
 //need to figure out how to check the pin for the specific user!! 
 app.post('/pinChange', function(request,response) {
+    var cookies = cookie.parse(request.headers.cookie || '');
+    console.log(cookies);
+    if(cookies.pinname === undefined) {
+        response.writeHead(403, {'Content-Type': 'text/html'});
+        response.write("ERROR! No pin was found!");
+        response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+    }
+    var pinname = cookies.pinname; 
     const options = {
-        url: 'http://' + hostIP + ':' + apiPort + '/changePin',
+        url: 'http://' + hostIP + ':' + apiPort + '/findUserForLogin',
         method: 'GET',
         form:{
-            name: request.body.currpin
+            name: pinname
         },
         headers: {
             'Accept' : 'application/json',
@@ -179,10 +190,11 @@ app.post('/pinChange', function(request,response) {
                 response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Reenter your current pin</a>");
                 response.end();
             } else {
-                if(pin.data[0].Member === request.body.currpin) {
+                if(pin.data[0].keypad === request.body.currpin) {
                     //-------------------------------figure out a way to modify the pin in the database-------------------------------------//
                     //and then redirect to the main page again
-                   
+                    
+
                     response.redirect('/index');
                     response.end();
                 } else {
