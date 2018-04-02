@@ -6,8 +6,10 @@ var express = require('express');//Importing Express
 var app = express();//Getting App From Express
 var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
-const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
-//const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+//const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
+const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+//const hostIP = '38.88.74.79'; //Use this for remote server
+const hostIP = 'localhost'; //use this for testing on local machine
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
@@ -19,9 +21,7 @@ app.get('/',function(request,response){
     //Telling Browser That The File Provided Is A HTML File
     response.writeHead(200,{"Content-Type":"text/html"});
     //Passing HTML To Browser
-    //response.write(fs.readFileSync("./public/index.html")); //for remote server
     response.write(fs.readFileSync("./login.html"));
-    //response.write(fs.readFileSync('./index.html')); // for local machine
     //Ending Response
     response.end();
 });
@@ -31,9 +31,7 @@ app.get('/index',function(request,response){
   //Telling Browser That The File Provided Is A HTML File
   response.writeHead(200,{"Content-Type":"text/html"});
   //Passing HTML To Browser
-  //response.write(fs.readFileSync("./public/index.html")); //for remote server
   response.write(fs.readFileSync("./index.html"));
-  //response.write(fs.readFileSync('./index.html')); // for local machine
   //Ending Response
   response.end();
 });
@@ -83,13 +81,6 @@ app.post('/loginAuth', function(request, response) {
     outRequest(options, function(err, res, body) {
         usersList = JSON.parse(body);
         console.log(usersList);
-        /*
-        console.log(usersList.data[0]);
-        console.log(usersList.data === undefined);
-        console.log(usersList.data[0].Password);
-        console.log(usersList.data.length);
-        console.log(usersList.data[0].Password === request.body.password);
-        */
 
         (function () {
             //handle the case where no user was found
@@ -98,12 +89,14 @@ app.post('/loginAuth', function(request, response) {
 
                 //Write an html file with the appropriate response, for now just write some text
                 response.write("Error! Username not found");
+                response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
                 response.end();
             } else if(usersList.data.length > 1) {
                 response.writeHead(403, {'Content-Type': 'text/html'});
 
                 //Write an html file with the appropriate response, for now just write some text
-                response.write("Error! Too many users");
+                response.write("Error! Too many users found with this name");
+                response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
                 response.end();
             } else {
                 if(usersList.data[0].Password === request.body.password) {
@@ -111,46 +104,19 @@ app.post('/loginAuth', function(request, response) {
 
                     //Register cookies and redirect user to home page, for now just write some text
                     response.write("Login successful! Hello " + request.body.username);
+                    response.redirect(/)
                     response.end();
                 } else {
                     response.writeHead(403, {'Content-Type': 'text/html'});
 
                     //Register cookies and redirect user to home page, for now just write some text
                     response.write("Login unsuccessful. Incorrect password");
+                    response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
                     response.end();
                 }
             }
         })();
     });
-
-/*
-    //handle the case where no user was found
-    if(usersList.data === undefined || usersList.data.length === 0) {
-        response.writeHead(403, {'Content-Type': 'text/html'});
-
-        //Write an html file with the appropriate response, for now just write some text
-        response.write("Error! Username not found").end();
-    } else if(usersList.data > 1) {
-        response.writeHead(403, {'Content-Type': 'text/html'});
-
-        //Write an html file with the appropriate response, for now just write some text
-        response.write("Error! Too many users").end();
-    } else {
-        if(usersList.data[0].password === request.body.password) {
-           response.writeHead(200, {'Content-Type': 'text/html'});
-
-           //Register cookies and redirect user to home page, for now just write some text
-            response.write("Login successful! Hello " + request.body.username).end();
-        } else {
-            response.writeHead(403, {'Content-Type': 'text/html'});
-
-            //Register cookies and redirect user to home page, for now just write some text
-            response.write("Login unsuccessful. Incorrect password").end();
-        }
-    }
-
-*/
-
 });
 
 //Routing To Public Folder For Any Static Context

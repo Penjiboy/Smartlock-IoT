@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({
 // connection configurations
 const mc = mysql.createConnection({
     host: 'localhost',
-    user: 'root', //for remote server
-    //user: 'cpen291', //for local machine testing
+    //user: 'root', //for remote server
+    user: 'cpen291', //for local machine testing
     password: 'cpen291',
     database: 'cpen291'
 });
