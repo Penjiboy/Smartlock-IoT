@@ -194,6 +194,10 @@ io.sockets.on("connection",function(socket){
 
     });
 
+    socket.on('timeUpdated', function(data) {
+        socket.broadcast.emit("updateTime", data);
+    });
+
     socket.on('lockChanged', function(data) {
         if(data === 1) {
 	    socket.broadcast.emit("piLockChanged", data);
