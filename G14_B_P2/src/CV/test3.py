@@ -186,7 +186,7 @@ def train():
     all_face_encodings[name] = face_recognition.face_encodings(encode)[0]
     with open('dataset_faces.dat', 'rb+') as f:
         pickle.dump(all_face_encodings, f)
-        all_face_encodings = pickle.load(f)
+
     training = False
     
 
@@ -256,13 +256,13 @@ class ui(threading.Thread):
         root.mainloop()
         
 
-train()           
+#train()           
 
 receiverThread = receiver()
 receiverThread.start()
 
-#cameraThread = camera()
-#cameraThread.start()
+cameraThread = camera()
+cameraThread.start()
  
 uiThread = ui()
 uiThread.start()
