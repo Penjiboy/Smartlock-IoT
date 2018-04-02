@@ -198,7 +198,6 @@ class camera( threading.Thread ):
 
             print("Capturing image.")
             # Grab a single frame of video from the RPi camera as a numpy array
-            cam.capture(output,format="rgb")
             cam.capture("last_user.png")
 
             # Find all the faces and face encodings in the current frame of video
@@ -206,8 +205,9 @@ class camera( threading.Thread ):
             #print("Found {} faces in image.".format(len(face_locations)))
             #face_encodings = face_recognition.face_encodings(output, face_locations)
 
-            # Loop over each face found in the frame to see if it's someone we know.
-            unknown_face = face_recognition.face_encodings(output)
+            # Loop over each face found in the frame to see if it's someone    we know.
+            image = face_recognition.load_image_file("last_user.png")
+            unknown_face = face_recognition.face_encodings(image)
             result = face_recognition.compare_faces(face_encodings, unknown_face)
 
             # Print the result as a list of names with True/False
