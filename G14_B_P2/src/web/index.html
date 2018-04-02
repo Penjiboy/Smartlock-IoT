@@ -28,7 +28,7 @@
         //socket.emit("lockChanged", data); //send push button status to back to server
     });
     socket.on('updateTime',function(data){
-        changeTime();
+        changeTime(data);
         document.getElementById("time1").innerHTML = data;
    });
 

@@ -43,12 +43,13 @@ function timeUpdate(){
     seconds[0] = now.getSeconds();
     data0 = hour[0]+":"+minute[0]+":"+seconds[0];
     socket.emit("timeUpdated",data0);
-    changeTime();
+    changeTime(data0);
 }  
 
-function changeTime(){
+function changeTime(data){
    data1 = document.getElementById("time1").innerHTML;
    data2 = document.getElementById("time2").innerHTML;
+   data0 = data;
 }
 
 function mostRecentTime(){
