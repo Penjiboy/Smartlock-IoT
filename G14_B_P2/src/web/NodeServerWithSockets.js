@@ -253,6 +253,10 @@ app.post('/pinChange', function(request,response) {
             }
         })();
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 824ee5dcad9ab8b55e8d59c5d2a0bad5e1956b10
 });
 
 //Routing To Public Folder For Any Static Context
@@ -324,6 +328,10 @@ io.sockets.on("connection",function(socket){
     });
      socket.on('timeUpdated', function(data) {
         socket.broadcast.emit("updateTime", data);
+    });
+
+    socket.on('loginAndroid', function(name){
+
     });
 
     socket.on('disconnect', function() {
