@@ -9,7 +9,9 @@ import numpy as np
 import pickle
 from socketIO_client_nexus import SocketIO, LoggingNamespace
 from microphone import micRecord
+import pysftp
 
+sftp =  pysftp.Connection('38.88.74.79', username='lock', password='calmdown!')
 Sock = SocketIO('38.88.74.79', 80)
 cam = picamera.PiCamera()
 cam.resolution = (320, 240)
@@ -191,7 +193,11 @@ class camera( threading.Thread ):
 
                 if match[0]:
                     name = "Ali"
+                    sftp.cd("last")
+                    sftp.put("last_user.png")
+                    sftp.cd("..")
                     Sock.emit("unlock",name)
+                    
                     unlock()
                 else: lock()
                 
@@ -203,6 +209,18 @@ class receiver ( threading.Thread ):
         while True:
            Sock.on("lockChanged",status)
            Sock.wait(seconds = 1)
+
+class ui(threading.Thread):
+    def run(self):
+        root = Tk()
+        def on_closing():
+                root.destroy()
+        keyp = CodeKeypad(root)
+        root.geometry("800x480+0+0")
+        root.protocol("WM_DELETE_WINDOW",on_closing)
+        #root.attributes('-fullscreen',True)
+        root.mainloop()
+        
            
 receiverThread = receiver()
 receiverThread.start()
@@ -210,11 +228,5 @@ receiverThread.start()
 cameraThread = camera()
 cameraThread.start()
  
-root = Tk()
-def on_closing():
-        root.destroy()
-keyp = CodeKeypad(root)
-root.geometry("800x480+0+0")
-root.protocol("WM_DELETE_WINDOW",on_closing)
-#root.attributes('-fullscreen',True)
-root.mainloop()
+uiThread = ui()
+uiThread.start()

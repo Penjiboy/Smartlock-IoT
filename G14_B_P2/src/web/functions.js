@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 /*
 EXAMPLE OF GET REQUEST
 TO GET OUTPUT RUN
@@ -21,7 +22,6 @@ https.get(url, res => {
   });
 });
 */
-
 
 function lockUnlock(){
    
