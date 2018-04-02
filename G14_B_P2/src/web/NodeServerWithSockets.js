@@ -13,6 +13,8 @@ const port = 80;//Use this for remote server//Creating A Constant For Providing 
 const apiPort = 9015;
 const hostIP = '38.88.74.79'; //Use this for remote server
 //const hostIP = 'localhost'; //use this for testing on local machine
+var crypto = require('crypto'); //use for encryption 
+var key = "calmdown!" 
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
@@ -174,12 +176,11 @@ app.post('/pinChange', function(request,response) {
 
     console.log("Current Pin entered is " + request.body.currpin);
     console.log("New Pin entered is "  + request.body.newpin);
-
+    var cpin = crypto.createCipher("des")
     var pin = []; 
     outRequest(options, function(err, res, body) {
         pin = JSON.parse(body);
         console.log(pin);
-
         (function () {
             //button pressed but wrong current pin 
             if(pin.data === undefined || pin.data.length === 0) {
@@ -192,16 +193,24 @@ app.post('/pinChange', function(request,response) {
             } else {
                 if(pin.data[0].keypad === request.body.currpin) {
                     //-------------------------------figure out a way to modify the pin in the database-------------------------------------//
-                    //and then redirect to the main page again
-                    
+                    //and then redirect to the main page again  
+                    //returns false if the newpin is a valid number
+                    if(!isNaN(request.body.newpin)){
 
-                    response.redirect('/index');
-                    response.end();
+                        response.write("Pin Change Successful.")
+                        response.redirect('/index');
+                        response.end();
+                    }
+                    else{
+                        response.write("Pin Change Unsuccessful. Invalid new pin.");
+                        response.redirect('/index');
+                        response.end();
+                    }
                 } else {
                     response.writeHead(403, {'Content-Type': 'text/html'});
 
                     //Redirect user back to home 
-                    response.write("Pin Change Unsuccessful. Incorrect pin");
+                    response.write("Pin Change Unsuccessful. Incorrect pin entered");
                     response.redirect('/index');
                     response.end();
                 }
