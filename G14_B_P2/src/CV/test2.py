@@ -45,6 +45,8 @@ def status(*args):
     else: print("error")
 
 
+def addUser
+
 class StoreCode: 
     def __init__(self):
         #passcode is stored in private variable which cannot be accessed outside of StoreCode 
