@@ -22,6 +22,10 @@ https.get(url, res => {
 });
 */
 
+function lastUser() {
+
+}
+
 
 function lockUnlock(){
    
