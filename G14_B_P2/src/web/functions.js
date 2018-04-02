@@ -23,6 +23,11 @@ https.get(url, res => {
 });
 */
 
+
+function lastUser() {
+
+}
+
 function lockUnlock(){
    
    if(!document.getElementById("lockStatus").checked){
