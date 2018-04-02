@@ -37,18 +37,11 @@ def lock():
 
 
 print("Loading known face image(s)")
-ali_image = face_recognition.load_image_file("images/ali.jpg")
-all_face_encodings["Ali"] = face_recognition.face_encodings(ali_image)[0]
 
-
-with open('dataset_faces.dat', 'wb') as f:
-        pickle.dump(all_face_encodings, f)
-
-
-with open('dataset_faces.dat', 'rb') as f:
+with open('dataset_faces.dat', 'rb+') as f:
         all_face_encodings = pickle.load(f)
 
-print("break")
+print("known faces = " + str(len(all_face_encodings)))
 
 
 # Initialize some variables
@@ -190,7 +183,7 @@ def train():
         cam.capture(encode,format="rgb")
         print("try again")
     all_face_encodings[name] = face_recognition.face_encodings(encode)[0]
-    with open('dataset_faces.dat', 'wb') as f:
+    with open('dataset_faces.dat', 'rb+') as f:
         pickle.dump(all_face_encodings, f)
         all_face_encodings = pickle.load(f)
     training = False
@@ -205,8 +198,7 @@ class camera( threading.Thread ):
 
             print("Capturing image.")
             # Grab a single frame of video from the RPi camera as a numpy array
-            cam.capture(output,format="rgb")
-            cam.capture("last_user.png")
+            cam.capture("last_user.jpg")
 
             # Find all the faces and face encodings in the current frame of video
             #face_locations = face_recognition.face_locations(output)
@@ -214,12 +206,17 @@ class camera( threading.Thread ):
             #face_encodings = face_recognition.face_encodings(output, face_locations)
 
             # Loop over each face found in the frame to see if it's someone we know.
-            unknown_face = face_recognition.face_encodings(output)
-            result = face_recognition.compare_faces(face_encodings, unknown_face)
+            image = face_recognition.load_image_file("last_user.jpg")
+            unknown_face = face_recognition.face_encodings(image)
+            try:
+                result = face_recognition.compare_faces(face_encodings, unknown_face)
+                names_with_result = list(zip(face_names, result))
+                print(names_with_result)
+            except:
+                print("none found")
 
             # Print the result as a list of names with True/False
-            names_with_result = list(zip(face_names, result))
-            print(names_with_result)
+
 '''
             for face_encoding in face_encodings:
                 # See if the face is a match for the known face(s)
@@ -258,7 +255,7 @@ class ui(threading.Thread):
         root.mainloop()
         
 
-train()           
+#train()           
 
 receiverThread = receiver()
 receiverThread.start()
