@@ -148,5 +148,18 @@
     </div>
 </div>
 
+<form action="/pinChange" method="post">
+    <div class="w3-row-padding w3-section">
+        <div class="w3-col l4 m4 s4 w3-margin-left">
+                <label>Current Pin:</label>  
+                <input type="text" name="currpin" style="margin-left: 9%"><br>
+                <br>
+                <label>New Pin:</label> 
+                <input type="text" name="newpin" style="margin-left: 15%"><br>
+                <input type="submit" class = "w3-button w3-teal w3-round-large w3-xlarge w3-padding-large w3-section" value="Change Pin" ID = "changepin" onclick="changePin()">
+        </div>
+    </div>
+</form>
+
 </body>
 </html>
