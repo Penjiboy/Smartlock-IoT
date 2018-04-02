@@ -7,6 +7,7 @@ var app = express();//Getting App From Express
 var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
 var cookie = require('cookie');
+var templatesjs = require('templatesjs');
 //const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
 const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
 //const hostIP = '38.88.74.79'; //Use this for remote server
@@ -31,14 +32,31 @@ app.get('/',function(request,response){
 app.get('/index',function(request,response){
   //Telling Browser That The File Provided Is A HTML File
     var cookies = cookie.parse(request.headers.cookie || '');
+    console.log(cookies);
+    if(cookies === '') {
+        response.writeHead(403, {'Content-Type': 'text/html'});
+        response.write("ERROR! No proper authentication occured!");
+        response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+    }
     var username = cookies.username;
-    console.log(username);
   response.writeHead(200,{"Content-Type":"text/html"});
   //Passing HTML To Browser
-    var fileContents = fs.readFileSync('./index.html', {encoding: 'utf8'});
-  response.write(fileContents);
+    var fileContents = fs.readFile('./index.html', function(err,data) {
+        if(err) throw err;
+
+        templatesjs.set(data, function(err,data){
+            if(err) throw err;
+
+            templatesjs.render("name", username,"Case", function (err, data) {
+                if(err) console.log("Error occured while rendering username");
+                response.write(data);
+                response.end();
+            });
+        })
+    });
+  //response.write(fileContents);
   //Ending Response
-  response.end();
+  //response.end();
 });
 
 //Routing to css file
