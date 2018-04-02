@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const port = 9015;
  
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -57,8 +58,8 @@ app.post('/users', function (req, res) {
 });
 
 // port must be set to 8080 because incoming http requests are routed from port 80 to port 8080
-app.listen(9014, function () {
-    console.log('Rest api listening on port 9014');
+app.listen(port, function () {
+    console.log('Rest api listening on port ' + port);
 });
  
 // allows "grunt dev" to create a development server with livereload

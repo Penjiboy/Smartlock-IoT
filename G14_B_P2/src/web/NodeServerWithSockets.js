@@ -10,6 +10,7 @@ var cookie = require('cookie');
 var templatesjs = require('templatesjs');
 const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
 //const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+const apiPort = 9015;
 const hostIP = '38.88.74.79'; //Use this for remote server
 //const hostIP = 'localhost'; //use this for testing on local machine
 
@@ -87,7 +88,7 @@ app.get('/functions.js', function(request, response) {
 //Routing to loginAuth
 app.post('/loginAuth', function(request, response) {
     const options = {
-        url: 'http://localhost:9014/findUserForLogin',
+        url: 'http://' + hostIP + ':' + apiPort + '/findUserForLogin',
         method: 'GET',
         form: {
             name: request.body.username
