@@ -11,11 +11,14 @@ from socketIO_client_nexus import SocketIO, LoggingNamespace
 from microphone import micRecord
 import pysftp
 
+training = False
+all_face_encodings = {}
 sftp =  pysftp.Connection('38.88.74.79', username='lock', password='calmdown!')
 Sock = SocketIO('38.88.74.79', 80)
 cam = picamera.PiCamera()
 cam.resolution = (320, 240)
 output = np.empty((240, 320, 3), dtype=np.uint8)
+encode = np.empty((240, 320, 3), dtype=np.uint8)
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(12, GPIO.OUT)
@@ -25,7 +28,6 @@ pwm.start(float(85)/10.0+2.5)
 def unlock():
         duty = float(185)/10.0+2.5
         pwm.ChangeDutyCycle(duty)
-        #start = time.time()
         print("door unlocked")
 def lock():
         duty = float(85)/10.0+2.5
@@ -35,8 +37,13 @@ def lock():
 
 
 print("Loading known face image(s)")
-ali_image = face_recognition.load_image_file("images/ali.jpg")
-ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
+#ali_image = face_recognition.load_image_file("images/ali.jpg")
+#ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
+
+with open('dataset_faces.dat', 'rb') as f:
+	all_face_encodings = pickle.load(f)
+
+
 
 # Initialize some variables
 face_locations = []
@@ -168,18 +175,27 @@ class CodeKeypad:
 
 
 def train():
-    print("training")
-
-
+    
+    training = True
+    name = "ali"
+    print("recognizing" + name+ "\n")
+    cam.capture(encode,format="rgb")
+    while(len(face_recognition.face_encodings(encode)) == 0 || len(face_recognition.face_encodings(encode)) > 1):
+        cam.capture(encode,format="rgb")
+        print("try again")
+    all_face_encodings[name] = face_recognition.face_encodings(encode)[0]
+    with open('dataset_faces.dat', 'wb') as f:
+        pickle.dump(all_face_encodings, f)
+        all_face_encodings = pickle.load(f)
+    training = False
+    
 
 class camera( threading.Thread ):
     def run(self):
-        while True:
+        while training == False:
 
-            #Sock.on("piLockChanged",status)
-            #Sock.wait(seconds = 1)
-            #Sock.on("piLockChanged",status)
-            
+            face_names = list(all_face_encodings.keys())
+            face_encodings = np.array(list(all_face_encodings.values()))
 
             print("Capturing image.")
             # Grab a single frame of video from the RPi camera as a numpy array
@@ -187,11 +203,18 @@ class camera( threading.Thread ):
             cam.capture("last_user.png")
 
             # Find all the faces and face encodings in the current frame of video
-            face_locations = face_recognition.face_locations(output)
-            print("Found {} faces in image.".format(len(face_locations)))
-            face_encodings = face_recognition.face_encodings(output, face_locations)
+            #face_locations = face_recognition.face_locations(output)
+            #print("Found {} faces in image.".format(len(face_locations)))
+            #face_encodings = face_recognition.face_encodings(output, face_locations)
 
             # Loop over each face found in the frame to see if it's someone we know.
+            unknown_face = face_recognition.face_encodings(output)
+            result = face_recognition.compare_faces(face_encodings, unknown_face)
+
+            # Print the result as a list of names with True/False
+            names_with_result = list(zip(face_names, result))
+            print(names_with_result)
+'''
             for face_encoding in face_encodings:
                 # See if the face is a match for the known face(s)
                 match = face_recognition.compare_faces([ali_face_encoding], face_encoding)
@@ -208,7 +231,7 @@ class camera( threading.Thread ):
                 else: lock()
                 
                 print("I see someone named {}!".format(name))
-        
+        '''
 
 class receiver ( threading.Thread ):
       def run ( self ):
@@ -228,7 +251,9 @@ class ui(threading.Thread):
         #root.attributes('-fullscreen',True)
         root.mainloop()
         
-           
+
+train()           
+
 receiverThread = receiver()
 receiverThread.start()
 
