@@ -46,9 +46,9 @@ app.get('/findUserForLogin', function (req, res) {
 app.post('/users', function (req, res) {
     console.log(req.body);
     var encoding = {
-        cpen291_a   : "mic/lock1",
-        cpen291_b: "mic/lock2",
-        cpen291_c: "mic/lock3"
+        cpen291_a   : "/mic/lock1",
+        cpen291_b: "/mic/lock2",
+        cpen291_c: "/mic/lock3"
     };
 
     var enc = encoding[req.body.serial_num]
@@ -77,9 +77,9 @@ app.put('/users', function (req, res) {
     console.log(req.body);
 
     var encoding = {
-        cpen291_a: "mic/lock1",
-        cpen291_b: "mic/lock2",
-        cpen291_c: "mic/lock3"
+        cpen291_a: "/mic/lock1",
+        cpen291_b: "/mic/lock2",
+        cpen291_c: "/mic/lock3"
     };
 
     var data = {

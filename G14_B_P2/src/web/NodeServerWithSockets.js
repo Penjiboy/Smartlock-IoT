@@ -72,9 +72,13 @@ app.get('/index',function(request,response){
             if(err) throw err;
 
             templatesjs.render("name", username,"Case", function (err, data) {
-                if(err) console.log("Error occured while rendering username");
-                response.write(data);
-                response.end();
+                if(err) console.log("Error occurred while rendering username");
+                var finalAudioFilePath = "<source src=\"" + cookies.audioFilePath + "/myMessage.wav\" type=\"audio/wav\">";
+                templatesjs.render("audioFilePath", finalAudioFilePath, function (err, data) {
+                    if(err) console.log("Error occurred while rendering audio file path");
+                    response.write(data);
+                    response.end();
+                });
             });
         })
     });
@@ -87,6 +91,28 @@ app.get('/index',function(request,response){
 app.get('/main.css', function(request, response) {
     response.writeHead(200, {'Content-Type': 'text/css'});
     var fileContents = fs.readFileSync('./main.css', {encoding: 'utf8'});
+    response.write(fileContents);
+    response.end();
+});
+
+//Routing to audio files
+app.get('/mic/lock1/myMessage.wav', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'audio/wav'});
+    var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
+    response.write(fileContents);
+    response.end();
+});
+
+app.get('/mic/lock2/myMessage.wav', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'audio/wav'});
+    var fileContents = fs.readFileSync('./mic/lock2/myMessage.wav', {encoding: 'utf8'});
+    response.write(fileContents);
+    response.end();
+});
+
+app.get('/mic/lock1/myMessage.wav', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'audio/wav'});
+    var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
     response.write(fileContents);
     response.end();
 });
@@ -161,6 +187,9 @@ app.post('/loginAuth', function(request, response) {
                     response.setHeader('Set-cookie', cookie.serialize('username', usersList.data[0].Member), {
                         maxAge: 10
                     });
+                    response.setHeader('Set-cookie', cookie.serialize('audioFilePath', usersList.data[0].encoding), {
+                        maxAge: 10
+                    });
                     usersPasscode = usersList.data[0].keypad;
                     response.redirect('/index');
                     response.end();
@@ -214,7 +243,7 @@ app.post('/pinChange', function(request,response) {
                 response.writeHead(403, {'Content-Type': 'text/html'});
                 //Write an html file with the appropriate response, for now just write some text
                 response.write("Error! No pin found!");
-                response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Reenter your current pin</a>");
+                response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Reenter your current pin</a>");
                 response.end();
             } else {
                 if(pin.data[0].keypad === cpin) {                    
@@ -243,12 +272,13 @@ app.post('/pinChange', function(request,response) {
                         }, function (error, response, body){});
 
                         response.write("Pin Change Successful.")
-                        response.redirect('/index');
+                	response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
                         response.end();
                     }
                     else{
                         response.write("Pin Change Unsuccessful. Invalid new pin.");
                         response.redirect('/index');
+			response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
                         response.end();
                     }
                 } else {
@@ -257,7 +287,8 @@ app.post('/pinChange', function(request,response) {
                     //Redirect user back to home 
                     response.write("Pin Change Unsuccessful. Incorrect pin entered");
                     response.redirect('/index');
-                    response.end();
+         	    response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
+		    response.end();
                 }
             }
         })();
@@ -270,7 +301,7 @@ console.log("Server Running At:localhost:"+port);
 var io = require('socket.io').listen(app.listen(port,"0.0.0.0"));//Telling Express+Socket.io App To Listen To Port //for remote server
 io.sockets.on("connection",function(socket){
     console.log("Client connected");
-    
+
 socket.on("unlock",function(data){
 
 	socket.emit("lockChanged", 0);
@@ -302,7 +333,7 @@ socket.on("unlock",function(data){
 
         outRequest(options, function(err, res, body) {
 	    console.log(res);
-	    console.log(res.status)	
+	    console.log(res.status);
             if(res.statusCode === 302) {
                 socket.emit('loginSuccesful', usersPasscode);
                 usersPasscode = undefined;
