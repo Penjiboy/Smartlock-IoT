@@ -31,6 +31,10 @@
         changeTime(data);
    });
 
+   function changePin(){
+       socket.emit("pinchanged", document.getElementById('newpin').value);
+   }
+
 </script>
 <body>
 
@@ -145,7 +149,7 @@
         <div class="w3-col l4 m4 s4 w3-margin-left">
                 <br>
                 <label>New Pin:</label> 
-                <input type="text" name="newpin" style="margin-left: 15%"><br>
+                <input type="password" name="newpin" ID = "newpin" style="margin-left: 15%"><br>
                 <center><input type="submit" class = "w3-button w3-teal w3-round-large w3-xlarge w3-padding-large w3-section" value="Change Pin" ID = "changepin" onclick="changePin()"></center>
         </div>
     </div>
