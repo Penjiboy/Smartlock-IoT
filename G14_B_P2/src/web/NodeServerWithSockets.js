@@ -201,6 +201,7 @@ app.post('/newAcc', function(request, response) {
         else {
             outRequest2(newAccOptions, function(err, res, body) {
                 response.redirect('/');
+                response.end();
             })
         }
     });
