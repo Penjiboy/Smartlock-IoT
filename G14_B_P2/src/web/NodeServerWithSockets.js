@@ -8,11 +8,11 @@ var fs = require('fs');//Importing File System Module To Access Files
 var outRequest = require('request');
 var cookie = require('cookie');
 var templatesjs = require('templatesjs');
-const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
-//const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
+//const port = 80;//Use this for remote server//Creating A Constant For Providing The Port
+const port = 8080;//Use this for testing local machine//Creating A Constant For Providing The Port
 const apiPort = 9015;
-const hostIP = '38.88.74.79'; //Use this for remote server
-//const hostIP = 'localhost'; //use this for testing on local machine
+//const hostIP = '38.88.74.79'; //Use this for remote server
+const hostIP = 'localhost'; //use this for testing on local machine
 var crypto = require("crypto"); //for encryption 
 var key = 'calmdown!'; //for encryption 
 var usersPasscode = undefined;
@@ -106,6 +106,68 @@ app.get('/functions.js', function(request, response) {
     var fileContents = fs.readFileSync('./functions.js', {encoding: 'utf8'});
     response.write(fileContents);
     response.end();
+});
+
+//Routing to databases encoding file 
+app.get('/audio',function(request, response){
+    var cookies = cookie.parse(request.headers.cookie || '');
+    console.log(cookies);
+    if(cookies.pinname === undefined) {
+        response.writeHead(403, {'Content-Type': 'text/html'});
+        response.write("ERROR! No user found!");
+        response.write("<br/><a href=\"http://"+hostIP+":"+port);
+    }
+    var audioname = cookies.pinname; 
+    const options = {
+        url: 'http://' + hostIP + ':' + apiPort + '/findUserForLogin',
+        method: 'GET',
+        form:{
+            name: audioname
+        },
+        headers: {
+            'Accept' : 'application/json',
+            'Accept-Charset': 'utf-8'
+        }
+    };
+
+    var audList = []; 
+
+    outRequest(options, function(request,response) { 
+        audList = JSON.parse(body);
+        //so audList.data[0].encoding should hold the encoding data for that user 
+        if(audList.data === undefined || audList.data.length === 0) {
+            response.writeHead(403, {'Content-Type': 'text/html'});
+
+            //Write an html file with the appropriate response, for now just write some text
+            response.write("Error! Username not found");
+            response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+            response.end();
+        } else if(audList.data.length > 1) {
+            response.writeHead(403, {'Content-Type': 'text/html'});
+
+            //Write an html file with the appropriate response, for now just write some text
+            response.write("Error! Too many users found with this name");
+            response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+            response.end();
+        } else {
+            if(audList.data[0] != NULL){
+
+                //not sure if this will work 
+                var filestream = fs.createReadStream(audList.data[0].encoding);
+                filestream.on('open', function() {
+                var stats = fs.statSync(audList.data[0].encoding);
+                var fileSizeInBytes = stats["size"];
+                response.writeHead(200, {'Content-Type': 'audio/mpeg','Content-Length': fileSizeInBytes});
+                filestream.pipe(response);
+                });
+            }
+            else{
+                response.write("Error! No audio files found");
+                response.redirect('/index');
+                response.end();
+            }
+        }
+    });
 });
 
 //Routing to loginAuth

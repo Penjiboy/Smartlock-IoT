@@ -59,6 +59,12 @@
         <li>
             <div class="w3-container w3-center">9:05am</div>
             <div class="w3-container">Voice Message</div>
+            <form action="/audio" method="get">
+            <audio controls>
+                <source src="" type="audio/mpeg">
+              Your browser does not support the audio element.
+              </audio>
+            </form>
         </li>
         <li>
             <div class="w3-container w3-center">9:05am</div>
@@ -160,7 +166,7 @@
                 <br>
                 <label>New Pin:</label> 
                 <input type="text" name="newpin" style="margin-left: 15%"><br>
-                <input type="submit" class = "w3-button w3-teal w3-round-large w3-xlarge w3-padding-large w3-section" value="Change Pin" ID = "changepin" onclick="changePin()">
+                <input type="submit" class = "w3-button w3-teal w3-round-large w3-xlarge w3-padding-large w3-section" value="Change Pin" ID = "changepin">
         </div>
     </div>
 </form>

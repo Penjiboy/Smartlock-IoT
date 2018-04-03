@@ -9,7 +9,7 @@ function lockUnlock(){
    if(!document.getElementById("lockStatus").checked){
        alert("CONFIRM UNLOCK. The lock will auto-lock after 5 seconds.");
        timeUpdate();
-       setTimeout("lockLock()",5000)
+       setTimeout("lockLock()",5000);
    }
   
 }
