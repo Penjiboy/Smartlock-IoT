@@ -35,7 +35,7 @@
 <body>
 
 <header class="w3-container w3-teal w3-center">
-    <h1>Welcome to G14's SmartLock Interface</h1>
+    <h1 id = "greetings">Welcome to G14's SmartLock Interface</h1>
 </header>
 <h2 class="w3-container w3-center">Hello <%name%>!</h2>
 
@@ -143,8 +143,6 @@
 <form action="/pinChange" method="post" id = "pinChangeBox">
     <div class="w3-row-padding w3-section">
         <div class="w3-col l4 m4 s4 w3-margin-left">
-                <label>Current Pin:</label>  
-                <input type="text" name="currpin" style="margin-left: 9%"><br>
                 <br>
                 <label>New Pin:</label> 
                 <input type="text" name="newpin" style="margin-left: 15%"><br>
