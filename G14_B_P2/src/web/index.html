@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html>
 <title>291 G14 SmartLock</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="/main.css">
+<link rel="stylesheet" type="text/css" href="main.css" />
+<script type="text/javascript" src="functions.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="requests.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+<script src="jquery-3.3.1.min.js"></script>
+
+<script>
+    var socket = io(); //load socket.io-client and connect to the host that serves the page
+    window.addEventListener("load", function(){ //when page loads
+        var lock = document.getElementById("lockStatus");
+        lock.addEventListener("change", function() { //add event listener for when checkbox changes
+		      socket.emit("lockChanged", Number(this.checked)); //send button status to server (as 1 or 0)
+        });
+    });
+    socket.on('lockChanged', function (data) { //get button status from client
+        document.getElementById("lockStatus").checked = data; //change checkbox according to push button on Raspberry Pi
+        document.getElementById('image').src = '~/../home/lock/last/last_user.jpg';
+    });
+    socket.on('updateTime',function(data){
+        changeTime(data);
+   });
+
+   function changePin(){
+       socket.emit("pinchanged", document.getElementById('newpin').value);
+   }
+
+</script>
 <body>
 
 <header class="w3-container w3-teal w3-center">
-    <h1>Welcome to G14's SmartLock Interface</h1>
+    <h1 id = "greetings">Welcome to G14's SmartLock Interface</h1>
 </header>
-<h2 class="w3-container w3-center">Hello User!</h2>
-<div class="w3-container">
-    <p>Work in progress</p>
-</div>
+<h2 class="w3-container w3-center">Hello <%name%>!</h2>
 
 <!--
 <div class="w3-container" style="width:25%">
@@ -29,80 +57,103 @@
 </div>
 -->
 
-<div class="w3-sidebar w3-bar-block" style="width:25%; right:0">
-    <h5 class="w3-bar-item">Notifications</h5>
-    <ul class="w3-ul">
-        <li>
-            <div class="w3-container w3-center">9:05am</div>
-            <div class="w3-container">Voice Message</div>
-        </li>
-        <li>
-            <div class="w3-container w3-center">9:05am</div>
-            <div class="w3-container">Voice Message</div>
-        </li>
-        <li>
-            <div class="w3-container w3-center">9:05am</div>
-            <div class="w3-container">Voice Message</div>
-        </li>
-    </ul>
-</div>
-
 
 <div class="w3-row-padding w3-section">
-    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-orange">Status</div>
-    <div class="w3-col l4 m4 s4 w3-margin-left">
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" id = "statusBox">Status</div>
+    <div class="w3-col l4 m4 s4" id = "switchBox">
         <!-- Checkbox code has been referred from https://www.w3schools.com/howto/howto_css_switch.asp -->
         <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" ID="lockStatus" onclick = "lockUnlock()" checked = "checked">
             <span class="slider round"></span>
         </label>
 
-        <br/>Unlocked      Locked
+        <br/>
+        <h5 id="lockText">Unlocked      Locked</h5>
     </div>
 </div>
 
 <br/>
-
+<hr>
 <div class="w3-row-padding w3-section">
 
-    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-orange">Camera</div>
-    <div class="w3-col l4 m4 s4 w3-margin-left">
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" id = "cameraBox">Camera</div>
+    <div class="w3-col l4 m4 s4 w3-margin-left" id = "pictureBox">
         <div class="w3-card-4" style="width:50%">
             <div class="w3-container">
-                <h5>Last Seen Person</h5>
+                <!-- <audio controls><source src="myMessage.wav" type="audio/wav"></audio> -->
+                <audio controls> <%audioFilePath%> </audio>
+                <p>Last Seen Person</p>
             </div>
-            <img src="DemoClient/last_user.png" class="w3-round w3-image">
+            <img src="~/../home/lock/last/last_user.jpg" class="w3-round w3-image" id="image">
+            <!-- <img src="last_user.jpg" class="w3-round w3-image" id="image"> -->
             <div class="w3-container">
-                <h5>Unknown User</h5>
+                <p>Unknown User</p>
             </div>
         </div>
     </div>
-</>
+</div>
 
 <br/>
-
+<hr>
 <div class="w3-row-padding w3-section">
-    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-orange">History</div>
-    <div class="w3-col l4 m4 s4 w3-margin-left">
-        <table class="w3-table w3-bordered">
-            <tr>
-                <td>8:00am</td>
-                <td>User1</td>
-                <td>Unlocked door</td>
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" id="historyBox">History</div>
+    <div class="w3-col l4 m4 s4 w3-margin-left" id = "historyBoxTable">
+        <p id = "api-test"></p>
+	<table class="w3-table w3-striped w3-bordered" ID="historyTable">
+            <tr ID="row1">
+                <td ID= "time1" onchange="updateTimes()">
+                <script language=Javascript> 
+                mostRecentTime();
+                setInterval(mostRecentTime,1000);
+                </script> 
+                </td>
+                
+                <td ID = "user1">User1</td>
+                <td ID = "action1">Unlocked door</td>
             </tr>
-            <tr>
-                <td>11:13am</td>
-                <td>User3</td>
-                <td>Unlocked door</td>
+
+
+            <tr ID="row2">
+                <td  ID = "time2"> 
+                <script language=Javascript> 
+                secondRecentTime();
+                setInterval(secondRecentTime,1000);
+                </script> 
+                </td>
+
+                <td ID = "user2">User3</td>
+                <td ID = "action2">Unlocked door</td>
             </tr>
-            <tr>
-                <td>3:29pm</td>
-                <td>User2</td>
-                <td>Unlocked door</td>
+
+
+            <tr ID="row3">
+                <td ID = "time3">
+                <script language=Javascript> 
+                thirdRecentTime();
+                setInterval(thirdRecentTime,1000);
+                </script> 
+                </td>
+
+                <td ID = "user3">User2</td>
+                <td ID = "action3">Unlocked door</td>
             </tr>
         </table>
     </div>
 </div>
+
+<br>
+<hr>
+
+<form action="/pinChange" method="post" id = "pinChangeBox">
+    <div class="w3-row-padding w3-section">
+        <div class="w3-col l4 m4 s4 w3-margin-left">
+                <br>
+                <label>New Pin:</label> 
+                <input type="password" name="newpin" ID = "newpin" style="margin-left: 15%"><br>
+                <center><input type="submit" class = "w3-button w3-teal w3-round-large w3-xlarge w3-padding-large w3-section" value="Change Pin" ID = "changepin" onclick="changePin()"></center>
+        </div>
+    </div>
+</form>
 
 </body>
 </html>

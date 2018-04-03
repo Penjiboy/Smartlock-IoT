@@ -1,8 +1,8 @@
 from ftplib import FTP
 
-host = 'ftp://38.88.74.79'
-username = 'anonymous'
-password = '291#jHjRed26H'
+host = '38.88.74.79'
+username = 'alexC'
+password = 'calmdown!'
 file = '*.wav'
 
 f = ftplib.FTP(host)
