@@ -5,19 +5,18 @@ function lastUser() {
 }
 
 function lockUnlock(){
-  /* 
+
    if(!document.getElementById("lockStatus").checked){
        timeUpdate();
        setTimeout("lockLock()",5000)
    }
-*/
   
 }
 
 
 function lockLock(){
     // var socket = io(38.88.74.79);
-     socket.emit("lock");
+     socket.emit("lockChanged", 1);
       document.getElementById("lockStatus").checked = true;
 }
 
