@@ -9,21 +9,33 @@ import numpy as np
 import pickle
 from socketIO_client_nexus import SocketIO, LoggingNamespace
 from microphone import micRecord
+import pysftp
 
+print("imports complete")
+
+training = False
+all_face_encodings = {}
+sftp =  pysftp.Connection('38.88.74.79', username='lock', password='calmdown!')
+print("SFTP complete")
 Sock = SocketIO('38.88.74.79', 80)
+print("Socket complete")
 cam = picamera.PiCamera()
+print("camera complete")
+
 cam.resolution = (320, 240)
 output = np.empty((240, 320, 3), dtype=np.uint8)
+encode = np.empty((240, 320, 3), dtype=np.uint8)
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(12, GPIO.OUT)
 pwm = GPIO.PWM(12, 100)
 pwm.start(float(85)/10.0+2.5)
 
+print("GPIO complete")
+
 def unlock():
         duty = float(185)/10.0+2.5
         pwm.ChangeDutyCycle(duty)
-        #start = time.time()
         print("door unlocked")
 def lock():
         duty = float(85)/10.0+2.5
@@ -33,8 +45,12 @@ def lock():
 
 
 print("Loading known face image(s)")
-ali_image = face_recognition.load_image_file("images/ali.jpg")
-ali_face_encoding = face_recognition.face_encodings(ali_image)[0]
+
+with open('dataset_faces.dat', 'rb+') as f:
+        all_face_encodings = pickle.load(f)
+
+print("known faces = " + str(len(all_face_encodings)))
+
 
 # Initialize some variables
 face_locations = []
@@ -164,26 +180,63 @@ class CodeKeypad:
         self.recordButton.grid(row = 5, column = 3, columnspan = 5)
 
 
+
+def train(*args):
+    global training
+    training = True
+    name = args[0]
+    print("recognizing " + name+ "\n")
+    cam.capture(encode,format="rgb")
+    while(len(face_recognition.face_encodings(encode)) == 0 or len(face_recognition.face_encodings(encode)) > 1):
+        cam.capture(encode,format="rgb")
+        print("try again\n")
+    global all_face_encodings
+    all_face_encodings[name] = face_recognition.face_encodings(encode)[0]
+    with open('dataset_faces.dat', 'rb+') as f:
+        pickle.dump(all_face_encodings, f)
+
+    training = False
+    
+
 class camera( threading.Thread ):
     def run(self):
-        while True:
+        while training == False:
 
-            #Sock.on("piLockChanged",status)
-            #Sock.wait(seconds = 1)
-            #Sock.on("piLockChanged",status)
-            
+            face_names = list(all_face_encodings.keys())
+            face_encodings = np.array(list(all_face_encodings.values()))
 
             print("Capturing image.")
             # Grab a single frame of video from the RPi camera as a numpy array
-            cam.capture(output,format="rgb")
-            cam.capture("last_user.png")
+            cam.capture("last_user.jpg")
 
             # Find all the faces and face encodings in the current frame of video
-            face_locations = face_recognition.face_locations(output)
-            print("Found {} faces in image.".format(len(face_locations)))
-            face_encodings = face_recognition.face_encodings(output, face_locations)
+            #face_locations = face_recognition.face_locations(output)
+            #print("Found {} faces in image.".format(len(face_locations)))
+            #face_encodings = face_recognition.face_encodings(output, face_locations)
 
             # Loop over each face found in the frame to see if it's someone we know.
+            image = face_recognition.load_image_file("last_user.jpg")
+            unknown_face = face_recognition.face_encodings(image)
+            try:
+                result = face_recognition.compare_faces(face_encodings, unknown_face)
+                names_with_result = list(zip(face_names, result))
+                print(names_with_result)
+                for name in names_with_result:
+                    if name[1] == True:
+
+                    sftp.chdir("last")
+                    sftp.put("last_user.png")
+                    sftp.chdir("..")
+                    Sock.emit("unlock",name[0])
+                    unlock()
+                    break
+                        
+            except:
+                print("none found")
+
+            # Print the result as a list of names with True/False
+
+'''
             for face_encoding in face_encodings:
                 # See if the face is a match for the known face(s)
                 match = face_recognition.compare_faces([ali_face_encoding], face_encoding)
@@ -191,30 +244,43 @@ class camera( threading.Thread ):
 
                 if match[0]:
                     name = "Ali"
+                    sftp.cd("last")
+                    sftp.put("last_user.png")
+                    sftp.cd("..")
                     Sock.emit("unlock",name)
+                    
                     unlock()
                 else: lock()
                 
                 print("I see someone named {}!".format(name))
-        
+        '''
 
 class receiver ( threading.Thread ):
       def run ( self ):
         while True:
            Sock.on("lockChanged",status)
+           #Sock.on("train",train)
            Sock.wait(seconds = 1)
-           
+
+class ui(threading.Thread):
+    def run(self):
+        root = Tk()
+        def on_closing():
+                root.destroy()
+        keyp = CodeKeypad(root)
+        root.geometry("800x480+0+0")
+        root.protocol("WM_DELETE_WINDOW",on_closing)
+        #root.attributes('-fullscreen',True)
+        root.mainloop()
+        
+
+#train()           
+
 receiverThread = receiver()
 receiverThread.start()
 
 cameraThread = camera()
 cameraThread.start()
  
-root = Tk()
-def on_closing():
-        root.destroy()
-keyp = CodeKeypad(root)
-root.geometry("800x480+0+0")
-root.protocol("WM_DELETE_WINDOW",on_closing)
-#root.attributes('-fullscreen',True)
-root.mainloop()
+uiThread = ui()
+uiThread.start()

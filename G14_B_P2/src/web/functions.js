@@ -1,27 +1,8 @@
 
-/*
-EXAMPLE OF GET REQUEST
-TO GET OUTPUT RUN
-  node functions.js on command line
+var data0,data1,data2;
+function lastUser() {
 
-
-const https = require("http");
-const url =
-  "http://38.88.74.79:9014/users";
-https.get(url, res => {
-  res.setEncoding("utf8");
-  let body = "";
-  res.on("data", data => {
-    body += data;
-  });
-  res.on("end", () => {
-    body = JSON.parse(body);
-    console.log(body);
-    //document.getElementById("api-example").innerHTML = "Banana";
-  });
-});
-*/
-
+}
 
 function lockUnlock(){
    
@@ -59,17 +40,27 @@ function timeUpdate(){
     }
     hour[0] = now.getHours();
     minute[0] = now.getMinutes();
-    seconds[0] = now.getSeconds(); 
+    seconds[0] = now.getSeconds();
+    data0 = hour[0]+":"+minute[0]+":"+seconds[0];
+    socket.emit("timeUpdated",data0);
+    changeTime(data0);
 }  
 
+function changeTime(data){
+   data1 = document.getElementById("time1").innerHTML;
+   data2 = document.getElementById("time2").innerHTML;
+   data0 = data;
+}
+
 function mostRecentTime(){
-   document.getElementById("time1").innerHTML = (hour[0]+":"+minute[0]+":"+seconds[0]);
+   document.getElementById("time1").innerHTML = data0;
 }
 
 function secondRecentTime(){
-   document.getElementById("time2").innerHTML = (hour[1]+":"+minute[1]+":"+seconds[1]);
+   document.getElementById("time2").innerHTML = data1;
 }
 
 function thirdRecentTime(){
-   document.getElementById("time3").innerHTML = (hour[2]+":"+minute[2]+":"+seconds[2]);
+   document.getElementById("time3").innerHTML = data2;
 }
+
