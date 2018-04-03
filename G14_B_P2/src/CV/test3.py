@@ -221,9 +221,16 @@ class camera( threading.Thread ):
                 result = face_recognition.compare_faces(face_encodings, unknown_face)
                 names_with_result = list(zip(face_names, result))
                 print(names_with_result)
-                for name in names_with result:
+                for name in names_with_result:
                     if name[1] == True:
-                        print("person is "+name[0])
+
+                    sftp.cd("last")
+                    sftp.put("last_user.png")
+                    sftp.cd("..")
+                    Sock.emit("unlock",name[0])
+                    unlock()
+                    break
+                        
             except:
                 print("none found")
 
