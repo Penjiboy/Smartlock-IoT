@@ -15,12 +15,14 @@ class micRecord:
         subprocess.call(["pkill", "-f", "arecord"])
         print("message recorded and saved")
         time.sleep(0.5)
-        os.system("sendRecording.sh")
+        os.system("./sendRecording.sh")
         print("recording sent over to the remote server")
-        data = {
-        'visitor' : 'true',
-        'message' : 'true'
-        'intruderWarning' : 'false'
-        }
-        data = bytes( urllib.parse.urlencode( data ).encode() )
-        handler = urllib.request.urlopen( 'http://38.88.74.79:80/visitor', data )
+#        data = {
+#        'visitor' : 'true',
+#        'message' : 'true',
+#        'intruderWarning' : 'false',
+#        'lockID' : 'lock1'
+#        }
+#        data = bytes( urllib.parse.urlencode( data ).encode() )
+#        handler = urllib.request.urlopen( 'http://38.88.74.79:9015/userRecording', data )
+

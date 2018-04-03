@@ -72,9 +72,13 @@ app.get('/index',function(request,response){
             if(err) throw err;
 
             templatesjs.render("name", username,"Case", function (err, data) {
-                if(err) console.log("Error occured while rendering username");
-                response.write(data);
-                response.end();
+                if(err) console.log("Error occurred while rendering username");
+                var finalAudioFilePath = "<source src=\"" + cookies.audioFilePath + "/myMessage.wav\" type=\"audio/wav\">";
+                templatesjs.render("audioFilePath", finalAudioFilePath, function (err, data) {
+                    if(err) console.log("Error occurred while rendering audio file path");
+                    response.write(data);
+                    response.end();
+                });
             });
         })
     });
@@ -87,6 +91,28 @@ app.get('/index',function(request,response){
 app.get('/main.css', function(request, response) {
     response.writeHead(200, {'Content-Type': 'text/css'});
     var fileContents = fs.readFileSync('./main.css', {encoding: 'utf8'});
+    response.write(fileContents);
+    response.end();
+});
+
+//Routing to audio files
+app.get('/mic/lock1/myMessage.wav', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'audio/wav'});
+    var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
+    response.write(fileContents);
+    response.end();
+});
+
+app.get('/mic/lock2/myMessage.wav', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'audio/wav'});
+    var fileContents = fs.readFileSync('./mic/lock2/myMessage.wav', {encoding: 'utf8'});
+    response.write(fileContents);
+    response.end();
+});
+
+app.get('/mic/lock1/myMessage.wav', function(request, response) {
+    response.writeHead(200, {'Content-Type': 'audio/wav'});
+    var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
     response.write(fileContents);
     response.end();
 });
@@ -159,6 +185,9 @@ app.post('/loginAuth', function(request, response) {
                     
                     //Register cookies and redirect user to home page, for now just write some text
                     response.setHeader('Set-cookie', cookie.serialize('username', usersList.data[0].Member), {
+                        maxAge: 10
+                    });
+                    response.setHeader('Set-cookie', cookie.serialize('audioFilePath', usersList.data[0].encoding), {
                         maxAge: 10
                     });
                     usersPasscode = usersList.data[0].keypad;
@@ -271,16 +300,17 @@ var io = require('socket.io').listen(app.listen(port,"0.0.0.0"));//Telling Expre
 io.sockets.on("connection",function(socket){
     console.log("Client connected");
 
-    socket.on("unlock",function(data){
+socket.on("unlock",function(data){
 
 	socket.emit("lockChanged", 0);
         console.log("door unlocked by " + data)
 
-    });
+    }); 
 
     socket.on("lock", function() {
         socket.emit("lockChanged", 1);
-    });
+    }); 
+
 
     socket.on('login', function(data) {
         var userInfo = JSON.parse(data);
@@ -290,7 +320,8 @@ io.sockets.on("connection",function(socket){
             url: 'http://' + hostIP + ':' + port + '/loginAuth',
             method: 'POST',
             form: {
-                name: request.body.username
+                username: userInfo.member,
+		password: userInfo.password
             },
             headers: {
                 'Accept' : 'application/json',
@@ -299,7 +330,9 @@ io.sockets.on("connection",function(socket){
         };
 
         outRequest(options, function(err, res, body) {
-            if(res.statusCode === 200) {
+	    console.log(res);
+	    console.log(res.status);
+            if(res.statusCode === 302) {
                 socket.emit('loginSuccesful', usersPasscode);
                 usersPasscode = undefined;
             }
@@ -315,6 +348,19 @@ io.sockets.on("connection",function(socket){
     socket.on('timeUpdated', function(data) {
         socket.broadcast.emit("updateTime", data);
     });
+/*
+    socket.on('unlock', function(data) {
+        console.log('unlocked by ' + data[0]);
+        socket.broadcast.emit('doorStatus', 0);
+        socket.broadcast.emit('unlockPi', data[1]);
+    });
+
+    socket.on('lock', function(data) {
+        console.log('door locked ');
+        socket.broadcast.emit('doorStatus', 1);
+        socket.broadcast.emit('lockPi', data[0]);
+    }); */
+
     socket.on('lockChanged', function(data) {
         if(data === 1) {
 	    socket.broadcast.emit("piLockChanged", data);
@@ -332,6 +378,7 @@ io.sockets.on("connection",function(socket){
         
         socket.broadcast.emit('train');
     });
+
      socket.on('timeUpdated', function(data) {
         socket.broadcast.emit("updateTime", data);
     });
