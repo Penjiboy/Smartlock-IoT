@@ -297,7 +297,7 @@ app.post('/pinChange', function(request,response) {
 
     console.log("New Pin entered is "  + request.body.newpin);
     
-    var npin = encodeDesECB(request.body.newpin, key);
+    //var npin = encodeDesECB(request.body.newpin, key);
     outRequest(options, function(err, res, body) {
         pin = JSON.parse(body);
         console.log(pin);
@@ -321,7 +321,7 @@ app.post('/pinChange', function(request,response) {
                             "user_pic": pin.data[0].user_pic,
                             "encoding": pin.data[0].encoding,
                             "serial_num": pin.data[0].serial_num,
-                            "keypad": npin,
+                            "keypad": request.body.newpin,
                             "time": pin.data[0].time,
                             "id":pin.data[0].id
                         };
