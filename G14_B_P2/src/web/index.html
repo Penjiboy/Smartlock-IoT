@@ -20,10 +20,7 @@
     window.addEventListener("load", function(){ //when page loads
         var lock = document.getElementById("lockStatus");
         lock.addEventListener("change", function() { //add event listener for when checkbox changes
-		if(Number(this.checked))
-		      socket.emit("unlock"); //send button status to server (as 1 or 0)
-		else 
-			socket.emit("lock");
+		      socket.emit("lockChanged", Number(this.checked)); //send button status to server (as 1 or 0)
         });
     });
     socket.on('lockChanged', function (data) { //get button status from client

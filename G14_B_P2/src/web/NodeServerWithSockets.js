@@ -270,7 +270,7 @@ console.log("Server Running At:localhost:"+port);
 var io = require('socket.io').listen(app.listen(port,"0.0.0.0"));//Telling Express+Socket.io App To Listen To Port //for remote server
 io.sockets.on("connection",function(socket){
     console.log("Client connected");
-    /*
+    
 socket.on("unlock",function(data){
 
 	socket.emit("lockChanged", 0);
@@ -280,7 +280,7 @@ socket.on("unlock",function(data){
 
     socket.on("lock", function() {
         socket.emit("lockChanged", 1);
-    }); */
+    }); 
 
 
     socket.on('login', function(data) {
@@ -319,6 +319,7 @@ socket.on("unlock",function(data){
     socket.on('timeUpdated', function(data) {
         socket.broadcast.emit("updateTime", data);
     });
+/*
     socket.on('unlock', function(data) {
         console.log('unlocked by ' + data[0]);
         socket.broadcast.emit('doorStatus', 0);
@@ -329,8 +330,8 @@ socket.on("unlock",function(data){
         console.log('door locked ');
         socket.broadcast.emit('doorStatus', 1);
         socket.broadcast.emit('lockPi', data[0]);
-    });
-/*
+    }); */
+
     socket.on('lockChanged', function(data) {
         if(data === 1) {
 	    socket.broadcast.emit("piLockChanged", data);
@@ -348,7 +349,7 @@ socket.on("unlock",function(data){
         
         socket.broadcast.emit('train');
     });
-*/
+
      socket.on('timeUpdated', function(data) {
         socket.broadcast.emit("updateTime", data);
     });
