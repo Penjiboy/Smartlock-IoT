@@ -221,6 +221,9 @@ class camera( threading.Thread ):
                 result = face_recognition.compare_faces(face_encodings, unknown_face)
                 names_with_result = list(zip(face_names, result))
                 print(names_with_result)
+                for name in names_with result:
+                    if name[1] == True:
+                        print("person is "+name[0])
             except:
                 print("none found")
 
