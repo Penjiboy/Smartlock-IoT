@@ -61,6 +61,10 @@ def status(*args):
     elif args[0]==0: unlock()
     else: print("error")
 
+def pin(*args):
+        global passcode
+        passcode = args[0]
+
 class StoreCode: 
     def __init__(self):
         #passcode is stored in private variable which cannot be accessed outside of StoreCode 
@@ -224,12 +228,12 @@ class camera( threading.Thread ):
                 for name in names_with_result:
                     if name[1] == True:
 
-                    sftp.chdir("last")
-                    sftp.put("last_user.png")
-                    sftp.chdir("..")
-                    Sock.emit("unlock",name[0])
-                    unlock()
-                    break
+                            sftp.chdir("last")
+                            sftp.put("last_user.jpg")
+                            sftp.chdir("..")
+                            Sock.emit("unlock",name[0])
+                            unlock()
+                            break
                         
             except:
                 print("none found")
@@ -259,6 +263,7 @@ class receiver ( threading.Thread ):
       def run ( self ):
         while True:
            Sock.on("lockChanged",status)
+           Sock.on("pinchanged",pin)
            #Sock.on("train",train)
            Sock.wait(seconds = 1)
 

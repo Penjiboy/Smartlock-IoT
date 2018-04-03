@@ -98,24 +98,29 @@ app.get('/main.css', function(request, response) {
 //Routing to audio files
 app.get('/mic/lock1/myMessage.wav', function(request, response) {
     response.writeHead(200, {'Content-Type': 'audio/wav'});
-    var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
+    var fileContents = fs.readFileSync('mic/lock1/myMessage.wav');
     response.write(fileContents);
     response.end();
 });
 
 app.get('/mic/lock2/myMessage.wav', function(request, response) {
     response.writeHead(200, {'Content-Type': 'audio/wav'});
-    var fileContents = fs.readFileSync('./mic/lock2/myMessage.wav', {encoding: 'utf8'});
+    var fileContents = fs.readFileSync('mic/lock2/myMessage.wav');
     response.write(fileContents);
     response.end();
 });
 
+/*
 app.get('/mic/lock1/myMessage.wav', function(request, response) {
     response.writeHead(200, {'Content-Type': 'audio/wav'});
     var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
     response.write(fileContents);
+    /*
+    var readStream = fs.createReadStream(mic/lock1/myMessage.wav);
+    readStream.pipe(response);
     response.end();
 });
+*/
 
 //Routing to png file
 app.get('/last_user.jpg', function(request, response) {
@@ -195,7 +200,6 @@ app.post('/loginAuth', function(request, response) {
                     response.end();
                 } else {
                     response.writeHead(403, {'Content-Type': 'text/html'});
-
                     //Register cookies and redirect user to home page, for now just write some text
                     response.write("Login unsuccessful. Incorrect password");
                     response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
@@ -230,23 +234,21 @@ app.post('/pinChange', function(request,response) {
         }
     };
 
-    console.log("Current Pin entered is " + request.body.currpin);
     console.log("New Pin entered is "  + request.body.newpin);
-    var cpin = encodeDesECB(request.body.currpin, key );
-    var npin = encodeDesECB(request.body.newpin, key);
+    
+    //var npin = encodeDesECB(request.body.newpin, key);
     outRequest(options, function(err, res, body) {
         pin = JSON.parse(body);
         console.log(pin);
         (function () {
-            //button pressed but wrong current pin 
+            //button pressed but there is an error retrieving the user
             if(pin.data === undefined || pin.data.length === 0) {
                 response.writeHead(403, {'Content-Type': 'text/html'});
                 //Write an html file with the appropriate response, for now just write some text
                 response.write("Error! No pin found!");
-                response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Reenter your current pin</a>");
+                response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Error retrieving the user, please relogin</a>");
                 response.end();
             } else {
-                if(pin.data[0].keypad === cpin) {                    
                     //make sure that the newpin is a valid number sequence 
                     if(!isNaN(request.body.newpin)){
                         
@@ -258,7 +260,7 @@ app.post('/pinChange', function(request,response) {
                             "user_pic": pin.data[0].user_pic,
                             "encoding": pin.data[0].encoding,
                             "serial_num": pin.data[0].serial_num,
-                            "keypad": npin,
+                            "keypad": request.body.newpin,
                             "time": pin.data[0].time,
                             "id":pin.data[0].id
                         };
@@ -270,27 +272,18 @@ app.post('/pinChange', function(request,response) {
                             json: true,   // <--Very important!!!
                             body: myJSONObject
                         }, function (error, response, body){});
-
+                        response.writeHead(403, {'Content-Type': 'text/html'});
                         response.write("Pin Change Successful.")
-                	response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
+                	    response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
                         response.end();
                     }
                     else{
+                        response.writeHead(403, {'Content-Type': 'text/html'});
                         response.write("Pin Change Unsuccessful. Invalid new pin.");
-                        response.redirect('/index');
-			response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
+			            response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
                         response.end();
                     }
-                } else {
-                    response.writeHead(403, {'Content-Type': 'text/html'});
-
-                    //Redirect user back to home 
-                    response.write("Pin Change Unsuccessful. Incorrect pin entered");
-                    response.redirect('/index');
-         	    response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
-		    response.end();
-                }
-            }
+                } 
         })();
     });
 });
