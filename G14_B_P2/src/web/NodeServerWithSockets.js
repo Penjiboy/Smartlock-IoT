@@ -56,14 +56,15 @@ app.get('/index',function(request,response){
         response.writeHead(403, {'Content-Type': 'text/html'});
         response.write("ERROR! No proper authentication occured!");
         response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+        response.end();
     }
     var username = cookies.username;
     response.clearCookie('username');
    // response.setHeader('Set-cookie', cookie.serialize('pinname', usersList.data[0].Member), {
-    response.setHeader('Set-cookie', cookie.serialize('pinname', username), {
+/*    response.setHeader('Set-cookie', cookie.serialize('pinname', username), {
         maxAge: 10
-    });
-  response.writeHead(200,{"Content-Type":"text/html"});
+    });*/
+ // response.writeHead(200,{"Content-Type":"text/html"});
   //Passing HTML To Browser
     var fileContents = fs.readFile('./index.html', function(err,data) {
         if(err) throw err;
@@ -75,8 +76,10 @@ app.get('/index',function(request,response){
                 if(err) console.log("Error occurred while rendering username");
                 var finalAudioFilePath = "<source src=\"" + cookies.audioFilePath + "/myMessage.wav\" type=\"audio/wav\">";
                 templatesjs.render("audioFilePath", finalAudioFilePath, function (err, data) {
-                    if(err) console.log("Error occurred while rendering audio file path");
-                    response.write(data);
+                 response.clearCookie('audioFilePath');  
+		 if(err) console.log("Error occurred while rendering audio file path");
+                    response.writeHead(200, {'Content-Type':'text/html'});
+		    response.write(data);
                     response.end();
                 });
             });
