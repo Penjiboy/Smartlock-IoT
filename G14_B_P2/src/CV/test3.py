@@ -11,11 +11,17 @@ from socketIO_client_nexus import SocketIO, LoggingNamespace
 from microphone import micRecord
 import pysftp
 
+print("imports complete")
+
 training = False
 all_face_encodings = {}
 sftp =  pysftp.Connection('38.88.74.79', username='lock', password='calmdown!')
+print("SFTP complete")
 Sock = SocketIO('38.88.74.79', 80)
+print("Socket complete")
 cam = picamera.PiCamera()
+print("camera complete")
+
 cam.resolution = (320, 240)
 output = np.empty((240, 320, 3), dtype=np.uint8)
 encode = np.empty((240, 320, 3), dtype=np.uint8)
@@ -24,6 +30,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(12, GPIO.OUT)
 pwm = GPIO.PWM(12, 100)
 pwm.start(float(85)/10.0+2.5)
+
+print("GPIO complete")
 
 def unlock():
         duty = float(185)/10.0+2.5
@@ -173,19 +181,20 @@ class CodeKeypad:
 
 
 
-def train():
-    
+def train(*args):
+    global training
     training = True
-    name = "ali"
-    print("recognizing" + name+ "\n")
+    name = args[0]
+    print("recognizing " + name+ "\n")
     cam.capture(encode,format="rgb")
     while(len(face_recognition.face_encodings(encode)) == 0 or len(face_recognition.face_encodings(encode)) > 1):
         cam.capture(encode,format="rgb")
-        print("try again")
+        print("try again\n")
+    global all_face_encodings
     all_face_encodings[name] = face_recognition.face_encodings(encode)[0]
     with open('dataset_faces.dat', 'rb+') as f:
         pickle.dump(all_face_encodings, f)
-        all_face_encodings = pickle.load(f)
+
     training = False
     
 
@@ -212,6 +221,16 @@ class camera( threading.Thread ):
                 result = face_recognition.compare_faces(face_encodings, unknown_face)
                 names_with_result = list(zip(face_names, result))
                 print(names_with_result)
+                for name in names_with_result:
+                    if name[1] == True:
+
+                    sftp.chdir("last")
+                    sftp.put("last_user.png")
+                    sftp.chdir("..")
+                    Sock.emit("unlock",name[0])
+                    unlock()
+                    break
+                        
             except:
                 print("none found")
 
@@ -240,7 +259,7 @@ class receiver ( threading.Thread ):
       def run ( self ):
         while True:
            Sock.on("lockChanged",status)
-           Sock.on("train",train)
+           #Sock.on("train",train)
            Sock.wait(seconds = 1)
 
 class ui(threading.Thread):
