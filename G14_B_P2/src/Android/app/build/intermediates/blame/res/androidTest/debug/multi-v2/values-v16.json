@@ -1,10 +1,44 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\WINTERHOLD\\Documents\\G14_B_P2\\G14_B_P2\\src\\Android\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v16\\values-v16.xml",
+            "outputFile": "/Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\WINTERHOLD\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\7f10137a150bb2ffec078cf64cc6f2d3\\res\\values-v16\\values-v16.xml",
+                    "source": "/Users/gheir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/64d8fb093dcc12d9a54cc620d8eacd81/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "/Users/gheir/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/27bea9994ebb1cb2d2feae6795f4648b/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/gheir/G14_B_P2/G14_B_P2/src/Android/C:\\Users\\WINTERHOLD\\Documents\\G14_B_P2\\G14_B_P2\\src\\Android\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v16\\values-v16.xml",
+            "map": [
+                {
+                    "source": "/Users/gheir/G14_B_P2/G14_B_P2/src/Android/C:\\Users\\WINTERHOLD\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\7f10137a150bb2ffec078cf64cc6f2d3\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +48,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\WINTERHOLD\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\0aa74652d8972ce995dddc6f9d25599f\\res\\values-v16\\values-v16.xml",
+                    "source": "/Users/gheir/G14_B_P2/G14_B_P2/src/Android/C:\\Users\\WINTERHOLD\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\0aa74652d8972ce995dddc6f9d25599f\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

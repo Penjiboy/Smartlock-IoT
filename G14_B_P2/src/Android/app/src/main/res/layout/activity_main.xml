@@ -59,12 +59,12 @@
             android:text="Login" />
 
         <TextView
-            android:id="@+id/link_signup"
+            android:id="@+id/login_info"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:gravity="center"
-            android:text="No account yet? Create one"
+            android:text="Login to control SmartLock"
             android:textSize="16dip" />
 
     </LinearLayout>

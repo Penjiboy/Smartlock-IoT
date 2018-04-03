@@ -1,190 +1,190 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:1-30:12
-MERGED from [com.android.support:design:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\cfa65effcbf1db3aee74505c1c74e7c4\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\0aa74652d8972ce995dddc6f9d25599f\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1bed45bcc5fb62916a4aeeada144ae0f\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.volley:volley:1.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\69f04055b81de2c4074e1d2301713f1f\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\7e224f11bf0c0966713091f137ee6bd6\AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\5242c68841d02d77aba6a9ca4d4716de\AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\49bf8f69cd1d59964bde4f76e2fd54ba\AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:transition:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\d5b5639297f0fada9b1d690c38d697c4\AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-v4:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\85d5b9dda48f8df4bf952bc6779e51fd\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\93969598adf5d4894d617b645f3cd5e7\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\b14397da032769af5f3df456ce689d70\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\ed60523554639bb1135568f35f5b043d\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a08cce63117c59955932e8ad5455a47\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7f10137a150bb2ffec078cf64cc6f2d3\AndroidManifest.xml:17:1-31:12
-MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\594c7b117831b22b45552311b3fabcd2\AndroidManifest.xml:17:1-30:12
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:1-30:12
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:1-30:12
+ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:1-30:12
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:1-30:12
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:1-30:12
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:1-30:12
+MERGED from [com.android.support:design:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/9f5f35c79e0da9ef5b0f22ea158d9862/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/64d8fb093dcc12d9a54cc620d8eacd81/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/gheir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/86a6e3bb3ca50bfd83b03c448d84dcf9/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.volley:volley:1.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/volley-1.1.0.aar/04cbdb5fdbaa61c5dbb046ebca285a39/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/b4f2cdfc3c520607dfaee0d339df5b8c/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93f698e7649d06aad6d8d2031ff4e5ca/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/643548c4c5290a94bb82986a19a25eeb/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:transition:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/68697167ed2a716b232ad88ae632b855/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e771633899af698577194c19dd06cd47/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/32cb0442c6219ede54863e6ed8bc2aad/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/008dcf79c33cbeadfdc64c55b3bd7548/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/3bfed986d54d09e8d9f55cdb6017c657/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/6019c185660d281dd5864cd5911b588e/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/27bea9994ebb1cb2d2feae6795f4648b/AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/4a917b9657b33c6232aa809db599711b/AndroidManifest.xml:17:1-30:12
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:1-30:12
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:1-30:12
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:1-30:12
 	package
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:3:5-40
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:3:5-40
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:1-30:12
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:1-30:12
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:1-30:12
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:1-30:12
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:5:5-67
+ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:5:5-67
 	android:name
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:8:5-28:19
-MERGED from [com.android.support:design:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\cfa65effcbf1db3aee74505c1c74e7c4\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:design:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\cfa65effcbf1db3aee74505c1c74e7c4\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\0aa74652d8972ce995dddc6f9d25599f\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\0aa74652d8972ce995dddc6f9d25599f\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1bed45bcc5fb62916a4aeeada144ae0f\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1bed45bcc5fb62916a4aeeada144ae0f\AndroidManifest.xml:9:5-20
-MERGED from [com.android.volley:volley:1.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\69f04055b81de2c4074e1d2301713f1f\AndroidManifest.xml:9:5-20
-MERGED from [com.android.volley:volley:1.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\69f04055b81de2c4074e1d2301713f1f\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\7e224f11bf0c0966713091f137ee6bd6\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\7e224f11bf0c0966713091f137ee6bd6\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\5242c68841d02d77aba6a9ca4d4716de\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\5242c68841d02d77aba6a9ca4d4716de\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\49bf8f69cd1d59964bde4f76e2fd54ba\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\49bf8f69cd1d59964bde4f76e2fd54ba\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:transition:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\d5b5639297f0fada9b1d690c38d697c4\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:transition:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\d5b5639297f0fada9b1d690c38d697c4\AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:support-v4:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\85d5b9dda48f8df4bf952bc6779e51fd\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-v4:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\85d5b9dda48f8df4bf952bc6779e51fd\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\93969598adf5d4894d617b645f3cd5e7\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\93969598adf5d4894d617b645f3cd5e7\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\b14397da032769af5f3df456ce689d70\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\b14397da032769af5f3df456ce689d70\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\ed60523554639bb1135568f35f5b043d\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\ed60523554639bb1135568f35f5b043d\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a08cce63117c59955932e8ad5455a47\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a08cce63117c59955932e8ad5455a47\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7f10137a150bb2ffec078cf64cc6f2d3\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7f10137a150bb2ffec078cf64cc6f2d3\AndroidManifest.xml:25:5-29:19
-MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\594c7b117831b22b45552311b3fabcd2\AndroidManifest.xml:24:5-28:19
-MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\594c7b117831b22b45552311b3fabcd2\AndroidManifest.xml:24:5-28:19
+ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:8:5-28:19
+MERGED from [com.android.support:design:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/9f5f35c79e0da9ef5b0f22ea158d9862/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/9f5f35c79e0da9ef5b0f22ea158d9862/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/64d8fb093dcc12d9a54cc620d8eacd81/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/64d8fb093dcc12d9a54cc620d8eacd81/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/gheir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/86a6e3bb3ca50bfd83b03c448d84dcf9/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/gheir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/86a6e3bb3ca50bfd83b03c448d84dcf9/AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/volley-1.1.0.aar/04cbdb5fdbaa61c5dbb046ebca285a39/AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/volley-1.1.0.aar/04cbdb5fdbaa61c5dbb046ebca285a39/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/b4f2cdfc3c520607dfaee0d339df5b8c/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/b4f2cdfc3c520607dfaee0d339df5b8c/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93f698e7649d06aad6d8d2031ff4e5ca/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93f698e7649d06aad6d8d2031ff4e5ca/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/643548c4c5290a94bb82986a19a25eeb/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/643548c4c5290a94bb82986a19a25eeb/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/68697167ed2a716b232ad88ae632b855/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/68697167ed2a716b232ad88ae632b855/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e771633899af698577194c19dd06cd47/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e771633899af698577194c19dd06cd47/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/32cb0442c6219ede54863e6ed8bc2aad/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/32cb0442c6219ede54863e6ed8bc2aad/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/008dcf79c33cbeadfdc64c55b3bd7548/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/008dcf79c33cbeadfdc64c55b3bd7548/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/3bfed986d54d09e8d9f55cdb6017c657/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/3bfed986d54d09e8d9f55cdb6017c657/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/6019c185660d281dd5864cd5911b588e/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/6019c185660d281dd5864cd5911b588e/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/27bea9994ebb1cb2d2feae6795f4648b/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/27bea9994ebb1cb2d2feae6795f4648b/AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/4a917b9657b33c6232aa809db599711b/AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/4a917b9657b33c6232aa809db599711b/AndroidManifest.xml:24:5-28:19
 	android:supportsRtl
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:13:9-35
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:13:9-35
 	android:label
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:11:9-41
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:11:9-41
 	android:roundIcon
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:12:9-54
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:12:9-54
 	android:icon
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:10:9-43
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:10:9-43
 	android:allowBackup
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:9:9-35
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:9:9-35
 	android:theme
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:14:9-40
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:14:9-40
 activity#com.penjiboy.g14smartlock.MainActivity
-ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:15:9-24:20
+ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:15:9-24:20
 	android:label
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:17:13-45
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:17:13-45
 	android:theme
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:18:13-56
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:18:13-56
 	android:name
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:16:13-41
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:16:13-41
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:19:13-23:29
+ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:20:17-69
+ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:20:25-66
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:22:17-77
+ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:22:27-74
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:22:27-74
 activity#com.penjiboy.g14smartlock.ControlActivity
-ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:25:9-27:20
+ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:25:9-27:20
 	android:parentActivityName
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:26:13-55
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:26:13-55
 	android:name
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml:25:19-50
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml:25:19-50
 uses-sdk
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-MERGED from [com.android.support:design:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\cfa65effcbf1db3aee74505c1c74e7c4\AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:design:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\cfa65effcbf1db3aee74505c1c74e7c4\AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\0aa74652d8972ce995dddc6f9d25599f\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\0aa74652d8972ce995dddc6f9d25599f\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1bed45bcc5fb62916a4aeeada144ae0f\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1bed45bcc5fb62916a4aeeada144ae0f\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.volley:volley:1.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\69f04055b81de2c4074e1d2301713f1f\AndroidManifest.xml:7:5-43
-MERGED from [com.android.volley:volley:1.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\volley-1.1.0.aar\69f04055b81de2c4074e1d2301713f1f\AndroidManifest.xml:7:5-43
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\7e224f11bf0c0966713091f137ee6bd6\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\7e224f11bf0c0966713091f137ee6bd6\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\5242c68841d02d77aba6a9ca4d4716de\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\5242c68841d02d77aba6a9ca4d4716de\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\49bf8f69cd1d59964bde4f76e2fd54ba\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\49bf8f69cd1d59964bde4f76e2fd54ba\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:transition:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\d5b5639297f0fada9b1d690c38d697c4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:transition:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\d5b5639297f0fada9b1d690c38d697c4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\85d5b9dda48f8df4bf952bc6779e51fd\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-v4:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\85d5b9dda48f8df4bf952bc6779e51fd\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\93969598adf5d4894d617b645f3cd5e7\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\93969598adf5d4894d617b645f3cd5e7\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\b14397da032769af5f3df456ce689d70\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\b14397da032769af5f3df456ce689d70\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\ed60523554639bb1135568f35f5b043d\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\ed60523554639bb1135568f35f5b043d\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a08cce63117c59955932e8ad5455a47\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a08cce63117c59955932e8ad5455a47\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7f10137a150bb2ffec078cf64cc6f2d3\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7f10137a150bb2ffec078cf64cc6f2d3\AndroidManifest.xml:21:5-23:58
-MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\594c7b117831b22b45552311b3fabcd2\AndroidManifest.xml:20:5-22:41
-MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\594c7b117831b22b45552311b3fabcd2\AndroidManifest.xml:20:5-22:41
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:design:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/9f5f35c79e0da9ef5b0f22ea158d9862/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/9f5f35c79e0da9ef5b0f22ea158d9862/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/64d8fb093dcc12d9a54cc620d8eacd81/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/64d8fb093dcc12d9a54cc620d8eacd81/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/gheir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/86a6e3bb3ca50bfd83b03c448d84dcf9/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/gheir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/86a6e3bb3ca50bfd83b03c448d84dcf9/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.volley:volley:1.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/volley-1.1.0.aar/04cbdb5fdbaa61c5dbb046ebca285a39/AndroidManifest.xml:7:5-43
+MERGED from [com.android.volley:volley:1.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/volley-1.1.0.aar/04cbdb5fdbaa61c5dbb046ebca285a39/AndroidManifest.xml:7:5-43
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/b4f2cdfc3c520607dfaee0d339df5b8c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/b4f2cdfc3c520607dfaee0d339df5b8c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93f698e7649d06aad6d8d2031ff4e5ca/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93f698e7649d06aad6d8d2031ff4e5ca/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/643548c4c5290a94bb82986a19a25eeb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/643548c4c5290a94bb82986a19a25eeb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/68697167ed2a716b232ad88ae632b855/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/68697167ed2a716b232ad88ae632b855/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e771633899af698577194c19dd06cd47/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e771633899af698577194c19dd06cd47/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/32cb0442c6219ede54863e6ed8bc2aad/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/32cb0442c6219ede54863e6ed8bc2aad/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/008dcf79c33cbeadfdc64c55b3bd7548/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/008dcf79c33cbeadfdc64c55b3bd7548/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/3bfed986d54d09e8d9f55cdb6017c657/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/3bfed986d54d09e8d9f55cdb6017c657/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/6019c185660d281dd5864cd5911b588e/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/6019c185660d281dd5864cd5911b588e/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/27bea9994ebb1cb2d2feae6795f4648b/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/27bea9994ebb1cb2d2feae6795f4648b/AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/4a917b9657b33c6232aa809db599711b/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/4a917b9657b33c6232aa809db599711b/AndroidManifest.xml:20:5-22:41
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.android.support:design:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\cfa65effcbf1db3aee74505c1c74e7c4\AndroidManifest.xml:23:9-59
+		ADDED from [com.android.support:design:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/9f5f35c79e0da9ef5b0f22ea158d9862/AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\WINTERHOLD\Documents\G14_B_P2\G14_B_P2\src\Android\app\src\main\AndroidManifest.xml
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/gheir/G14_B_P2/G14_B_P2/src/Android/app/src/main/AndroidManifest.xml
 meta-data#android.support.VERSION
-ADDED from [com.android.support:design:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\cfa65effcbf1db3aee74505c1c74e7c4\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\0aa74652d8972ce995dddc6f9d25599f\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\0aa74652d8972ce995dddc6f9d25599f\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\7e224f11bf0c0966713091f137ee6bd6\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\7e224f11bf0c0966713091f137ee6bd6\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\5242c68841d02d77aba6a9ca4d4716de\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\5242c68841d02d77aba6a9ca4d4716de\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\49bf8f69cd1d59964bde4f76e2fd54ba\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\49bf8f69cd1d59964bde4f76e2fd54ba\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:transition:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\d5b5639297f0fada9b1d690c38d697c4\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:transition:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\d5b5639297f0fada9b1d690c38d697c4\AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:support-v4:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\85d5b9dda48f8df4bf952bc6779e51fd\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-v4:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\85d5b9dda48f8df4bf952bc6779e51fd\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\93969598adf5d4894d617b645f3cd5e7\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\93969598adf5d4894d617b645f3cd5e7\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\b14397da032769af5f3df456ce689d70\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\b14397da032769af5f3df456ce689d70\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\ed60523554639bb1135568f35f5b043d\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\ed60523554639bb1135568f35f5b043d\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a08cce63117c59955932e8ad5455a47\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a08cce63117c59955932e8ad5455a47\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7f10137a150bb2ffec078cf64cc6f2d3\AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-compat:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7f10137a150bb2ffec078cf64cc6f2d3\AndroidManifest.xml:26:9-28:38
+ADDED from [com.android.support:design:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/9f5f35c79e0da9ef5b0f22ea158d9862/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/64d8fb093dcc12d9a54cc620d8eacd81/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/64d8fb093dcc12d9a54cc620d8eacd81/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/b4f2cdfc3c520607dfaee0d339df5b8c/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/b4f2cdfc3c520607dfaee0d339df5b8c/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93f698e7649d06aad6d8d2031ff4e5ca/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93f698e7649d06aad6d8d2031ff4e5ca/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/643548c4c5290a94bb82986a19a25eeb/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/643548c4c5290a94bb82986a19a25eeb/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/68697167ed2a716b232ad88ae632b855/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/68697167ed2a716b232ad88ae632b855/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e771633899af698577194c19dd06cd47/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e771633899af698577194c19dd06cd47/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/32cb0442c6219ede54863e6ed8bc2aad/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/32cb0442c6219ede54863e6ed8bc2aad/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/008dcf79c33cbeadfdc64c55b3bd7548/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/008dcf79c33cbeadfdc64c55b3bd7548/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/3bfed986d54d09e8d9f55cdb6017c657/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/3bfed986d54d09e8d9f55cdb6017c657/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/6019c185660d281dd5864cd5911b588e/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/6019c185660d281dd5864cd5911b588e/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/27bea9994ebb1cb2d2feae6795f4648b/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/27bea9994ebb1cb2d2feae6795f4648b/AndroidManifest.xml:26:9-28:38
 	android:value
-		ADDED from [com.android.support:design:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\cfa65effcbf1db3aee74505c1c74e7c4\AndroidManifest.xml:28:13-35
+		ADDED from [com.android.support:design:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/9f5f35c79e0da9ef5b0f22ea158d9862/AndroidManifest.xml:28:13-35
 	android:name
-		ADDED from [com.android.support:design:26.1.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\cfa65effcbf1db3aee74505c1c74e7c4\AndroidManifest.xml:27:13-51
+		ADDED from [com.android.support:design:26.1.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/9f5f35c79e0da9ef5b0f22ea158d9862/AndroidManifest.xml:27:13-51
 meta-data#android.arch.lifecycle.VERSION
-ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\594c7b117831b22b45552311b3fabcd2\AndroidManifest.xml:25:9-27:47
+ADDED from [android.arch.lifecycle:runtime:1.0.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/4a917b9657b33c6232aa809db599711b/AndroidManifest.xml:25:9-27:47
 	android:value
-		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\594c7b117831b22b45552311b3fabcd2\AndroidManifest.xml:27:13-44
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/4a917b9657b33c6232aa809db599711b/AndroidManifest.xml:27:13-44
 	android:name
-		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\WINTERHOLD\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\594c7b117831b22b45552311b3fabcd2\AndroidManifest.xml:26:13-58
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] /Users/gheir/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/4a917b9657b33c6232aa809db599711b/AndroidManifest.xml:26:13-58

@@ -630,8 +630,8 @@ public final class R {
         public static final int italic = 0x7f080057;
         public static final int line1 = 0x7f08005b;
         public static final int line3 = 0x7f08005c;
-        public static final int listMode = 0x7f08005e;
-        public static final int list_item = 0x7f08005f;
+        public static final int listMode = 0x7f08005d;
+        public static final int list_item = 0x7f08005e;
         public static final int media_actions = 0x7f080061;
         public static final int message = 0x7f080062;
         public static final int multiply = 0x7f080065;
