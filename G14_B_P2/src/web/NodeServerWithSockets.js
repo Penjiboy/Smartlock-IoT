@@ -96,32 +96,26 @@ app.get('/main.css', function(request, response) {
 });
 
 //Routing to audio files
-
 app.get('/mic/lock1/myMessage.wav', function(request, response) {
     response.writeHead(200, {'Content-Type': 'audio/wav'});
-    var fileContents = fs.readFileSync('mic/lock1/myMessage.wav');
+    var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
     response.write(fileContents);
     response.end();
 });
-
 
 app.get('/mic/lock2/myMessage.wav', function(request, response) {
     response.writeHead(200, {'Content-Type': 'audio/wav'});
-    var fileContents = fs.readFileSync('mic/lock2/myMessage.wav');
+    var fileContents = fs.readFileSync('./mic/lock2/myMessage.wav', {encoding: 'utf8'});
     response.write(fileContents);
     response.end();
 });
-/*
+
 app.get('/mic/lock1/myMessage.wav', function(request, response) {
     response.writeHead(200, {'Content-Type': 'audio/wav'});
-   /*
     var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
     response.write(fileContents);
-    /*
-    var readStream = fs.createReadStream(mic/lock1/myMessage.wav);
-    readStream.pipe(response);
     response.end();
-});*/
+});
 
 //Routing to png file
 app.get('/last_user.jpg', function(request, response) {
@@ -201,7 +195,6 @@ app.post('/loginAuth', function(request, response) {
                     response.end();
                 } else {
                     response.writeHead(403, {'Content-Type': 'text/html'});
-
                     //Register cookies and redirect user to home page, for now just write some text
                     response.write("Login unsuccessful. Incorrect password");
                     response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
@@ -274,14 +267,14 @@ app.post('/pinChange', function(request,response) {
                             json: true,   // <--Very important!!!
                             body: myJSONObject
                         }, function (error, response, body){});
-
+                        response.writeHead(403, {'Content-Type': 'text/html'});
                         response.write("Pin Change Successful.")
                 	    response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
                         response.end();
                     }
                     else{
+                        response.writeHead(403, {'Content-Type': 'text/html'});
                         response.write("Pin Change Unsuccessful. Invalid new pin.");
-                        response.redirect('/index');
 			            response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
                         response.end();
                     }
