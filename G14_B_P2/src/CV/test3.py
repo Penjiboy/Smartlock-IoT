@@ -11,11 +11,17 @@ from socketIO_client_nexus import SocketIO, LoggingNamespace
 from microphone import micRecord
 import pysftp
 
+print("imports complete")
+
 training = False
 all_face_encodings = {}
 sftp =  pysftp.Connection('38.88.74.79', username='lock', password='calmdown!')
+print("SFTP complete")
 Sock = SocketIO('38.88.74.79', 80)
+print("Socket complete")
 cam = picamera.PiCamera()
+print("camera complete")
+
 cam.resolution = (320, 240)
 output = np.empty((240, 320, 3), dtype=np.uint8)
 encode = np.empty((240, 320, 3), dtype=np.uint8)
@@ -24,6 +30,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(12, GPIO.OUT)
 pwm = GPIO.PWM(12, 100)
 pwm.start(float(85)/10.0+2.5)
+
+print("GPIO complete")
 
 def unlock():
         duty = float(185)/10.0+2.5
@@ -241,7 +249,7 @@ class receiver ( threading.Thread ):
       def run ( self ):
         while True:
            Sock.on("lockChanged",status)
-           Sock.on("train",train)
+           #Sock.on("train",train)
            Sock.wait(seconds = 1)
 
 class ui(threading.Thread):
