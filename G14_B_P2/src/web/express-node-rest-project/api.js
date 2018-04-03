@@ -36,7 +36,7 @@ app.get('/users', function (req, res) {
 
 //find a particular user
 app.get('/findUserForLogin', function (req, res) {
-    mc.query('SELECT Member, Password, user_mi, user_pic, keypad, encoding, serial_num, time, id FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
+    mc.query('SELECT Member, Password FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'Matching user' });
     });
@@ -45,13 +45,22 @@ app.get('/findUserForLogin', function (req, res) {
 
 app.post('/users', function (req, res) {
     console.log(req.body);
+    var encoding = {
+        cpen291_a   : "mic/lock1",
+        cpen291_b: "mic/lock2",
+        cpen291_c: "mic/lock3"
+    };
+
+    var enc = encoding[req.body.serial_num]
+    console.log(enc);
+
     var data = {
         "Member": req.body.member,
         "Password": req.body.password,
         "user_mic": req.body.user_mic,
         "user_pic": req.body.user_pic,
         "keypad": req.body.keypad,
-        "encoding": req.body.encoding,
+        "encoding": enc,
         "serial_num": req.body.serial_num
      };
  
@@ -67,13 +76,19 @@ app.put('/users', function (req, res) {
     
     console.log(req.body);
 
+    var encoding = {
+        cpen291_a: "mic/lock1",
+        cpen291_b: "mic/lock2",
+        cpen291_c: "mic/lock3"
+    };
+
     var data = {
         "Member": req.body.member,
         "Password": req.body.password,
         "user_mic": req.body.user_mic,
         "user_pic": req.body.user_pic,
         "keypad": req.body.keypad,
-        "encoding": req.body.encoding,
+        "encoding": encoding[req.body.serial_num],
         "serial_num": req.body.serial_num
      };
  

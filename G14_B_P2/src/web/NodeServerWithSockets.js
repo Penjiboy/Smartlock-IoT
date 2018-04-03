@@ -270,16 +270,18 @@ console.log("Server Running At:localhost:"+port);
 var io = require('socket.io').listen(app.listen(port,"0.0.0.0"));//Telling Express+Socket.io App To Listen To Port //for remote server
 io.sockets.on("connection",function(socket){
     console.log("Client connected");
-    socket.on("unlock",function(data){
+    
+socket.on("unlock",function(data){
 
 	socket.emit("lockChanged", 0);
         console.log("door unlocked by " + data)
 
-    });
+    }); 
 
     socket.on("lock", function() {
         socket.emit("lockChanged", 1);
-    });
+    }); 
+
 
     socket.on('login', function(data) {
         var userInfo = JSON.parse(data);
@@ -289,7 +291,8 @@ io.sockets.on("connection",function(socket){
             url: 'http://' + hostIP + ':' + port + '/loginAuth',
             method: 'POST',
             form: {
-                name: request.body.username
+                username: userInfo.member,
+		password: userInfo.password
             },
             headers: {
                 'Accept' : 'application/json',
@@ -298,7 +301,9 @@ io.sockets.on("connection",function(socket){
         };
 
         outRequest(options, function(err, res, body) {
-            if(res.statusCode === 200) {
+	    console.log(res);
+	    console.log(res.status)	
+            if(res.statusCode === 302) {
                 socket.emit('loginSuccesful', usersPasscode);
                 usersPasscode = undefined;
             }
@@ -314,6 +319,19 @@ io.sockets.on("connection",function(socket){
     socket.on('timeUpdated', function(data) {
         socket.broadcast.emit("updateTime", data);
     });
+/*
+    socket.on('unlock', function(data) {
+        console.log('unlocked by ' + data[0]);
+        socket.broadcast.emit('doorStatus', 0);
+        socket.broadcast.emit('unlockPi', data[1]);
+    });
+
+    socket.on('lock', function(data) {
+        console.log('door locked ');
+        socket.broadcast.emit('doorStatus', 1);
+        socket.broadcast.emit('lockPi', data[0]);
+    }); */
+
     socket.on('lockChanged', function(data) {
         if(data === 1) {
 	    socket.broadcast.emit("piLockChanged", data);
@@ -331,6 +349,7 @@ io.sockets.on("connection",function(socket){
         
         socket.broadcast.emit('train');
     });
+
      socket.on('timeUpdated', function(data) {
         socket.broadcast.emit("updateTime", data);
     });

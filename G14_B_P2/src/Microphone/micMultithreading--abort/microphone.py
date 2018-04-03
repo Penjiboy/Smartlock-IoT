@@ -4,6 +4,8 @@ import os
 import pyaudio
 import wave
 import subprocess
+import time
+import urllib.request, urllib.parse
 
 CHUNK_SIZE = 1024
 FORMAT = pyaudio.paInt16
@@ -37,6 +39,8 @@ class micRecord:
 
         print("Message recorded")
 
+        time.sleep(0.5)
+        os.system("./sendRecording.sh")
         stream.stop_stream()
         stream.close()
         p.terminate()
@@ -66,8 +70,10 @@ class micRecord:
         while (len(data) > 0) and not(builtins._recording == True):
             stream.write(data)
             data = wf.readframes(CHUNK_SIZE)
-
+        
         print("finished playback")
+        
         stream.stop_stream()
         stream.close()
         p.terminate()
+
