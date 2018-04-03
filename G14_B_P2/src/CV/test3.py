@@ -224,9 +224,9 @@ class camera( threading.Thread ):
                 for name in names_with_result:
                     if name[1] == True:
 
-                    sftp.cd("last")
+                    sftp.chdir("last")
                     sftp.put("last_user.png")
-                    sftp.cd("..")
+                    sftp.chdir("..")
                     Sock.emit("unlock",name[0])
                     unlock()
                     break
