@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<title>291 G14 SmartLock</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="main.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="functions.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="requests.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+<script src="jquery-3.3.1.min.js"></script>
+
+<script>
+    var socket = io(); //load socket.io-client and connect to the host that serves the page
+    window.addEventListener("load", function(){ //when page loads
+        var lock = document.getElementById("lockStatus");
+        lock.addEventListener("change", function() { //add event listener for when checkbox changes
+            socket.emit("lockChanged", Number(this.checked)); //send button status to server (as 1 or 0)
+        });
+    });
+    socket.on('lockChanged', function (data) { //get button status from client
+        document.getElementById("lockStatus").checked = data; //change checkbox according to push button on Raspberry Pi
+        //socket.emit("lockChanged", data); //send push button status to back to server
+    });
+
+</script>
+<body>
+
+<header class="w3-container w3-teal w3-center">
+    <h1 id = "greetings">Welcome to G14's SmartLock Interface</h1>
+</header>
+<h2 class="w3-container w3-center">Hello <%name%>!</h2>
+
+<!--
+<div class="w3-container" style="width:25%">
+<div class="w3-card1 w3-black">
+    Status
+</div>
+<div class="w3-card2 w3-red">
+    Camera
+</div>
+<div class="w3-card w3-blue">
+    History
+</div>
+</div>
+-->
+
+
+<div class="w3-row-padding w3-section">
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" id="statusBox">Status</div>
+    <div class="w3-col l4 m4 s4" id = "switchBox">
+        <!-- Checkbox code has been referred from https://www.w3schools.com/howto/howto_css_switch.asp -->
+        <label class="switch">
+            <input type="checkbox" ID="lockStatus" onclick = "lockUnlock()" checked = "checked">
+            <span class="slider round"></span>
+        </label>
+
+        <br/>
+        <h5 id="lockText">Unlocked      Locked</h5>
+    </div>
+</div>
+
+<br/>
+
+<div class="w3-row-padding w3-section">
+
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" id="cameraBox">Camera</div>
+    <div class="w3-col l4 m4 s4 w3-margin-left" id = "pictureBox">
+        <div class="w3-card-4" style="width:50%">
+            <div class="w3-container">
+                <p>Last Seen Person</p> 
+            </div>
+            <!--<img src="~/../home/lock/last/last_user.png" class="w3-round w3-image" id="image"> -->
+            <img src="1.jpg" class="w3-round w3-image" id="image">
+            <!-- <img src="last_user.png" class="w3-round w3-image" id="image"> -->
+            <div class="w3-container">
+                <p>Unknown User</p>
+            </div>
+        </div>
+    </div>
+    <center>
+        <audio controls>
+            <source src="myMessage.wav" type="audio/wav">
+        </audio> 
+    </center>    
+</div>
+
+<br/>
+
+<div class="w3-row-padding w3-section">
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" id="historyBox">History</div>
+    <div class="w3-col l4 m4 s4 w3-margin-left" id = "historyBoxTable">
+        <p id = "api-test"></p>
+	<table class="w3-table w3-striped w3-bordered" ID="historyTable">
+            <tr ID="row1">
+                <td ID= "time1" onchange="updateTimes()">
+                <script language=Javascript> 
+                mostRecentTime();
+                setInterval(mostRecentTime,1000);
+                </script> 
+                </td>
+                
+                <td ID = "user1">User1</td>
+                <td ID = "action1">Unlocked door</td>
+            </tr>
+
+
+            <tr ID="row2">
+                <td  ID = "time2"> 
+                <script language=Javascript> 
+                secondRecentTime();
+                setInterval(secondRecentTime,1000);
+                </script> 
+                </td>
+
+                <td ID = "user2">User3</td>
+                <td ID = "action2">Unlocked door</td>
+            </tr>
+
+
+            <tr ID="row3">
+                <td ID = "time3">
+                <script language=Javascript> 
+                thirdRecentTime();
+                setInterval(thirdRecentTime,1000);
+                </script> 
+                </td>
+
+                <td ID = "user3">User2</td>
+                <td ID = "action3">Unlocked door</td>
+            </tr>
+        </table>
+    </div>       
+</div>
+
+</body>
+</html>

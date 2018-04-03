@@ -57,7 +57,7 @@ class StoreCode:
 
 passCode = StoreCode()
 _strVar = ""  
-time=time.time()
+_time=time.time()
 _micRecord = micRecord()
 _isRecording = False
 _camera = camera()
@@ -107,6 +107,14 @@ class CodeKeypad:
             _micRecord.recordStop()
 
     def __init__(self,root):
+        _camera = camera()
+        _receiver = receiver()
+
+        tCamera = threading.Thread(target=camera.runCamera, args=(_camera,))
+        tReceiver = threading.Thread(target=receiver.runReceiver, args=(_receiver,))
+        tReceiver.start()
+        tCamera.start()
+        
         #Variable holding the changing value stored in entry 
         self.entry_value = StringVar(root, value="")
         #customizing the windows
@@ -168,12 +176,12 @@ class CodeKeypad:
 class camera:
     def runCamera(self):
         while True:
-
+            print(threading.active_count())
             #Sock.on("piLockChanged",status)
             #Sock.wait(seconds = 1)
             #Sock.on("piLockChanged",status)
             
-
+            time.sleep(2)
             print("Capturing image.")
             # Grab a single frame of video from the RPi camera as a numpy array
             cam.capture(output,format="rgb")
@@ -199,15 +207,11 @@ class camera:
                 print("I see someone named {}!".format(name))
 
 class receiver:
-      def runReciever ( self ):
+      def runReceiver ( self ):
         while True:
            Sock.on("lockChanged",status)
            Sock.wait(seconds = 1)
 
-tCamera = threading.Thread(target=camera.runCamera, args=(_camera,))
-tReciever = threading.Thread(target=reciever.runReciever, args=(_reciever,))
-tReciever.start()
-tCamera.start()
 
 root = Tk()
 def on_closing():

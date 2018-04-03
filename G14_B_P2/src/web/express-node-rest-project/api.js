@@ -36,17 +36,23 @@ app.get('/users', function (req, res) {
 
 //find a particular user
 app.get('/findUserForLogin', function (req, res) {
-    mc.query('SELECT Member, Password FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
+    mc.query('SELECT Member, Password, user_mi, user_pic, keypad, encoding, serial_num, time, id FROM cpen291 where Member=\'' + req.body.name +'\'', function (error, results, fields) {
         if (error) throw error;
         return res.send({ error: false, data: results, message: 'Matching user' });
     });
 });
 
+
 app.post('/users', function (req, res) {
- 
+    console.log(req.body);
     var data = {
         "Member": req.body.member,
-        "Password": req.body.password
+        "Password": req.body.password,
+        "user_mic": req.body.user_mic,
+        "user_pic": req.body.user_pic,
+        "keypad": req.body.keypad,
+        "encoding": req.body.encoding,
+        "serial_num": req.body.serial_num
      };
  
     
@@ -56,6 +62,27 @@ app.post('/users', function (req, res) {
         return res.send({ error: false, data: results, message: 'New task has been created successfully.' });
     });
 });
+
+app.put('/users', function (req, res) {
+    
+    console.log(req.body);
+
+    var data = {
+        "Member": req.body.member,
+        "Password": req.body.password,
+        "user_mic": req.body.user_mic,
+        "user_pic": req.body.user_pic,
+        "keypad": req.body.keypad,
+        "encoding": req.body.encoding,
+        "serial_num": req.body.serial_num
+     };
+ 
+    mc.query('UPDATE cpen291 SET ? WHERE id =' + req.body.id, data, function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error: false, data: results, message: 'Task has been updated successfully.' });
+    });
+});
+
 
 // port must be set to 8080 because incoming http requests are routed from port 80 to port 8080
 app.listen(port, function () {

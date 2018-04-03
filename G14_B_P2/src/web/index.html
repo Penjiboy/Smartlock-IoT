@@ -25,8 +25,11 @@
     });
     socket.on('lockChanged', function (data) { //get button status from client
         document.getElementById("lockStatus").checked = data; //change checkbox according to push button on Raspberry Pi
-        //socket.emit("lockChanged", data); //send push button status to back to server
+        document.getElementById('image').src = '~/../home/lock/last/last_user.jpg';
     });
+    socket.on('updateTime',function(data){
+        changeTime(data);
+   });
 
 </script>
 <body>
@@ -92,8 +95,8 @@
             <div class="w3-container">
                 <p>Last Seen Person</p>
             </div>
-            <img src="~/../home/lock/last/last_user.png" class="w3-round w3-image" id="image">
-            <!-- <img src="last_user.png" class="w3-round w3-image" id="image"> -->
+            <img src="~/../home/lock/last/last_user.jpg" class="w3-round w3-image" id="image">
+            <!-- <img src="last_user.jpg" class="w3-round w3-image" id="image"> -->
             <div class="w3-container">
                 <p>Unknown User</p>
             </div>
@@ -148,6 +151,19 @@
         </table>
     </div>
 </div>
+
+<form action="/pinChange" method="post">
+    <div class="w3-row-padding w3-section">
+        <div class="w3-col l4 m4 s4 w3-margin-left">
+                <label>Current Pin:</label>  
+                <input type="text" name="currpin" style="margin-left: 9%"><br>
+                <br>
+                <label>New Pin:</label> 
+                <input type="text" name="newpin" style="margin-left: 15%"><br>
+                <input type="submit" class = "w3-button w3-teal w3-round-large w3-xlarge w3-padding-large w3-section" value="Change Pin" ID = "changepin" onclick="changePin()">
+        </div>
+    </div>
+</form>
 
 </body>
 </html>
