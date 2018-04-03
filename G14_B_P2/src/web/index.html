@@ -53,44 +53,27 @@
 </div>
 -->
 
-<div class="w3-sidebar w3-bar-block" style="width:25%; right:0">
-    <h5 class="w3-bar-item">Notifications</h5>
-    <ul class="w3-ul">
-        <li>
-            <div class="w3-container w3-center">9:05am</div>
-            <div class="w3-container">Voice Message</div>
-        </li>
-        <li>
-            <div class="w3-container w3-center">9:05am</div>
-            <div class="w3-container">Voice Message</div>
-        </li>
-        <li>
-            <div class="w3-container w3-center">9:05am</div>
-            <div class="w3-container">Voice Message</div>
-        </li>
-    </ul>
-</div>
-
 
 <div class="w3-row-padding w3-section">
-    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue">Status</div>
-    <div class="w3-col l4 m4 s4 w3-margin-left">
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" id = "statusBox">Status</div>
+    <div class="w3-col l4 m4 s4" id = "switchBox">
         <!-- Checkbox code has been referred from https://www.w3schools.com/howto/howto_css_switch.asp -->
         <label class="switch">
             <input type="checkbox" ID="lockStatus" onclick = "lockUnlock()" checked = "checked">
             <span class="slider round"></span>
         </label>
 
-        <br/>Unlocked      Locked
+        <br/>
+        <h5 id="lockText">Unlocked      Locked</h5>
     </div>
 </div>
 
 <br/>
-
+<hr>
 <div class="w3-row-padding w3-section">
 
-    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" style="margin-top:8%">Camera</div>
-    <div class="w3-col l4 m4 s4 w3-margin-left">
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" id = "cameraBox">Camera</div>
+    <div class="w3-col l4 m4 s4 w3-margin-left" id = "pictureBox">
         <div class="w3-card-4" style="width:50%">
             <div class="w3-container">
                 <!-- <audio controls><source src="myMessage.wav" type="audio/wav"></audio> -->
@@ -107,10 +90,10 @@
 </div>
 
 <br/>
-
+<hr>
 <div class="w3-row-padding w3-section">
-    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue">History</div>
-    <div class="w3-col l4 m4 s4 w3-margin-left">
+    <div class="w3-col l5 m5 s5 w3-card w3-lime w3-center w3-xxlarge w3-round-xlarge w3-text-deep-blue" id="historyBox">History</div>
+    <div class="w3-col l4 m4 s4 w3-margin-left" id = "historyBoxTable">
         <p id = "api-test"></p>
 	<table class="w3-table w3-striped w3-bordered" ID="historyTable">
             <tr ID="row1">
@@ -154,7 +137,10 @@
     </div>
 </div>
 
-<form action="/pinChange" method="post">
+<br>
+<hr>
+
+<form action="/pinChange" method="post" id = "pinChangeBox">
     <div class="w3-row-padding w3-section">
         <div class="w3-col l4 m4 s4 w3-margin-left">
                 <label>Current Pin:</label>  
@@ -162,7 +148,7 @@
                 <br>
                 <label>New Pin:</label> 
                 <input type="text" name="newpin" style="margin-left: 15%"><br>
-                <input type="submit" class = "w3-button w3-teal w3-round-large w3-xlarge w3-padding-large w3-section" value="Change Pin" ID = "changepin" onclick="changePin()">
+                <center><input type="submit" class = "w3-button w3-teal w3-round-large w3-xlarge w3-padding-large w3-section" value="Change Pin" ID = "changepin" onclick="changePin()"></center>
         </div>
     </div>
 </form>

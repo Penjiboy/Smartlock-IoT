@@ -243,7 +243,7 @@ app.post('/pinChange', function(request,response) {
                 response.writeHead(403, {'Content-Type': 'text/html'});
                 //Write an html file with the appropriate response, for now just write some text
                 response.write("Error! No pin found!");
-                response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Reenter your current pin</a>");
+                response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Reenter your current pin</a>");
                 response.end();
             } else {
                 if(pin.data[0].keypad === cpin) {                    
@@ -272,12 +272,13 @@ app.post('/pinChange', function(request,response) {
                         }, function (error, response, body){});
 
                         response.write("Pin Change Successful.")
-                        response.redirect('/index');
+                	response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
                         response.end();
                     }
                     else{
                         response.write("Pin Change Unsuccessful. Invalid new pin.");
                         response.redirect('/index');
+			response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
                         response.end();
                     }
                 } else {
@@ -286,7 +287,8 @@ app.post('/pinChange', function(request,response) {
                     //Redirect user back to home 
                     response.write("Pin Change Unsuccessful. Incorrect pin entered");
                     response.redirect('/index');
-                    response.end();
+         	    response.write("<br/><a href=\"http://"+hostIP+"/index"+"\">Go back to home page.</a>");
+		    response.end();
                 }
             }
         })();
