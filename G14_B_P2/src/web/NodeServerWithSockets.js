@@ -270,6 +270,7 @@ console.log("Server Running At:localhost:"+port);
 var io = require('socket.io').listen(app.listen(port,"0.0.0.0"));//Telling Express+Socket.io App To Listen To Port //for remote server
 io.sockets.on("connection",function(socket){
     console.log("Client connected");
+
     socket.on("unlock",function(data){
 
 	socket.emit("lockChanged", 0);
