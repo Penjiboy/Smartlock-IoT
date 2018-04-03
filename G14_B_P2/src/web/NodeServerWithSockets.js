@@ -146,6 +146,67 @@ app.get('/functions.js', function(request, response) {
     response.end();
 });
 
+//Routing to newAcc
+app.post('/newAcc', function(request, response) {
+    if(request.body.password !== request.body.confirmPassword) {
+        response.writeHead(403, {'Content-Type': 'text/html'});
+
+        //Write an html file with the appropriate response, for now just write some text
+        response.write("Error! Passwords do not match");
+        response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+        response.end();
+    }
+    //Check if the username already exists in the database
+
+    //verify serial number
+
+    const newAccOptions = {
+        url: 'http://' + hostIP + ':' + apiPort + '/users',
+        method: 'POST',
+        form: {
+            member: request.body.member,
+            password: request.body.password,
+            keypad: request.body.keypad,
+            serial_num: request.body.serial_num
+        },
+        headers: {
+            'Accept' : 'application/json',
+            'Accept-Charset': 'utf-8'
+        }
+    };
+
+    const checkUserExistsOptions = {
+        url: 'http://' + hostIP + ':' + apiPort + '/findUserForLogin',
+        method: 'GET',
+        form: {
+            name: request.body.member
+        },
+        headers: {
+            'Accept' : 'application/json',
+            'Accept-Charset': 'utf-8'
+        }
+    };
+
+    var usersList = [];
+    outRequest(checkUserExistsOptions, function(err, res, body) {
+        usersList = JSON.parse(body);
+        if(usersList.data.length > 0) {
+            response.writeHead(403, {'Content-Type': 'text/html'});
+
+            //Write an html file with the appropriate response, for now just write some text
+            response.write("Error! Username already exists!");
+            response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+            response.end();
+        }
+        else {
+            outRequest2(newAccOptions, function(err, res, body) {
+                response.redirect('/');
+            })
+        }
+    });
+
+});
+
 //Routing to loginAuth
 app.post('/loginAuth', function(request, response) {
     const options = {

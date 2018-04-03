@@ -60,7 +60,7 @@ app.post('/users', function (req, res) {
         "user_mic": req.body.user_mic,
         "user_pic": req.body.user_pic,
         "keypad": req.body.keypad,
-        "encoding": enc,
+        "encoding": req.body.enc,
         "serial_num": req.body.serial_num
      };
  
