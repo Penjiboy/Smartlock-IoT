@@ -173,10 +173,10 @@ class CodeKeypad:
 
 
 
-def train():
-    
+def train(*args):
+    global training
     training = True
-    name = "gurpreet"
+    name = args[0]
     print("recognizing " + name+ "\n")
     cam.capture(encode,format="rgb")
     while(len(face_recognition.face_encodings(encode)) == 0 or len(face_recognition.face_encodings(encode)) > 1):
