@@ -23,7 +23,6 @@ pwm.start(float(85)/10.0+2.5)
 def unlock():
         duty = float(185)/10.0+2.5
         pwm.ChangeDutyCycle(duty)
-       # start = time.time()
         print("door unlocked")
 def lock():
         duty = float(85)/10.0+2.5
@@ -61,6 +60,8 @@ _strVar = ""
 _time=time.time()
 _micRecord = micRecord()
 _isRecording = False
+_camera = camera()
+_reciever = reciever()
 
 class CodeKeypad: 
 
@@ -211,13 +212,6 @@ class receiver:
            Sock.on("lockChanged",status)
            Sock.wait(seconds = 1)
 
-
-
-#receiverThread = receiver()
-#receiverThread.start()
-
-#cameraThread = camera()
-#cameraThread.start()
 
 root = Tk()
 def on_closing():

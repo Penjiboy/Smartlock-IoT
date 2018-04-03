@@ -17,7 +17,7 @@ class StoreCode:
     def checkEqual(self,value):
         return value==self.__strSecret
 
-
+_lockID = 'lock1'
 passCode = StoreCode()
 _strVar = ""
 _micRecord = micRecord()
@@ -51,15 +51,22 @@ class CodeKeypad:
         print("Code entered: ", _strVar)
         if passCode.checkEqual(_strVar):
             print("Door is unlocked")
+            data = {
+            'codeEntered' : 'true',
+            'doorOpened' : 'true',
+            'intruderWarning' : 'false',
+            'lockID' : 'lock1'
+            }
         else:
             print("Error: Incorrect code entered")
             data = {
-            'visitor' : 'true',
-            'message' : 'false'
-            'intruderWarning' : 'true'
+            'codeEntered' : 'true',
+            'doorOpened' : 'false',
+            'intruderWarning' : 'true',
+            'lockID' : 'lock1'
             }
-            data = bytes( urllib.parse.urlencode( data ).encode() )
-            handler = urllib.request.urlopen( 'http://38.88.74.79:80/wrongCode', data )
+        data = bytes( urllib.parse.urlencode( data ).encode() )
+        handler = urllib.request.urlopen( 'http://38.88.74.79:80/keypadAccess', data )
         self.clear_num()
 
     def record_button(self):

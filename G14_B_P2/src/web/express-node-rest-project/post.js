@@ -4,7 +4,9 @@ var myJSONObject =  {
 	"member": "rico",
 	"password": "chessmaster",
 	"keypad": "12345",
-	"id":11
+	"serial_num": "cpen291_a",
+	"id": 1
+
 };
 request({
     url: "http://38.88.74.79:9015/users",
