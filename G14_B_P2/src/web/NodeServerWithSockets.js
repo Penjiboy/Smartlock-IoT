@@ -98,24 +98,29 @@ app.get('/main.css', function(request, response) {
 //Routing to audio files
 app.get('/mic/lock1/myMessage.wav', function(request, response) {
     response.writeHead(200, {'Content-Type': 'audio/wav'});
-    var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
+    var fileContents = fs.readFileSync('mic/lock1/myMessage.wav');
     response.write(fileContents);
     response.end();
 });
 
 app.get('/mic/lock2/myMessage.wav', function(request, response) {
     response.writeHead(200, {'Content-Type': 'audio/wav'});
-    var fileContents = fs.readFileSync('./mic/lock2/myMessage.wav', {encoding: 'utf8'});
+    var fileContents = fs.readFileSync('mic/lock2/myMessage.wav');
     response.write(fileContents);
     response.end();
 });
 
+/*
 app.get('/mic/lock1/myMessage.wav', function(request, response) {
     response.writeHead(200, {'Content-Type': 'audio/wav'});
     var fileContents = fs.readFileSync('./mic/lock1/myMessage.wav', {encoding: 'utf8'});
     response.write(fileContents);
+    /*
+    var readStream = fs.createReadStream(mic/lock1/myMessage.wav);
+    readStream.pipe(response);
     response.end();
 });
+*/
 
 //Routing to png file
 app.get('/last_user.jpg', function(request, response) {
