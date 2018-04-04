@@ -22,6 +22,7 @@ print("Socket complete")
 cam = picamera.PiCamera()
 print("camera complete")
 
+#setting up camera and image size/encoding parameters
 cam.resolution = (320, 240)
 output = np.empty((240, 320, 3), dtype=np.uint8)
 encode = np.empty((240, 320, 3), dtype=np.uint8)
@@ -33,6 +34,7 @@ pwm.start(float(85)/10.0+2.5)
 
 print("GPIO complete")
 
+#locking/unlocking door using servo
 def unlock():
         duty = float(185)/10.0+2.5
         pwm.ChangeDutyCycle(duty)
@@ -46,9 +48,13 @@ def lock():
 
 print("Loading known face image(s)")
 
+#loading dataset with known faces
+#reference https://github.com/ageitgey/face_recognition/issues/243:
 with open('dataset_faces.dat', 'rb+') as f:
         all_face_encodings = pickle.load(f)
 
+#prints the number of faces in the database of known faces
+	
 print("known faces = " + str(len(all_face_encodings)))
 
 
@@ -56,11 +62,13 @@ print("known faces = " + str(len(all_face_encodings)))
 face_locations = []
 face_encodings = []
 
+#function called from socket for event "lockchanged" unlocks or locks door based on server input
 def status(*args):
     if args[0]==1 : lock()
     elif args[0]==0: unlock()
     else: print("error")
 
+#function called from socket event changepin, changes the keypad passcode. SIGNAL NOT IMPLEMENTED ON SERVER
 def pin(*args):
         global passcode
         passcode = args[0]
@@ -184,7 +192,7 @@ class CodeKeypad:
         self.recordButton.grid(row = 5, column = 3, columnspan = 5)
 
 
-
+#function for adding users to the dataset of known faces SIGNAL FROM SERVER NOT IMPLEMENTED
 def train(*args):
     global training
     training = True
@@ -202,6 +210,7 @@ def train(*args):
     training = False
     
 
+#Thread for all camera and face recognition
 class camera( threading.Thread ):
     def run(self):
         while training == False:
@@ -213,52 +222,31 @@ class camera( threading.Thread ):
             # Grab a single frame of video from the RPi camera as a numpy array
             cam.capture("last_user.jpg")
 
-            # Find all the faces and face encodings in the current frame of video
-            #face_locations = face_recognition.face_locations(output)
-            #print("Found {} faces in image.".format(len(face_locations)))
-            #face_encodings = face_recognition.face_encodings(output, face_locations)
-
             # Loop over each face found in the frame to see if it's someone we know.
             image = face_recognition.load_image_file("last_user.jpg")
             unknown_face = face_recognition.face_encodings(image)
+		#throw
             try:
                 result = face_recognition.compare_faces(face_encodings, unknown_face)
+		#combine list of names with list of booleans representing faces found
                 names_with_result = list(zip(face_names, result))
                 print(names_with_result)
+		#now to loop over list of results
                 for name in names_with_result:
                     if name[1] == True:
-
+			#for first known user found, upload photo and send unlock signal to server
                             sftp.chdir("last")
                             sftp.put("last_user.jpg")
                             sftp.chdir("..")
                             Sock.emit("unlock",name[0])
+			#open door after sending status 
                             unlock()
                             break
                         
             except:
                 print("none found")
 
-            # Print the result as a list of names with True/False
-
-'''
-            for face_encoding in face_encodings:
-                # See if the face is a match for the known face(s)
-                match = face_recognition.compare_faces([ali_face_encoding], face_encoding)
-                name = "<Unknown Person>"
-
-                if match[0]:
-                    name = "Ali"
-                    sftp.cd("last")
-                    sftp.put("last_user.png")
-                    sftp.cd("..")
-                    Sock.emit("unlock",name)
-                    
-                    unlock()
-                else: lock()
-                
-                print("I see someone named {}!".format(name))
-        '''
-
+#thread for receiving commands from the server socket, allows them to be received at any time
 class receiver ( threading.Thread ):
       def run ( self ):
         while True:
@@ -266,7 +254,7 @@ class receiver ( threading.Thread ):
            Sock.on("pinchanged",pin)
            #Sock.on("train",train)
            Sock.wait(seconds = 1)
-
+#thread for keypad, ensures that keypad and camera run smoothly at the same time
 class ui(threading.Thread):
     def run(self):
         root = Tk()
