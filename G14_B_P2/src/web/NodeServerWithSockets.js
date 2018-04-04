@@ -52,31 +52,43 @@ app.get('/index',function(request,response){
   //Telling Browser That The File Provided Is A HTML File
     var cookies = cookie.parse(request.headers.cookie || '');
     console.log(cookies);
+   /*
     if(cookies.username === undefined) {
         response.writeHead(403, {'Content-Type': 'text/html'});
         response.write("ERROR! No proper authentication occured!");
         response.write("<br/><a href=\"http://"+hostIP+":"+port+"\">Try logging in again</a>");
+
+	response.end()
+
     }
+*/
     var username = cookies.username;
-    response.clearCookie('username');
+   // response.clearCookie('username');
    // response.setHeader('Set-cookie', cookie.serialize('pinname', usersList.data[0].Member), {
-    response.setHeader('Set-cookie', cookie.serialize('pinname', username), {
+/*    response.setHeader('Set-cookie', cookie.serialize('pinname', username), {
         maxAge: 10
+
     });
-  response.writeHead(200,{"Content-Type":"text/html"});
+
+ // response.writeHead(200,{"Content-Type":"text/html"});
   //Passing HTML To Browser
     var fileContents = fs.readFile('./index.html', function(err,data) {
         if(err) throw err;
 
         templatesjs.set(data, function(err,data){
             if(err) throw err;
+	    response.clearCookie('username');
+	    console.log('username is ' + username);
 
             templatesjs.render("name", username,"Case", function (err, data) {
                 if(err) console.log("Error occurred while rendering username");
                 var finalAudioFilePath = "<source src=\"" + cookies.audioFilePath + "/myMessage.wav\" type=\"audio/wav\">";
                 templatesjs.render("audioFilePath", finalAudioFilePath, function (err, data) {
+
                     if(err) console.log("Error occurred while rendering audio file path");
-                    response.write(data);
+
+                    response.writeHead(200, {'Content-Type':'text/html'});
+		    response.write(data);
                     response.end();
                 });
             });
@@ -170,7 +182,7 @@ app.post('/newAcc', function(request, response) {
             serial_num: request.body.serial_num
         },
         headers: {
-            'Accept' : 'application/json',
+            'Accept' : 'text/html',
             'Accept-Charset': 'utf-8'
         }
     };
@@ -201,7 +213,8 @@ app.post('/newAcc', function(request, response) {
         else {
             outRequest2(newAccOptions, function(err, res, body) {
                 response.redirect('/');
-                response.end();
+
+		response.end();
             })
         }
     });
@@ -252,7 +265,7 @@ app.post('/loginAuth', function(request, response) {
                     
                     //Register cookies and redirect user to home page, for now just write some text
                     response.setHeader('Set-cookie', cookie.serialize('username', usersList.data[0].Member), {
-                        maxAge: 10
+                        maxAge: 10000
                     });
                     response.setHeader('Set-cookie', cookie.serialize('audioFilePath', usersList.data[0].encoding), {
                         maxAge: 10
